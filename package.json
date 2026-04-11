@@ -1,0 +1,16 @@
+{
+  "name": "it-asset-pro",
+  "version": "1.0.0",
+  "description": "Sistema de Gestión de Activos IT",
+  "private": true,
+  "scripts": {
+    "seed": "node scripts/seed.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.0"
+  },
+  "devDependencies": {
+    "dotenv": "^17.4.1",
+    "vercel": "^50.43.0"
+  }
+}
