@@ -763,9 +763,6 @@ function showToast(msg, type = 'success') {
 // ==================== MODAL HELPERS ====================
 function openModal(id) { document.getElementById(id).classList.add('show'); }
 function closeModal(id) { document.getElementById(id).classList.remove('show'); }
-document.querySelectorAll('.modal-overlay').forEach(overlay => {
-    overlay.addEventListener('click', function (e) { if (e.target === this) this.classList.remove('show'); });
-});
 
 // ==================== PASSWORD TOGGLE ====================
 function togglePassword(inputId, btn) {
