@@ -7,7 +7,7 @@ module.exports = async function handler(req, res) {
   try {
     if (req.method === 'GET') {
       const { data, error } = await supabase
-        .from('usuarios')
+        .from('departamentos')
         .select('*')
         .order('created_at', { ascending: false });
 
@@ -16,15 +16,15 @@ module.exports = async function handler(req, res) {
     }
 
     if (req.method === 'POST') {
-      const { nombre, email, posicion, sucursal_id, departamento_id, telefono, notas } = req.body;
+      const { nombre, descripcion, responsable, sucursal_id, notas } = req.body;
 
-      if (!nombre || !posicion) {
-        return res.status(400).json({ error: 'nombre y posicion son requeridos' });
+      if (!nombre) {
+        return res.status(400).json({ error: 'nombre es requerido' });
       }
 
       const { data, error } = await supabase
-        .from('usuarios')
-        .insert([{ nombre, email, posicion, sucursal_id: sucursal_id || null, departamento_id: departamento_id || null, telefono, notas }])
+        .from('departamentos')
+        .insert([{ nombre, descripcion, responsable, sucursal_id: sucursal_id || null, notas }])
         .select()
         .single();
 

@@ -212,8 +212,8 @@
         </div>
         <form id="login-form" onsubmit="handleLogin(event)">
             <div class="form-group">
-                <label>Email <span class="required">*</span></label>
-                <input type="email" class="form-input" id="login-email" required placeholder="correo@empresa.com" autocomplete="email">
+                <label>Usuario <span class="required">*</span></label>
+                <input type="text" class="form-input" id="login-usuario" required placeholder="Usuario" autocomplete="username">
             </div>
             <div class="form-group">
                 <label>Contraseña <span class="required">*</span></label>
@@ -265,6 +265,11 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
                 Sucursales
                 <span class="nav-badge" id="badge-sucursales">0</span>
+            </a>
+            <a class="nav-item" data-page="departamentos" onclick="navigateTo('departamentos')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+                Departamentos
+                <span class="nav-badge" id="badge-departamentos">0</span>
             </a>
         </div>
         <div class="nav-section">
@@ -354,7 +359,7 @@
                         <button class="btn btn-primary" onclick="openUserModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Nuevo Usuario</button>
                     </div>
                 </div>
-                <table class="data-table"><thead><tr><th>Usuario</th><th>Posición</th><th>Sucursal</th><th>Equipos Asignados</th><th>Acciones</th></tr></thead><tbody id="users-table-body"></tbody></table>
+                <table class="data-table"><thead><tr><th>Usuario</th><th>Posición</th><th>Sucursal</th><th>Departamento</th><th>Equipos Asignados</th><th>Acciones</th></tr></thead><tbody id="users-table-body"></tbody></table>
             </div>
         </div>
 
@@ -385,6 +390,21 @@
                     </div>
                 </div>
                 <table class="data-table"><thead><tr><th>Sucursal</th><th>Dirección</th><th>Empleados</th><th>Equipos</th><th>Acciones</th></tr></thead><tbody id="sucursales-table-body"></tbody></table>
+            </div>
+        </div>
+
+        <!-- DEPARTAMENTOS -->
+        <div class="page-section" id="page-departamentos">
+            <div class="table-container">
+                <div class="table-toolbar">
+                    <div class="table-toolbar-left"><h3>📁 Gestión de Departamentos</h3><span class="record-count" id="departamentos-count">0 registros</span></div>
+                    <div class="table-toolbar-right">
+                        <div class="table-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" placeholder="Buscar departamentos..." id="searchDepartamentos" oninput="renderDepartamentos()"></div>
+                        <select class="filter-select" id="filterDeptSucursal" onchange="renderDepartamentos()"><option value="">Todas las sucursales</option></select>
+                        <button class="btn btn-primary" onclick="openDepartamentoModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Nuevo Departamento</button>
+                    </div>
+                </div>
+                <table class="data-table"><thead><tr><th>Departamento</th><th>Responsable</th><th>Sucursal</th><th>Empleados</th><th>Acciones</th></tr></thead><tbody id="departamentos-table-body"></tbody></table>
             </div>
         </div>
 
@@ -453,17 +473,11 @@
                     <div class="form-group"><label>Nombre Completo <span class="required">*</span></label><input type="text" class="form-input" id="usuario-nombre" required placeholder="Ej: Juan Pérez"></div>
                     <div class="form-group"><label>Email</label><input type="email" class="form-input" id="usuario-email" placeholder="correo@empresa.com"></div>
                 </div>
-                <div class="form-group">
-                    <label>Contraseña <span class="required">*</span></label>
-                    <div class="password-wrapper">
-                        <input type="password" class="form-input" id="usuario-password" required placeholder="Contraseña">
-                        <button type="button" class="password-toggle" onclick="togglePassword('usuario-password',this)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>
-                    </div>
-                </div>
                 <div class="form-row">
                     <div class="form-group"><label>Posición / Cargo <span class="required">*</span></label><input type="text" class="form-input" id="usuario-posicion" required placeholder="Ej: Desarrollador"></div>
                     <div class="form-group"><label>Sucursal</label><select class="form-input" id="usuario-sucursal"><option value="">Sin sucursal</option></select></div>
                 </div>
+                <div class="form-group"><label>Departamento</label><select class="form-input" id="usuario-departamento"><option value="">Sin departamento</option></select></div>
                 <div class="form-group"><label>Teléfono</label><input type="text" class="form-input" id="usuario-telefono" placeholder="Ej: +52 55 1234 5678"></div>
                 <div class="form-group"><label>Notas</label><textarea class="form-input" id="usuario-notas" placeholder="Observaciones adicionales..."></textarea></div>
             </form>
@@ -540,6 +554,32 @@
 
 <!-- Modal Asignar -->
 <div class="modal-overlay" id="modal-asignar">
+
+<!-- Modal Departamento -->
+<div class="modal-overlay" id="modal-departamento">
+    <div class="modal">
+        <div class="modal-header">
+            <div><h2 id="modal-departamento-title">Nuevo Departamento</h2><p id="modal-departamento-subtitle">Complete la información del departamento</p></div>
+            <button class="modal-close" onclick="closeModal('modal-departamento')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+        </div>
+        <div class="modal-body">
+            <form id="form-departamento" onsubmit="saveDepartamento(event)">
+                <input type="hidden" id="departamento-id">
+                <div class="form-group"><label>Nombre del Departamento <span class="required">*</span></label><input type="text" class="form-input" id="departamento-nombre" required placeholder="Ej: Contabilidad"></div>
+                <div class="form-group"><label>Descripción</label><input type="text" class="form-input" id="departamento-descripcion" placeholder="Descripción del departamento"></div>
+                <div class="form-row">
+                    <div class="form-group"><label>Responsable</label><input type="text" class="form-input" id="departamento-responsable" placeholder="Nombre del responsable"></div>
+                    <div class="form-group"><label>Sucursal</label><select class="form-input" id="departamento-sucursal"><option value="">Sin sucursal</option></select></div>
+                </div>
+                <div class="form-group"><label>Notas</label><textarea class="form-input" id="departamento-notas" placeholder="Observaciones adicionales..."></textarea></div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" onclick="closeModal('modal-departamento')">Cancelar</button>
+            <button class="btn btn-primary" onclick="document.getElementById('form-departamento').requestSubmit()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>Guardar</button>
+        </div>
+    </div>
+</div>
     <div class="modal">
         <div class="modal-header">
             <div><h2>Nueva Asignación</h2><p>Asigne un equipo a un usuario o sucursal</p></div>
@@ -646,7 +686,7 @@
 
 <script>
 // ==================== DATA CACHE ====================
-let cache = { usuarios: [], equipos: [], sucursales: [], credenciales: [], conexiones: [] };
+let cache = { usuarios: [], equipos: [], sucursales: [], credenciales: [], conexiones: [], departamentos: [] };
 let currentUser = null;
 
 const API = {
@@ -680,6 +720,7 @@ async function loadAllData() {
         cache.sucursales = data.sucursales || [];
         cache.credenciales = data.credenciales || [];
         cache.conexiones = data.conexiones || [];
+        cache.departamentos = data.departamentos || [];
     } catch (err) {
         showToast('Error cargando datos: ' + err.message, 'error');
     }
@@ -693,7 +734,7 @@ function navigateTo(page) {
     if (section) section.classList.add('active');
     const navItem = document.querySelector(`.nav-item[data-page="${page}"]`);
     if (navItem) navItem.classList.add('active');
-    const titles = { dashboard: 'Dashboard', usuarios: 'Usuarios', equipos: 'Equipos', sucursales: 'Sucursales', 'empleados-sucursal': 'Empleados por Sucursal', asignaciones: 'Asignaciones', credenciales: 'Credenciales', conexiones: 'Conexiones Remotas' };
+    const titles = { dashboard: 'Dashboard', usuarios: 'Usuarios', equipos: 'Equipos', sucursales: 'Sucursales', departamentos: 'Departamentos', 'empleados-sucursal': 'Empleados por Sucursal', asignaciones: 'Asignaciones', credenciales: 'Credenciales', conexiones: 'Conexiones Remotas' };
     document.getElementById('page-title').textContent = titles[page] || page;
     document.getElementById('breadcrumb').innerHTML = `Inicio <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg> <span>${titles[page] || page}</span>`;
     if (page === 'empleados-sucursal') showSucursalList();
@@ -769,9 +810,9 @@ function openUserModal(id) {
             document.getElementById('usuario-id').value = u.id;
             document.getElementById('usuario-nombre').value = u.nombre;
             document.getElementById('usuario-email').value = u.email || '';
-            document.getElementById('usuario-password').value = u.password;
             document.getElementById('usuario-posicion').value = u.posicion;
             document.getElementById('usuario-sucursal').value = u.sucursal_id || '';
+            document.getElementById('usuario-departamento').value = u.departamento_id || '';
             document.getElementById('usuario-telefono').value = u.telefono || '';
             document.getElementById('usuario-notas').value = u.notas || '';
         }
@@ -788,9 +829,9 @@ async function saveUsuario(e) {
     const body = {
         nombre: document.getElementById('usuario-nombre').value.trim(),
         email: document.getElementById('usuario-email').value.trim(),
-        password: document.getElementById('usuario-password').value,
         posicion: document.getElementById('usuario-posicion').value.trim(),
         sucursal_id: document.getElementById('usuario-sucursal').value || null,
+        departamento_id: document.getElementById('usuario-departamento').value || null,
         telefono: document.getElementById('usuario-telefono').value.trim(),
         notas: document.getElementById('usuario-notas').value.trim()
     };
@@ -834,18 +875,20 @@ function renderUsers() {
     const tbody = document.getElementById('users-table-body');
     document.getElementById('users-count').textContent = `${filtered.length} registros`;
     if (filtered.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="5"><div class="table-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><p>No se encontraron usuarios</p><small>Agrega tu primer usuario con el botón "Nuevo Usuario"</small></div></td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="6"><div class="table-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><p>No se encontraron usuarios</p><small>Agrega tu primer usuario con el botón "Nuevo Usuario"</small></div></td></tr>`;
         return;
     }
     tbody.innerHTML = filtered.map(u => {
         const initials = u.nombre.split(' ').map(w => w[0]).join('').substring(0, 2).toUpperCase();
         const color = colors[u.nombre.charCodeAt(0) % colors.length];
         const suc = cache.sucursales.find(s => s.id === u.sucursal_id);
+        const dept = cache.departamentos.find(d => d.id === u.departamento_id);
         const eqCount = cache.equipos.filter(e => e.asignado_tipo === 'usuario' && e.asignado_id === u.id).length;
         return `<tr>
             <td><div class="table-cell"><div class="avatar-sm" style="background:${color}">${esc(initials)}</div><div><div style="font-weight:600">${esc(u.nombre)}</div><div style="font-size:11px;color:var(--gray-400)">${esc(u.email || 'Sin email')}</div></div></div></td>
             <td><span class="badge badge-primary">${esc(u.posicion)}</span></td>
             <td>${suc ? `<span class="badge badge-gray">🏢 ${esc(suc.nombre)}</span>` : '<span class="badge badge-gray">Sin sucursal</span>'}</td>
+            <td>${dept ? `<span class="badge badge-info">📁 ${esc(dept.nombre)}</span>` : '<span style="color:var(--gray-300)">—</span>'}</td>
             <td><span class="badge badge-info">${eqCount} equipo${eqCount !== 1 ? 's' : ''}</span></td>
             <td><div style="display:flex;gap:6px">
                 <button class="btn-icon edit" title="Editar" onclick="openUserModal('${u.id}')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
@@ -1265,14 +1308,24 @@ function viewSucursalDetail(id) {
 
 // ==================== POPULATE SELECTS ====================
 function populateSucursalSelects() {
-    const sels = ['usuario-sucursal', 'filterUserSucursal'];
+    const sels = ['usuario-sucursal', 'filterUserSucursal', 'departamento-sucursal', 'filterDeptSucursal'];
     sels.forEach(selId => {
         const sel = document.getElementById(selId);
         if (!sel) return;
         const currentVal = sel.value;
-        if (selId === 'usuario-sucursal') { sel.innerHTML = '<option value="">Sin sucursal</option>'; }
-        else { sel.innerHTML = '<option value="">Todas las sucursales</option>'; }
+        if (selId.startsWith('filter')) { sel.innerHTML = '<option value="">Todas las sucursales</option>'; }
+        else { sel.innerHTML = '<option value="">Sin sucursal</option>'; }
         cache.sucursales.forEach(s => { sel.innerHTML += `<option value="${s.id}">${esc(s.nombre)}</option>`; });
+        sel.value = currentVal;
+    });
+    // Populate departamento selects
+    const deptSels = ['usuario-departamento'];
+    deptSels.forEach(selId => {
+        const sel = document.getElementById(selId);
+        if (!sel) return;
+        const currentVal = sel.value;
+        sel.innerHTML = '<option value="">Sin departamento</option>';
+        cache.departamentos.forEach(d => { sel.innerHTML += `<option value="${d.id}">${esc(d.nombre)}</option>`; });
         sel.value = currentVal;
     });
 }
@@ -1344,6 +1397,7 @@ function updateBadges() {
     document.getElementById('badge-users').textContent = cache.usuarios.length;
     document.getElementById('badge-equipos').textContent = cache.equipos.length;
     document.getElementById('badge-sucursales').textContent = cache.sucursales.length;
+    document.getElementById('badge-departamentos').textContent = cache.departamentos.length;
     document.getElementById('badge-credenciales').textContent = cache.credenciales.length;
     document.getElementById('badge-conexiones').textContent = cache.conexiones.length;
 }
@@ -1365,6 +1419,10 @@ function handleGlobalSearch(e) {
             navigateTo('sucursales');
             document.getElementById('searchSucursales').value = q;
             renderSucursales();
+        } else if (cache.departamentos.some(d => d.nombre.toLowerCase().includes(q) || (d.responsable || '').toLowerCase().includes(q))) {
+            navigateTo('departamentos');
+            document.getElementById('searchDepartamentos').value = q;
+            renderDepartamentos();
         }
     }
 }
@@ -1375,6 +1433,7 @@ function renderAll() {
     renderUsers();
     renderEquipos();
     renderSucursales();
+    renderDepartamentos();
     renderAsignaciones();
     renderCredenciales();
     renderConexiones();
@@ -1385,7 +1444,7 @@ function renderAll() {
 // ==================== LOGIN ====================
 async function handleLogin(e) {
     e.preventDefault();
-    const email = document.getElementById('login-email').value.trim();
+    const usuario = document.getElementById('login-usuario').value.trim();
     const password = document.getElementById('login-password').value;
     const errEl = document.getElementById('login-error');
     const btn = document.getElementById('login-btn');
@@ -1393,7 +1452,7 @@ async function handleLogin(e) {
     btn.textContent = 'Cargando...';
     btn.disabled = true;
     try {
-        const data = await API.post('/api/auth/login', { email, password });
+        const data = await API.post('/api/auth/login', { usuario, password });
         sessionStorage.setItem('auth_token', data.token);
         sessionStorage.setItem('auth_user', JSON.stringify(data.usuario));
         currentUser = data.usuario;
@@ -1422,12 +1481,92 @@ function showApp() {
     document.getElementById('sidebar').style.display = '';
     document.querySelector('.main').style.display = '';
     if (currentUser) {
-        const initials = currentUser.nombre.split(' ').map(w => w[0]).join('').substring(0, 2).toUpperCase();
+        const initials = currentUser.nombre.substring(0, 2).toUpperCase();
         document.getElementById('sidebar-avatar').textContent = initials;
         document.getElementById('sidebar-user-name').textContent = currentUser.nombre;
-        document.getElementById('sidebar-user-role').textContent = currentUser.posicion || currentUser.rol;
+        document.getElementById('sidebar-user-role').textContent = currentUser.rol === 'admin' ? 'Administrador' : 'Usuario';
     }
     loadAllData().then(() => renderAll());
+}
+
+// ==================== DEPARTAMENTOS ====================
+function openDepartamentoModal(id) {
+    document.getElementById('form-departamento').reset();
+    document.getElementById('departamento-id').value = '';
+    populateSucursalSelects();
+    if (id) {
+        const d = cache.departamentos.find(x => x.id === id);
+        if (d) {
+            document.getElementById('modal-departamento-title').textContent = 'Editar Departamento';
+            document.getElementById('modal-departamento-subtitle').textContent = 'Modifique la información del departamento';
+            document.getElementById('departamento-id').value = d.id;
+            document.getElementById('departamento-nombre').value = d.nombre;
+            document.getElementById('departamento-descripcion').value = d.descripcion || '';
+            document.getElementById('departamento-responsable').value = d.responsable || '';
+            document.getElementById('departamento-sucursal').value = d.sucursal_id || '';
+            document.getElementById('departamento-notas').value = d.notas || '';
+        }
+    } else {
+        document.getElementById('modal-departamento-title').textContent = 'Nuevo Departamento';
+        document.getElementById('modal-departamento-subtitle').textContent = 'Complete la información del departamento';
+    }
+    openModal('modal-departamento');
+}
+
+async function saveDepartamento(e) {
+    e.preventDefault();
+    const id = document.getElementById('departamento-id').value;
+    const body = {
+        nombre: document.getElementById('departamento-nombre').value.trim(),
+        descripcion: document.getElementById('departamento-descripcion').value.trim(),
+        responsable: document.getElementById('departamento-responsable').value.trim(),
+        sucursal_id: document.getElementById('departamento-sucursal').value || null,
+        notas: document.getElementById('departamento-notas').value.trim()
+    };
+    try {
+        if (id) { await API.put('/api/departamentos/' + id, body); showToast('Departamento actualizado'); }
+        else { await API.post('/api/departamentos', body); showToast('Departamento creado'); }
+        closeModal('modal-departamento');
+        await loadAllData(); renderAll();
+    } catch (err) { showToast('Error: ' + err.message, 'error'); }
+}
+
+function deleteDepartamento(id) {
+    showConfirm('¿Eliminar departamento?', 'Los usuarios serán desvinculados de este departamento.', async () => {
+        try { await API.del('/api/departamentos/' + id); showToast('Departamento eliminado'); await loadAllData(); renderAll(); }
+        catch (err) { showToast('Error: ' + err.message, 'error'); }
+    });
+}
+
+function renderDepartamentos() {
+    const search = (document.getElementById('searchDepartamentos')?.value || '').toLowerCase();
+    const filterSuc = document.getElementById('filterDeptSucursal')?.value || '';
+    let filtered = cache.departamentos.filter(d => {
+        const matchSearch = d.nombre.toLowerCase().includes(search) || (d.responsable || '').toLowerCase().includes(search) || (d.descripcion || '').toLowerCase().includes(search);
+        const matchSuc = !filterSuc || d.sucursal_id === filterSuc;
+        return matchSearch && matchSuc;
+    });
+    const tbody = document.getElementById('departamentos-table-body');
+    document.getElementById('departamentos-count').textContent = `${filtered.length} registros`;
+    if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="5"><div class="table-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg><p>No se encontraron departamentos</p><small>Agrega tu primer departamento con el botón "Nuevo Departamento"</small></div></td></tr>`;
+        return;
+    }
+    tbody.innerHTML = filtered.map(d => {
+        const suc = cache.sucursales.find(s => s.id === d.sucursal_id);
+        const empCount = cache.usuarios.filter(u => u.departamento_id === d.id).length;
+        const color = colors[d.nombre.charCodeAt(0) % colors.length];
+        return `<tr>
+            <td><div class="table-cell"><div class="avatar-sm" style="background:${color}">📁</div><div><div style="font-weight:600">${esc(d.nombre)}</div>${d.descripcion ? `<div style="font-size:11px;color:var(--gray-400)">${esc(d.descripcion)}</div>` : ''}</div></div></td>
+            <td>${d.responsable ? esc(d.responsable) : '<span style="color:var(--gray-300)">—</span>'}</td>
+            <td>${suc ? `<span class="badge badge-gray">🏢 ${esc(suc.nombre)}</span>` : '<span class="badge badge-gray">Sin sucursal</span>'}</td>
+            <td><span class="badge badge-info">${empCount} empleado${empCount !== 1 ? 's' : ''}</span></td>
+            <td><div style="display:flex;gap:6px">
+                <button class="btn-icon edit" title="Editar" onclick="openDepartamentoModal('${d.id}')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+                <button class="btn-icon danger" title="Eliminar" onclick="deleteDepartamento('${d.id}')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>
+            </div></td>
+        </tr>`;
+    }).join('');
 }
 
 // ==================== CREDENCIALES ====================
