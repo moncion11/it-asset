@@ -1,6 +1,11 @@
 {
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/$1" },
+    { "source": "/api/usuarios/:id", "destination": "/api/usuarios" },
+    { "source": "/api/equipos/:id", "destination": "/api/equipos" },
+    { "source": "/api/sucursales/:id", "destination": "/api/sucursales" },
+    { "source": "/api/departamentos/:id", "destination": "/api/departamentos" },
+    { "source": "/api/credenciales/:id", "destination": "/api/credenciales" },
+    { "source": "/api/conexiones/:id", "destination": "/api/conexiones" },
     { "source": "/(.*)", "destination": "/public/$1" }
   ]
 }

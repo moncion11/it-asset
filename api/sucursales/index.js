@@ -1,10 +1,15 @@
 const { supabase, setCorsHeaders, handleOptions } = require('../../lib/supabase');
 
+function getId(req) {
+  const segments = req.url.split('?')[0].split('/').filter(Boolean);
+  return segments.length > 2 ? segments[2] : null;
+}
+
 module.exports = async function handler(req, res) {
   if (handleOptions(req, res)) return;
   setCorsHeaders(res);
 
-  const id = req.query.params?.[0];
+  const id = getId(req);
 
   try {
     if (id) {

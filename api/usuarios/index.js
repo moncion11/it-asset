@@ -1,14 +1,18 @@
 const { supabase, setCorsHeaders, handleOptions } = require('../../lib/supabase');
 
+function getId(req) {
+  const segments = req.url.split('?')[0].split('/').filter(Boolean);
+  return segments.length > 2 ? segments[2] : null;
+}
+
 module.exports = async function handler(req, res) {
   if (handleOptions(req, res)) return;
   setCorsHeaders(res);
 
-  const id = req.query.params?.[0];
+  const id = getId(req);
 
   try {
     if (id) {
-      // ===== OPERATIONS ON SINGLE RESOURCE =====
       if (req.method === 'GET') {
         const { data, error } = await supabase.from('usuarios').select('*').eq('id', id).single();
         if (error) throw error;
@@ -32,7 +36,6 @@ module.exports = async function handler(req, res) {
         return res.status(200).json({ message: 'Usuario eliminado' });
       }
     } else {
-      // ===== OPERATIONS ON COLLECTION =====
       if (req.method === 'GET') {
         const { data, error } = await supabase.from('usuarios').select('*').order('created_at', { ascending: false });
         if (error) throw error;
