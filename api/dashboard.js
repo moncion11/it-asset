@@ -9,13 +9,14 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    const [usuariosRes, equiposRes, sucursalesRes, credencialesRes, conexionesRes, departamentosRes] = await Promise.all([
+    const [usuariosRes, equiposRes, sucursalesRes, credencialesRes, conexionesRes, departamentosRes, tareasRes] = await Promise.all([
       supabase.from('usuarios').select('*'),
       supabase.from('equipos').select('*'),
       supabase.from('sucursales').select('*'),
       supabase.from('credenciales').select('*'),
       supabase.from('conexiones_remotas').select('*'),
-      supabase.from('departamentos').select('*')
+      supabase.from('departamentos').select('*'),
+      supabase.from('tareas').select('*')
     ]);
 
     if (usuariosRes.error) throw usuariosRes.error;
@@ -28,6 +29,7 @@ module.exports = async function handler(req, res) {
     const credenciales = credencialesRes.data || [];
     const conexiones = conexionesRes.data || [];
     const departamentos = departamentosRes.data || [];
+    const tareas = tareasRes.data || [];
 
     return res.status(200).json({
       totalUsuarios: usuarios.length,
@@ -39,7 +41,8 @@ module.exports = async function handler(req, res) {
       sucursales,
       credenciales,
       conexiones,
-      departamentos
+      departamentos,
+      tareas
     });
   } catch (err) {
     return res.status(500).json({ error: err.message });

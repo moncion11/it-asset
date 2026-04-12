@@ -6,6 +6,7 @@
     { "source": "/api/departamentos/:id", "destination": "/api/departamentos" },
     { "source": "/api/credenciales/:id", "destination": "/api/credenciales" },
     { "source": "/api/conexiones/:id", "destination": "/api/conexiones" },
+    { "source": "/api/tareas/:id", "destination": "/api/tareas" },
     { "source": "/(.*)", "destination": "/public/$1" }
   ]
 }

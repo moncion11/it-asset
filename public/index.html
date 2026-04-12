@@ -10,37 +10,37 @@
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
         :root{
-            --primary:#4f46e5;--primary-dark:#3730a3;--primary-light:#818cf8;--primary-lighter:#c7d2fe;--primary-bg:#eef2ff;
-            --secondary:#7c3aed;--secondary-dark:#5b21b6;--secondary-light:#a78bfa;
+            --primary:#5a75a1;--primary-dark:#5a75a1;--primary-light:#3b82f6;--primary-lighter:#bfdbfe;--primary-bg:#eff6ff;
+            --secondary:#f97316;--secondary-dark:#ea580c;--secondary-light:#fb923c;
             --success:#10b981;--success-light:#d1fae5;--success-dark:#059669;
-            --warning:#f59e0b;--warning-light:#fef3c7;
+            --warning:#f97316;--warning-light:#fff7ed;
             --danger:#ef4444;--danger-light:#fee2e2;--danger-dark:#dc2626;
-            --info:#06b6d4;--info-light:#cffafe;
-            --dark:#1e1b4b;--dark-2:#312e81;--dark-3:#4338ca;
+            --info:#2563eb;--info-light:#eff6ff;
+            --dark:#5a75a1;--dark-2:#5a75a1;--dark-3:#5a75a1;
             --gray-50:#f8fafc;--gray-100:#f1f5f9;--gray-200:#e2e8f0;--gray-300:#cbd5e1;--gray-400:#94a3b8;--gray-500:#64748b;--gray-600:#475569;--gray-700:#334155;--gray-800:#1e293b;--gray-900:#0f172a;
             --white:#ffffff;--sidebar-w:260px;--radius:12px;--shadow:0 1px 3px rgba(0,0,0,.1),0 1px 2px rgba(0,0,0,.06);--shadow-lg:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -2px rgba(0,0,0,.05);--shadow-xl:0 20px 25px -5px rgba(0,0,0,.1),0 10px 10px -5px rgba(0,0,0,.04);
             --transition:all .25s cubic-bezier(.4,0,.2,1)
         }
         body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--gray-100);color:var(--gray-800);min-height:100vh;display:flex;overflow-x:hidden}
-        .sidebar{width:var(--sidebar-w);background:linear-gradient(180deg,var(--dark) 0%,var(--primary-dark) 100%);min-height:100vh;position:fixed;left:0;top:0;z-index:100;display:flex;flex-direction:column;transition:var(--transition);overflow:hidden}
+        .sidebar{width:var(--sidebar-w);background:var(--dark);min-height:100vh;position:fixed;left:0;top:0;z-index:100;display:flex;flex-direction:column;transition:var(--transition);overflow:hidden}
         .sidebar-header{padding:24px 20px;border-bottom:1px solid rgba(255,255,255,.1)}
         .sidebar-header .logo{display:flex;align-items:center;gap:12px;color:var(--white)}
-        .sidebar-header .logo-icon{width:40px;height:40px;background:linear-gradient(135deg,var(--primary-light),var(--secondary-light));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+        .sidebar-header .logo-icon{width:40px;height:40px;background:var(--secondary);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
         .sidebar-header .logo-text{font-size:18px;font-weight:700;letter-spacing:-.3px}
         .sidebar-header .logo-sub{font-size:11px;color:var(--primary-lighter);font-weight:400;margin-top:2px}
-        .sidebar-nav{flex:1;padding:16px 12px;overflow-y:auto}
-        .nav-section{margin-bottom:24px}
+        .sidebar-nav{flex:1;padding:12px 12px;overflow-y:auto;min-height:0}
+        .nav-section{margin-bottom:16px}
         .nav-section-title{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.4);padding:0 12px;margin-bottom:8px;font-weight:600}
         .nav-item{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:10px;color:rgba(255,255,255,.65);cursor:pointer;transition:var(--transition);font-size:13.5px;font-weight:500;margin-bottom:2px;text-decoration:none;position:relative}
         .nav-item:hover{background:rgba(255,255,255,.08);color:var(--white)}
         .nav-item.active{background:rgba(255,255,255,.12);color:var(--white);font-weight:600}
-        .nav-item.active::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:3px;height:20px;background:var(--primary-light);border-radius:0 3px 3px 0}
+        .nav-item.active::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:3px;height:20px;background:var(--secondary);border-radius:0 3px 3px 0}
         .nav-item svg{width:20px;height:20px;flex-shrink:0;opacity:.8}
         .nav-item.active svg{opacity:1}
-        .nav-badge{margin-left:auto;background:var(--primary);color:var(--white);font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px;min-width:20px;text-align:center}
-        .sidebar-footer{padding:16px 12px;border-top:1px solid rgba(255,255,255,.1)}
+        .nav-badge{margin-left:auto;background:var(--secondary);color:var(--white);font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px;min-width:20px;text-align:center}
+        .sidebar-footer{padding:12px;border-top:1px solid rgba(255,255,255,.1);flex-shrink:0}
         .sidebar-footer .user-info{display:flex;align-items:center;gap:10px;padding:8px;border-radius:10px}
-        .sidebar-footer .user-avatar{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--success),var(--info));display:flex;align-items:center;justify-content:center;color:var(--white);font-weight:700;font-size:14px;flex-shrink:0}
+        .sidebar-footer .user-avatar{width:36px;height:36px;border-radius:10px;background:var(--secondary);display:flex;align-items:center;justify-content:center;color:var(--white);font-weight:700;font-size:14px;flex-shrink:0}
         .sidebar-footer .user-name{color:var(--white);font-size:13px;font-weight:600}
         .sidebar-footer .user-role{color:var(--primary-lighter);font-size:11px}
         .main{margin-left:var(--sidebar-w);flex:1;min-height:100vh;display:flex;flex-direction:column}
@@ -50,26 +50,26 @@
         .topbar-left .breadcrumb{font-size:12px;color:var(--gray-400);display:flex;align-items:center;gap:6px}
         .topbar-left .breadcrumb span{color:var(--primary)}
         .topbar-right{display:flex;align-items:center;gap:12px}
-        .topbar-search{position:relative}
-        .topbar-search input{padding:8px 12px 8px 36px;border:1px solid var(--gray-200);border-radius:8px;font-size:13px;width:240px;background:var(--gray-50);transition:var(--transition);font-family:inherit}
-        .topbar-search input:focus{outline:none;border-color:var(--primary);background:var(--white);box-shadow:0 0 0 3px rgba(79,70,229,.1)}
-        .topbar-search svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:var(--gray-400)}
+        .topbar-search,.global-search-wrapper{position:relative}
+        .topbar-search input,.global-search-wrapper input{padding:8px 12px 8px 36px;border:1px solid var(--gray-200);border-radius:8px;font-size:13px;width:280px;background:var(--gray-50);transition:var(--transition);font-family:inherit}
+        .topbar-search input:focus,.global-search-wrapper input:focus{outline:none;border-color:var(--primary);background:var(--white);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
+        .topbar-search svg,.global-search-wrapper>svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:var(--gray-400);z-index:1}
         .content{padding:32px;flex:1;overflow-y:auto}
         .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-bottom:28px}
         .stat-card{background:var(--white);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);transition:var(--transition);border:1px solid var(--gray-100);position:relative;overflow:hidden}
         .stat-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-2px)}
         .stat-card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px}
-        .stat-card.card-users::after{background:linear-gradient(90deg,var(--primary),var(--primary-light))}
-        .stat-card.card-equipos::after{background:linear-gradient(90deg,var(--secondary),var(--secondary-light))}
-        .stat-card.card-sucursales::after{background:linear-gradient(90deg,var(--success),var(--info))}
-        .stat-card.card-asignados::after{background:linear-gradient(90deg,var(--warning),var(--danger))}
+        .stat-card.card-users::after{background:var(--primary)}
+        .stat-card.card-equipos::after{background:var(--secondary)}
+        .stat-card.card-sucursales::after{background:var(--primary-light)}
+        .stat-card.card-asignados::after{background:var(--secondary)}
         .stat-card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
         .stat-card .stat-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center}
         .stat-icon svg{width:22px;height:22px}
         .card-users .stat-icon{background:var(--primary-bg);color:var(--primary)}
-        .card-equipos .stat-icon{background:#f5f3ff;color:var(--secondary)}
-        .card-sucursales .stat-icon{background:var(--success-light);color:var(--success)}
-        .card-asignados .stat-icon{background:var(--warning-light);color:var(--warning)}
+        .card-equipos .stat-icon{background:var(--warning-light);color:var(--secondary)}
+        .card-sucursales .stat-icon{background:var(--primary-bg);color:var(--primary)}
+        .card-asignados .stat-icon{background:var(--warning-light);color:var(--secondary)}
         .stat-card .stat-value{font-size:32px;font-weight:800;color:var(--gray-900);letter-spacing:-1px}
         .stat-card .stat-label{font-size:13px;color:var(--gray-500);margin-top:4px;font-weight:500}
         .cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:20px;margin-bottom:28px}
@@ -85,15 +85,15 @@
         .table-toolbar .record-count{font-size:12px;color:var(--gray-400);background:var(--gray-100);padding:4px 10px;border-radius:20px;font-weight:500}
         .table-toolbar-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
         .filter-select{padding:8px 12px;border:1px solid var(--gray-200);border-radius:8px;font-size:13px;background:var(--white);font-family:inherit;cursor:pointer;transition:var(--transition);color:var(--gray-600)}
-        .filter-select:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(79,70,229,.1)}
+        .filter-select:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
         .table-search{position:relative}
         .table-search input{padding:8px 12px 8px 34px;border:1px solid var(--gray-200);border-radius:8px;font-size:13px;width:220px;font-family:inherit;transition:var(--transition)}
-        .table-search input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(79,70,229,.1)}
+        .table-search input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
         .table-search svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:15px;height:15px;color:var(--gray-400)}
         .btn{padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;transition:var(--transition);display:inline-flex;align-items:center;gap:6px;border:none;font-family:inherit;white-space:nowrap;text-decoration:none}
         .btn svg{width:16px;height:16px}
-        .btn-primary{background:var(--primary);color:var(--white)}
-        .btn-primary:hover{background:var(--primary-dark);transform:translateY(-1px);box-shadow:0 4px 12px rgba(79,70,229,.3)}
+        .btn-primary{background:#f08230;color:var(--white)}
+        .btn-primary:hover{background:#d9712a;transform:translateY(-1px);box-shadow:0 4px 12px rgba(240,130,48,.3)}
         .btn-secondary{background:var(--gray-100);color:var(--gray-700);border:1px solid var(--gray-200)}
         .btn-secondary:hover{background:var(--gray-200)}
         .btn-success{background:var(--success);color:var(--white)}
@@ -107,19 +107,23 @@
         .btn-icon.edit:hover{background:var(--primary-bg);border-color:var(--primary);color:var(--primary)}
         .data-table{width:100%;border-collapse:collapse}
         .data-table th{padding:12px 20px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.8px;color:var(--gray-400);font-weight:600;background:var(--gray-50);border-bottom:1px solid var(--gray-100)}
+        .data-table th.sortable{cursor:pointer;user-select:none;position:relative;transition:color .2s}
+        .data-table th.sortable:hover{color:var(--primary)}
+        .data-table th.sortable .sort-arrow{font-size:10px;margin-left:4px;opacity:.4;display:inline-block;transition:opacity .2s}
+        .data-table th.sortable.asc .sort-arrow,.data-table th.sortable.desc .sort-arrow{opacity:1;color:var(--primary)}
         .data-table td{padding:14px 20px;font-size:13.5px;border-bottom:1px solid var(--gray-50);vertical-align:middle}
         .data-table tbody tr{transition:var(--transition)}
         .data-table tbody tr:hover{background:var(--gray-50)}
         .data-table tbody tr:last-child td{border-bottom:none}
         .table-cell{display:flex;align-items:center;gap:10px}
-        .avatar-sm{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:var(--white);flex-shrink:0}
+        .avatar-sm{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:var(--gray-600);flex-shrink:0;background:transparent}
         .table-empty{padding:60px 20px;text-align:center;color:var(--gray-400)}
         .table-empty svg{width:48px;height:48px;margin-bottom:12px;opacity:.5}
         .table-empty p{font-size:14px;font-weight:500}
         .table-empty small{font-size:12px;color:var(--gray-300)}
         .badge{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600}
         .badge-primary{background:var(--primary-bg);color:var(--primary)}
-        .badge-secondary{background:#f5f3ff;color:var(--secondary)}
+        .badge-secondary{background:var(--warning-light);color:var(--secondary)}
         .badge-success{background:var(--success-light);color:var(--success-dark)}
         .badge-warning{background:var(--warning-light);color:#92400e}
         .badge-danger{background:var(--danger-light);color:var(--danger-dark)}
@@ -144,7 +148,7 @@
         .form-group label{display:block;font-size:12.5px;font-weight:600;color:var(--gray-700);margin-bottom:6px}
         .form-group label .required{color:var(--danger)}
         .form-input{width:100%;padding:10px 14px;border:1px solid var(--gray-200);border-radius:8px;font-size:13.5px;font-family:inherit;transition:var(--transition);background:var(--white);color:var(--gray-800)}
-        .form-input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(79,70,229,.1)}
+        .form-input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
         .form-input::placeholder{color:var(--gray-300)}
         .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
         textarea.form-input{resize:vertical;min-height:80px}
@@ -156,8 +160,8 @@
         @keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
         .page-section{display:none}.page-section.active{display:block}
         .sucursal-detail{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid var(--gray-100);overflow:hidden}
-        .sucursal-header{background:linear-gradient(135deg,var(--primary),var(--secondary));padding:32px;color:var(--white);position:relative;overflow:hidden}
-        .sucursal-header::before{content:'';position:absolute;top:-50%;right:-20%;width:300px;height:300px;border-radius:50%;background:rgba(255,255,255,.05)}
+        .sucursal-header{background:var(--primary);padding:32px;color:var(--white);position:relative;overflow:hidden}
+        .sucursal-header::before{content:'';display:none}
         .sucursal-header h2{font-size:24px;font-weight:800;margin-bottom:4px}
         .sucursal-header p{font-size:14px;opacity:.8}
         .sucursal-stats{display:flex;gap:32px;margin-top:20px}
@@ -182,12 +186,48 @@
         ::-webkit-scrollbar{width:6px;height:6px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--gray-300);border-radius:3px}::-webkit-scrollbar-thumb:hover{background:var(--gray-400)}
         .loading-spinner{display:inline-block;width:20px;height:20px;border:2px solid var(--gray-200);border-top-color:var(--primary);border-radius:50%;animation:spin .6s linear infinite}
         @keyframes spin{to{transform:rotate(360deg)}}
+        @keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
+        /* Conexiones card view */
+        .conex-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:24px}
+        .conex-stat{background:#fff;border-radius:12px;padding:16px 20px;border:1.5px solid #e2e8f0;display:flex;align-items:center;gap:12px}
+        .conex-stat-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px}
+        .conex-stat-val{font-size:22px;font-weight:800;color:#0f172a;line-height:1}
+        .conex-stat-lbl{font-size:11px;color:#64748b;font-weight:500;margin-top:2px}
+        .conex-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:24px}
+        .conex-card{background:#fff;border-radius:14px;padding:22px 20px;cursor:pointer;transition:all .25s ease;border:2px solid #e2e8f0;position:relative;overflow:hidden}
+        .conex-card:hover{transform:translateY(-4px);box-shadow:0 12px 24px rgba(0,0,0,.08)}
+        .conex-card-top{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+        .conex-card-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+        .conex-card-name{font-size:15px;font-weight:700;color:#0f172a}
+        .conex-card-count{font-size:28px;font-weight:800;color:#0f172a;letter-spacing:-1px;line-height:1}
+        .conex-card-label{font-size:12px;color:#64748b;margin-top:2px}
+        .conex-card-meta{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+        .conex-card-chip{font-size:11px;font-weight:600;padding:3px 8px;border-radius:6px;display:inline-flex;align-items:center;gap:4px}
+        .conex-accent{font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;position:absolute;top:10px;right:10px;letter-spacing:.3px}
+        .conex-back{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;border:2px solid #e2e8f0;background:#fff;cursor:pointer;font-size:13px;font-weight:600;color:#475569;font-family:inherit;transition:all .2s ease;margin-bottom:16px}
+        .conex-back:hover{border-color:#2563eb;color:#2563eb;background:#eff6ff}
+        .conex-detail-header{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+        .conex-detail-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px}
+        .conex-detail-title{font-size:22px;font-weight:800;color:#0f172a}
+        .conex-detail-count{font-size:13px;color:#64748b;font-weight:500}
+        .conex-detail-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
+        .conex-detail-chip{font-size:11px;font-weight:600;padding:3px 10px;border-radius:6px;display:inline-flex;align-items:center;gap:4px}
+        .conex-summary{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
+        .conex-summary-panel{background:#fff;border-radius:14px;border:1.5px solid #e2e8f0;padding:20px 24px}
+        .conex-summary-title{font-size:14px;font-weight:700;color:#0f172a;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+        .conex-bar{margin-bottom:10px}
+        .conex-bar-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+        .conex-bar-name{font-size:12px;font-weight:600;color:#334155}
+        .conex-bar-val{font-size:11px;font-weight:700;color:#2563eb}
+        .conex-bar-track{background:#f1f5f9;border-radius:4px;height:6px;overflow:hidden}
+        .conex-bar-fill{height:100%;border-radius:4px;transition:width .5s ease}
+        @media(max-width:768px){.conex-summary{grid-template-columns:1fr}}
         /* Login */
-        .login-screen{position:fixed;inset:0;background:linear-gradient(135deg,var(--dark) 0%,var(--primary-dark) 50%,var(--secondary-dark) 100%);display:flex;align-items:center;justify-content:center;z-index:9999}
+        .login-screen{position:fixed;inset:0;background:var(--dark);display:flex;align-items:center;justify-content:center;z-index:9999}
         .login-screen.hidden{display:none}
         .login-card{background:var(--white);border-radius:20px;padding:48px 40px;width:100%;max-width:420px;box-shadow:var(--shadow-xl)}
         .login-card .login-logo{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:32px}
-        .login-card .login-logo .logo-icon{width:48px;height:48px;background:linear-gradient(135deg,var(--primary),var(--secondary));border-radius:12px;display:flex;align-items:center;justify-content:center}
+        .login-card .login-logo .logo-icon{width:48px;height:48px;background:var(--secondary);border-radius:12px;display:flex;align-items:center;justify-content:center}
         .login-card .login-logo h1{font-size:24px;font-weight:800;color:var(--gray-900)}
         .login-card .login-logo p{font-size:12px;color:var(--gray-400);margin-top:2px}
         .login-card .form-group{margin-bottom:20px}
@@ -200,6 +240,136 @@
         .pw-toggle:hover,.pw-copy:hover{color:var(--primary)}
         .logout-btn{display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:8px;border:none;background:rgba(255,255,255,.08);color:rgba(255,255,255,.65);cursor:pointer;font-size:12px;font-weight:500;font-family:inherit;width:100%;margin-top:8px;transition:var(--transition)}
         .logout-btn:hover{background:rgba(239,68,68,.2);color:var(--danger-light)}
+        /* Dark Mode Toggle */
+        .theme-toggle{width:36px;height:36px;border-radius:8px;border:1px solid var(--gray-200);background:var(--white);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--gray-500);transition:var(--transition)}
+        .theme-toggle:hover{background:var(--gray-50);border-color:var(--gray-300);color:var(--gray-700)}
+        .theme-toggle svg{width:18px;height:18px}
+        /* Dark Mode */
+        html.dark{--gray-50:#1e293b;--gray-100:#1e293b;--gray-200:#334155;--gray-300:#475569;--gray-400:#64748b;--gray-500:#94a3b8;--gray-600:#cbd5e1;--gray-700:#e2e8f0;--gray-800:#f1f5f9;--gray-900:#f8fafc;--white:#0f172a;--primary-bg:#1e3a5f;--info-light:#1e3a5f;--success-light:#064e3b;--warning-light:#451a03;--danger-light:#450a0a;--dark:#0f172a;--dark-2:#0f172a;--dark-3:#0f172a}
+        html.dark body{background:var(--gray-100)}
+        html.dark .sidebar{background:#0f172a;border-right:1px solid rgba(255,255,255,.06)}
+        html.dark .topbar{background:#0f172a;border-bottom-color:#334155}
+        html.dark .stat-card,html.dark .card,html.dark .table-container,html.dark .modal{background:#1e293b;border-color:#334155}
+        html.dark .data-table th{background:#0f172a;color:#94a3b8;border-color:#334155}
+        html.dark .data-table td{border-color:#1e293b}
+        html.dark .data-table tbody tr:hover{background:#334155}
+        html.dark .form-input{background:#0f172a;border-color:#334155;color:#f1f5f9}
+        html.dark .form-input:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(90,117,161,.2)}
+        html.dark .filter-select{background:#0f172a;border-color:#334155;color:#f1f5f9}
+        html.dark .btn-secondary{background:#334155;color:#e2e8f0;border-color:#475569}
+        html.dark .btn-icon{background:#1e293b;border-color:#334155;color:#94a3b8}
+        html.dark .modal-overlay{background:rgba(0,0,0,.7)}
+        html.dark .modal-close{background:#334155;color:#94a3b8}
+        html.dark .badge-primary{background:#1e3a5f;color:#93c5fd}
+        html.dark .badge-secondary{background:#451a03;color:#fdba74}
+        html.dark .badge-gray{background:#334155;color:#cbd5e1}
+        html.dark .badge-info{background:#1e3a5f;color:#93c5fd}
+        html.dark .conex-card{background:#1e293b;border-color:#334155}
+        html.dark .conex-card:hover{box-shadow:0 12px 24px rgba(0,0,0,.3)}
+        html.dark .conex-card-icon{background:#1e3a5f}
+        html.dark .conex-card-count{color:#f8fafc}
+        html.dark .conex-card-name{color:#f8fafc}
+        html.dark .conex-card-label{color:#94a3b8}
+        html.dark .conex-stat{background:#1e293b;border-color:#334155}
+        html.dark .conex-stat-val{color:#f8fafc}
+        html.dark .conex-back{background:#1e293b;border-color:#334155;color:#94a3b8}
+        html.dark .conex-detail-icon{background:#1e3a5f}
+        html.dark .conex-detail-title{color:#f8fafc}
+        html.dark .conex-summary-panel{background:#1e293b;border-color:#334155}
+        html.dark .conex-summary-title{color:#f8fafc}
+        html.dark .conex-bar-name{color:#cbd5e1}
+        html.dark .conex-bar-track{background:#334155}
+        html.dark .login-card{background:#1e293b}
+        html.dark .login-card h1{color:#f8fafc}
+        html.dark .sucursal-detail{background:#1e293b;border-color:#334155}
+        html.dark .pw-text{background:#334155;color:#e2e8f0}
+        html.dark .topbar-search input{background:#1e293b;border-color:#334155;color:#f1f5f9}
+        html.dark .theme-toggle{background:#1e293b;border-color:#334155;color:#fbbf24}
+        html.dark ::-webkit-scrollbar-thumb{background:#475569}
+        /* Favoritos star */
+        .nav-fav{margin-left:auto;background:none;border:none;cursor:pointer;color:rgba(255,255,255,.2);font-size:13px;padding:2px;display:flex;transition:var(--transition);line-height:1}
+        .nav-fav:hover{color:rgba(255,255,255,.5)}
+        .nav-fav.active{color:#fbbf24}
+        .nav-section-fav{margin-bottom:16px}
+        .nav-section-fav .nav-section-title{color:#fbbf24;opacity:.8}
+        .nav-section-fav .nav-item{background:rgba(251,191,36,.04)}
+        /* Responsive card view for tables on mobile */
+        @media(max-width:640px){
+            .data-table thead{display:none}
+            .data-table,.data-table tbody,.data-table tr,.data-table td{display:block;width:100%}
+            .data-table tr{background:var(--white);border:1px solid var(--gray-200);border-radius:10px;margin-bottom:10px;padding:14px;position:relative}
+            html.dark .data-table tr{background:#1e293b;border-color:#334155}
+            .data-table td{padding:4px 0;border:none;font-size:13px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+            .data-table td::before{content:attr(data-label);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--gray-400);white-space:nowrap;min-width:90px}
+            .data-table td:last-child{justify-content:flex-end;padding-top:8px;border-top:1px solid var(--gray-100)}
+            html.dark .data-table td:last-child{border-top-color:#334155}
+            .table-cell{flex:1}
+            .stats-grid{grid-template-columns:1fr 1fr}
+            .conex-cards{grid-template-columns:1fr 1fr}
+        }
+        /* Notification alert banner */
+        .alert-banner{padding:14px 20px;border-radius:var(--radius);display:flex;align-items:center;gap:12px;margin-bottom:20px;font-size:13px;font-weight:500;animation:slideIn .3s ease}
+        .alert-banner svg{width:20px;height:20px;flex-shrink:0}
+        .alert-banner-danger{background:var(--danger-light);color:var(--danger-dark);border:1px solid #fca5a5}
+        .alert-banner-warning{background:var(--warning-light);color:#92400e;border:1px solid #fed7aa}
+        .alert-banner-close{background:none;border:none;cursor:pointer;margin-left:auto;color:inherit;opacity:.6;font-size:18px;line-height:1}
+        .alert-banner-close:hover{opacity:1}
+        .nav-badge.badge-danger{background:var(--danger);animation:pulse 2s infinite}
+        /* Import section */
+        .import-card{background:var(--white);border:2px dashed var(--gray-200);border-radius:var(--radius);padding:40px;text-align:center;cursor:pointer;transition:var(--transition)}
+        .import-card:hover{border-color:var(--primary);background:var(--primary-bg)}
+        .import-card.dragover{border-color:var(--primary);background:var(--primary-bg);transform:scale(1.01)}
+        .import-card-icon{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:28px;background:var(--primary-bg);color:var(--primary)}
+        .import-card h4{font-size:15px;font-weight:700;color:var(--gray-900);margin-bottom:4px}
+        .import-card p{font-size:12px;color:var(--gray-400)}
+        .import-tabs{display:flex;gap:4px;margin-bottom:20px;padding:4px;background:var(--gray-100);border-radius:10px}
+        .import-tab{flex:1;padding:10px 16px;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;transition:var(--transition);background:transparent;color:var(--gray-500);font-family:inherit}
+        .import-tab.active{background:var(--white);color:var(--primary);box-shadow:var(--shadow)}
+        .import-tab:hover:not(.active){color:var(--gray-700)}
+        .import-preview{max-height:400px;overflow:auto;margin:16px 0}
+        .import-preview table{width:100%;font-size:12px;border-collapse:collapse}
+        .import-preview th{background:var(--gray-50);padding:8px 10px;text-align:left;font-weight:600;font-size:11px;text-transform:uppercase;border-bottom:1px solid var(--gray-200);position:sticky;top:0}
+        .import-preview td{padding:6px 10px;border-bottom:1px solid var(--gray-50)}
+        .import-preview tr.error{background:var(--danger-light)}
+        .import-status{font-size:13px;padding:12px 16px;border-radius:8px;margin-top:12px}
+        .import-status.success{background:var(--success-light);color:var(--success-dark)}
+        .import-status.error{background:var(--danger-light);color:var(--danger-dark)}
+        html.dark .import-card{background:#1e293b;border-color:#334155}
+        html.dark .import-card:hover,.import-card.dragover{background:#1e3a5f;border-color:var(--primary)}
+        html.dark .import-tabs{background:#0f172a}
+        html.dark .import-tab.active{background:#1e293b}
+        html.dark .import-preview th{background:#0f172a}
+        /* Global search dropdown */
+        .global-search-wrapper{position:relative}
+        .global-search-results{position:absolute;top:100%;left:0;right:0;background:var(--white);border:1px solid var(--gray-200);border-radius:10px;box-shadow:var(--shadow-xl);max-height:400px;overflow-y:auto;z-index:200;margin-top:4px;display:none}
+        .global-search-results.show{display:block}
+        .gsr-section{padding:8px 0}
+        .gsr-section-title{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--gray-400);padding:4px 14px;font-weight:600}
+        .gsr-item{display:flex;align-items:center;gap:10px;padding:8px 14px;cursor:pointer;transition:var(--transition);font-size:13px}
+        .gsr-item:hover{background:var(--gray-50)}
+        .gsr-icon{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;background:var(--primary-bg);color:var(--primary);flex-shrink:0}
+        .gsr-text{flex:1;min-width:0}
+        .gsr-text strong{display:block;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+        .gsr-text small{color:var(--gray-400);font-size:11px}
+        .gsr-empty{padding:20px;text-align:center;color:var(--gray-400);font-size:13px}
+        html.dark .global-search-results{background:#1e293b;border-color:#334155}
+        html.dark .gsr-item:hover{background:#334155}
+        /* Pagination */
+        .pagination{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;border-top:1px solid var(--gray-100);font-size:13px;color:var(--gray-500)}
+        .pagination-info{font-size:12px}
+        .pagination-controls{display:flex;align-items:center;gap:4px}
+        .pagination-btn{width:32px;height:32px;border-radius:6px;border:1px solid var(--gray-200);background:var(--white);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--gray-600);transition:var(--transition);font-size:12px;font-weight:600;font-family:inherit}
+        .pagination-btn:hover:not(:disabled){background:var(--gray-50);border-color:var(--gray-300)}
+        .pagination-btn:disabled{opacity:.4;cursor:not-allowed}
+        .pagination-btn.active{background:var(--primary);color:var(--white);border-color:var(--primary)}
+        .pagination-size{padding:4px 8px;border:1px solid var(--gray-200);border-radius:6px;font-size:12px;font-family:inherit;background:var(--white);cursor:pointer}
+        html.dark .pagination{border-top-color:#334155}
+        html.dark .pagination-btn{background:#1e293b;border-color:#334155;color:#94a3b8}
+        html.dark .pagination-btn.active{background:var(--primary);color:var(--white)}
+        html.dark .pagination-size{background:#1e293b;border-color:#334155;color:#e2e8f0}
+        /* Export button */
+        .btn-export{background:var(--success);color:var(--white);font-size:12px;padding:6px 12px}
+        .btn-export:hover{background:var(--success-dark)}
     </style>
 </head>
 <body>
@@ -243,6 +413,10 @@
         </div>
     </div>
     <nav class="sidebar-nav">
+        <div class="nav-section nav-section-fav" id="nav-favorites" style="display:none">
+            <div class="nav-section-title">⭐ Favoritos</div>
+            <div id="nav-favorites-list"></div>
+        </div>
         <div class="nav-section">
             <div class="nav-section-title">Principal</div>
             <a class="nav-item active" data-page="dashboard" onclick="navigateTo('dashboard')">
@@ -256,21 +430,25 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                 Usuarios
                 <span class="nav-badge" id="badge-users">0</span>
+                <button class="nav-fav" data-fav="usuarios" onclick="event.stopPropagation();toggleFav('usuarios')">☆</button>
             </a>
             <a class="nav-item" data-page="equipos" onclick="navigateTo('equipos')">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
                 Equipos
                 <span class="nav-badge" id="badge-equipos">0</span>
+                <button class="nav-fav" data-fav="equipos" onclick="event.stopPropagation();toggleFav('equipos')">☆</button>
             </a>
             <a class="nav-item" data-page="sucursales" onclick="navigateTo('sucursales')">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
                 Sucursales
                 <span class="nav-badge" id="badge-sucursales">0</span>
+                <button class="nav-fav" data-fav="sucursales" onclick="event.stopPropagation();toggleFav('sucursales')">☆</button>
             </a>
             <a class="nav-item" data-page="departamentos" onclick="navigateTo('departamentos')">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
                 Departamentos
                 <span class="nav-badge" id="badge-departamentos">0</span>
+                <button class="nav-fav" data-fav="departamentos" onclick="event.stopPropagation();toggleFav('departamentos')">☆</button>
             </a>
         </div>
         <div class="nav-section">
@@ -278,10 +456,21 @@
             <a class="nav-item" data-page="empleados-sucursal" onclick="navigateTo('empleados-sucursal')">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                 Empleados x Sucursal
+                <button class="nav-fav" data-fav="empleados-sucursal" onclick="event.stopPropagation();toggleFav('empleados-sucursal')">☆</button>
             </a>
             <a class="nav-item" data-page="asignaciones" onclick="navigateTo('asignaciones')">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                 Asignaciones
+                <button class="nav-fav" data-fav="asignaciones" onclick="event.stopPropagation();toggleFav('asignaciones')">☆</button>
+            </a>
+        </div>
+        <div class="nav-section">
+            <div class="nav-section-title">Operaciones</div>
+            <a class="nav-item" data-page="tareas" onclick="navigateTo('tareas')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                Tareas Pendientes
+                <span class="nav-badge" id="badge-tareas">0</span>
+                <button class="nav-fav" data-fav="tareas" onclick="event.stopPropagation();toggleFav('tareas')">☆</button>
             </a>
         </div>
         <div class="nav-section">
@@ -290,11 +479,21 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
                 Credenciales
                 <span class="nav-badge" id="badge-credenciales">0</span>
+                <button class="nav-fav" data-fav="credenciales" onclick="event.stopPropagation();toggleFav('credenciales')">☆</button>
             </a>
             <a class="nav-item" data-page="conexiones" onclick="navigateTo('conexiones')">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
                 Conexiones Remotas
                 <span class="nav-badge" id="badge-conexiones">0</span>
+                <button class="nav-fav" data-fav="conexiones" onclick="event.stopPropagation();toggleFav('conexiones')">☆</button>
+            </a>
+        </div>
+        <div class="nav-section">
+            <div class="nav-section-title">Herramientas</div>
+            <a class="nav-item" data-page="importar" onclick="navigateTo('importar')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                Importar Datos
+                <button class="nav-fav" data-fav="importar" onclick="event.stopPropagation();toggleFav('importar')">☆</button>
             </a>
         </div>
     </nav>
@@ -306,7 +505,7 @@
                 <div class="user-role" id="sidebar-user-role">Administrador</div>
             </div>
         </div>
-        <button class="logout-btn" onclick="handleLogout()">
+        <button class="logout-btn" onclick="confirmLogout()">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
             Cerrar Sesión
         </button>
@@ -326,16 +525,22 @@
             </div>
         </div>
         <div class="topbar-right">
-            <div class="topbar-search">
+            <div class="global-search-wrapper">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                <input type="text" placeholder="Buscar en todo el sistema..." id="globalSearch" onkeyup="handleGlobalSearch(event)">
+                <input type="text" placeholder="Buscar en todo el sistema..." id="globalSearch" oninput="handleGlobalSearchLive(event)" onkeydown="handleGlobalSearchKey(event)" onfocus="handleGlobalSearchLive(event)">
+                <div class="global-search-results" id="globalSearchResults"></div>
             </div>
+            <button class="theme-toggle" id="theme-toggle" onclick="toggleDarkMode()" title="Cambiar tema">
+                <svg id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                <svg id="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            </button>
         </div>
     </header>
 
     <div class="content">
         <!-- DASHBOARD -->
-        <div class="page-section active" id="page-dashboard">
+        <div class="page-section" id="page-dashboard">
+            <div id="dashboard-alerts"></div>
             <div class="stats-grid">
                 <div class="stat-card card-users"><div class="stat-card-top"><div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div></div><div class="stat-value" id="stat-users">0</div><div class="stat-label">Usuarios Registrados</div></div>
                 <div class="stat-card card-equipos"><div class="stat-card-top"><div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div></div><div class="stat-value" id="stat-equipos">0</div><div class="stat-label">Equipos en Inventario</div></div>
@@ -345,6 +550,7 @@
             <div class="cards-grid">
                 <div class="card"><div class="card-header"><div><h3>📊 Resumen de Equipos por Tipo</h3><p>Distribución del inventario actual</p></div></div><div class="card-body" id="equipos-por-tipo"></div></div>
                 <div class="card"><div class="card-header"><div><h3>🏢 Equipos por Sucursal</h3><p>Distribución de equipos entre sucursales</p></div></div><div class="card-body" id="equipos-por-sucursal"></div></div>
+                <div class="card"><div class="card-header"><div><h3>📋 Tareas Pendientes</h3><p>Tareas urgentes y próximas a vencer</p></div><a style="font-size:12px;color:var(--primary);cursor:pointer;font-weight:600" onclick="navigateTo('tareas')">Ver todas →</a></div><div class="card-body" id="dashboard-tareas"></div></div>
             </div>
             <div class="table-container"><div class="table-toolbar"><div class="table-toolbar-left"><h3>🕐 Últimos Registros</h3></div></div><table class="data-table"><thead><tr><th>Tipo</th><th>Descripción</th><th>Fecha</th></tr></thead><tbody id="recent-activity"></tbody></table></div>
         </div>
@@ -355,12 +561,14 @@
                 <div class="table-toolbar">
                     <div class="table-toolbar-left"><h3>👥 Gestión de Usuarios</h3><span class="record-count" id="users-count">0 registros</span></div>
                     <div class="table-toolbar-right">
-                        <div class="table-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" placeholder="Buscar usuarios..." id="searchUsers" oninput="renderUsers()"></div>
-                        <select class="filter-select" id="filterUserSucursal" onchange="renderUsers()"><option value="">Todas las sucursales</option></select>
+                        <div class="table-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" placeholder="Buscar usuarios..." id="searchUsers" oninput="pageState.usuarios=1;renderUsers()"></div>
+                        <select class="filter-select" id="filterUserSucursal" onchange="pageState.usuarios=1;renderUsers()"><option value="">Todas las sucursales</option></select>
+                        <button class="btn btn-export" onclick="exportTable('usuarios')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Excel</button>
                         <button class="btn btn-primary" onclick="openUserModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Nuevo Usuario</button>
                     </div>
                 </div>
-                <table class="data-table"><thead><tr><th>Usuario</th><th>Posición</th><th>Sucursal</th><th>Departamento</th><th>Equipos Asignados</th><th>Acciones</th></tr></thead><tbody id="users-table-body"></tbody></table>
+                <table class="data-table"><thead><tr><th class="sortable" data-sort-table="usuarios" data-sort-col="nombre" onclick="sortTable('usuarios','nombre')">Usuario <span class="sort-arrow">⇅</span></th><th class="sortable" data-sort-table="usuarios" data-sort-col="posicion" onclick="sortTable('usuarios','posicion')">Posición <span class="sort-arrow">⇅</span></th><th class="sortable" data-sort-table="usuarios" data-sort-col="sucursal" onclick="sortTable('usuarios','sucursal')">Sucursal <span class="sort-arrow">⇅</span></th><th class="sortable" data-sort-table="usuarios" data-sort-col="departamento" onclick="sortTable('usuarios','departamento')">Departamento <span class="sort-arrow">⇅</span></th><th class="sortable" data-sort-table="usuarios" data-sort-col="equipos" onclick="sortTable('usuarios','equipos')">Equipos Asignados <span class="sort-arrow">⇅</span></th><th>Acciones</th></tr></thead><tbody id="users-table-body"></tbody></table>
+                <div class="pagination" id="pagination-usuarios"></div>
             </div>
         </div>
 
@@ -370,13 +578,15 @@
                 <div class="table-toolbar">
                     <div class="table-toolbar-left"><h3>💻 Gestión de Equipos</h3><span class="record-count" id="equipos-count">0 registros</span></div>
                     <div class="table-toolbar-right">
-                        <div class="table-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" placeholder="Buscar equipos..." id="searchEquipos" oninput="renderEquipos()"></div>
-                        <select class="filter-select" id="filterEquipoTipo" onchange="renderEquipos()"><option value="">Todos los tipos</option><option value="Laptop">💻 Laptop</option><option value="Desktop">🖥️ Desktop</option><option value="Monitor">🖥️ Monitor</option><option value="Impresora">🖨️ Impresora</option><option value="Red">🌐 Equipo de Red</option><option value="Servidor">🗄️ Servidor</option><option value="Tablet">📱 Tablet</option><option value="Teléfono">📞 Teléfono</option><option value="Otro">📦 Otro</option></select>
-                        <select class="filter-select" id="filterEquipoEstado" onchange="renderEquipos()"><option value="">Todos los estados</option><option value="Disponible">Disponible</option><option value="Asignado">Asignado</option><option value="En Reparación">En Reparación</option><option value="Retirado">Retirado</option></select>
+                        <div class="table-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" placeholder="Buscar equipos..." id="searchEquipos" oninput="pageState.equipos=1;renderEquipos()"></div>
+                        <select class="filter-select" id="filterEquipoTipo" onchange="pageState.equipos=1;renderEquipos()"><option value="">Todos los tipos</option><option value="Laptop">💻 Laptop</option><option value="Desktop">🖥️ Desktop</option><option value="Monitor">🖥️ Monitor</option><option value="Impresora">🖨️ Impresora</option><option value="Red">🌐 Equipo de Red</option><option value="Servidor">🗄️ Servidor</option><option value="Tablet">📱 Tablet</option><option value="Teléfono">📞 Teléfono</option><option value="Otro">📦 Otro</option></select>
+                        <select class="filter-select" id="filterEquipoEstado" onchange="pageState.equipos=1;renderEquipos()"><option value="">Todos los estados</option><option value="Disponible">Disponible</option><option value="Asignado">Asignado</option><option value="En Reparación">En Reparación</option><option value="Retirado">Retirado</option></select>
+                        <button class="btn btn-export" onclick="exportTable('equipos')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Excel</button>
                         <button class="btn btn-primary" onclick="openEquipoModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Nuevo Equipo</button>
                     </div>
                 </div>
-                <table class="data-table"><thead><tr><th>Tipo</th><th>Marca / Modelo</th><th>Nº Serie</th><th>Estado</th><th>Asignado A</th><th>Acciones</th></tr></thead><tbody id="equipos-table-body"></tbody></table>
+                <table class="data-table"><thead><tr><th class="sortable" data-sort-table="equipos" data-sort-col="tipo" onclick="sortTable('equipos','tipo')">Tipo <span class="sort-arrow">⇅</span></th><th class="sortable" data-sort-table="equipos" data-sort-col="marca" onclick="sortTable('equipos','marca')">Marca / Modelo <span class="sort-arrow">⇅</span></th><th class="sortable" data-sort-table="equipos" data-sort-col="serial" onclick="sortTable('equipos','serial')">Nº Serie <span class="sort-arrow">⇅</span></th><th class="sortable" data-sort-table="equipos" data-sort-col="estado" onclick="sortTable('equipos','estado')">Estado <span class="sort-arrow">⇅</span></th><th class="sortable" data-sort-table="equipos" data-sort-col="asignado" onclick="sortTable('equipos','asignado')">Asignado A <span class="sort-arrow">⇅</span></th><th>Acciones</th></tr></thead><tbody id="equipos-table-body"></tbody></table>
+                <div class="pagination" id="pagination-equipos"></div>
             </div>
         </div>
 
@@ -386,11 +596,13 @@
                 <div class="table-toolbar">
                     <div class="table-toolbar-left"><h3>🏢 Gestión de Sucursales</h3><span class="record-count" id="sucursales-count">0 registros</span></div>
                     <div class="table-toolbar-right">
-                        <div class="table-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" placeholder="Buscar sucursales..." id="searchSucursales" oninput="renderSucursales()"></div>
+                        <div class="table-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" placeholder="Buscar sucursales..." id="searchSucursales" oninput="pageState.sucursales=1;renderSucursales()"></div>
+                        <button class="btn btn-export" onclick="exportTable('sucursales')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Excel</button>
                         <button class="btn btn-primary" onclick="openSucursalModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Nueva Sucursal</button>
                     </div>
                 </div>
-                <table class="data-table"><thead><tr><th>Sucursal</th><th>Dirección</th><th>Empleados</th><th>Equipos</th><th>Acciones</th></tr></thead><tbody id="sucursales-table-body"></tbody></table>
+                <table class="data-table"><thead><tr><th class="sortable" data-sort-table="sucursales" data-sort-col="nombre" onclick="sortTable('sucursales','nombre')">Sucursal <span class="sort-arrow">⇅</span></th><th class="sortable" data-sort-table="sucursales" data-sort-col="direccion" onclick="sortTable('sucursales','direccion')">Dirección <span class="sort-arrow">⇅</span></th><th class="sortable" data-sort-table="sucursales" data-sort-col="empleados" onclick="sortTable('sucursales','empleados')">Empleados <span class="sort-arrow">⇅</span></th><th class="sortable" data-sort-table="sucursales" data-sort-col="equipos" onclick="sortTable('sucursales','equipos')">Equipos <span class="sort-arrow">⇅</span></th><th>Acciones</th></tr></thead><tbody id="sucursales-table-body"></tbody></table>
+                <div class="pagination" id="pagination-sucursales"></div>
             </div>
         </div>
 
@@ -431,31 +643,147 @@
 
         <!-- CREDENCIALES -->
         <div class="page-section" id="page-credenciales">
-            <div class="table-container">
-                <div class="table-toolbar">
-                    <div class="table-toolbar-left"><h3>🔐 Gestión de Credenciales</h3><span class="record-count" id="credenciales-count">0 registros</span></div>
-                    <div class="table-toolbar-right">
-                        <div class="table-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" placeholder="Buscar credenciales..." id="searchCredenciales" oninput="renderCredenciales()"></div>
-                        <select class="filter-select" id="filterCredCategoria" onchange="renderCredenciales()"><option value="">Todas las categorías</option><option value="Programa">Programa</option><option value="Plataforma">Plataforma</option><option value="Servidor">Servidor</option><option value="Red">Red</option><option value="Otro">Otro</option></select>
-                        <button class="btn btn-primary" onclick="openCredencialModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Nueva Credencial</button>
+            <!-- Card View (landing) -->
+            <div id="credenciales-cards-view">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:12px">
+                    <div><h2 style="font-size:22px;font-weight:800;color:var(--gray-900)">🔐 Credenciales</h2><p style="font-size:13px;color:var(--gray-400);margin-top:4px">Gestión centralizada de accesos y contraseñas</p></div>
+                    <button class="btn btn-primary" onclick="openCredencialModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Nueva Credencial</button>
+                </div>
+                <div class="conex-stats" id="cred-stats"></div>
+                <div class="conex-cards" id="credenciales-cat-cards"></div>
+            </div>
+            <!-- Detail View (filtered by category) -->
+            <div id="credenciales-detail-view" style="display:none">
+                <button class="conex-back" onclick="showCredencialesCards()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>Volver a categorías</button>
+                <div class="conex-detail-header">
+                    <div class="conex-detail-icon" id="cred-detail-icon"></div>
+                    <div>
+                        <div class="conex-detail-title" id="cred-detail-title"></div>
+                        <div class="conex-detail-count" id="cred-detail-count"></div>
                     </div>
                 </div>
-                <table class="data-table"><thead><tr><th>Plataforma</th><th>Categoría</th><th>Usuario</th><th>Contraseña</th><th>Asociado a</th><th>Acciones</th></tr></thead><tbody id="credenciales-table-body"></tbody></table>
+                <div class="table-container" style="border:2px solid #e2e8f0;border-radius:14px">
+                    <div class="table-toolbar">
+                        <div class="table-toolbar-left"><span class="record-count" id="credenciales-count">0 registros</span></div>
+                        <div class="table-toolbar-right">
+                            <div class="table-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" placeholder="Buscar credenciales..." id="searchCredenciales" oninput="pageState.credenciales=1;renderCredenciales()"></div>
+                            <button class="btn btn-export" onclick="exportTable('credenciales')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Excel</button>
+                            <button class="btn btn-primary" onclick="openCredencialModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Nueva Credencial</button>
+                        </div>
+                    </div>
+                    <table class="data-table"><thead><tr><th class="sortable" data-sort-table="credenciales" data-sort-col="plataforma" onclick="sortTable('credenciales','plataforma')">Plataforma <span class="sort-arrow">⇅</span></th><th class="sortable" data-sort-table="credenciales" data-sort-col="usuario" onclick="sortTable('credenciales','usuario')">Usuario <span class="sort-arrow">⇅</span></th><th>Contraseña</th><th class="sortable" data-sort-table="credenciales" data-sort-col="sucursal" onclick="sortTable('credenciales','sucursal')">Sucursal <span class="sort-arrow">⇅</span></th><th class="sortable" data-sort-table="credenciales" data-sort-col="asociado" onclick="sortTable('credenciales','asociado')">Asociado a <span class="sort-arrow">⇅</span></th><th>Acciones</th></tr></thead><tbody id="credenciales-table-body"></tbody></table>
+                    <div class="pagination" id="pagination-credenciales"></div>
+                </div>
             </div>
         </div>
 
         <!-- CONEXIONES REMOTAS -->
         <div class="page-section" id="page-conexiones">
-            <div class="table-container">
-                <div class="table-toolbar">
-                    <div class="table-toolbar-left"><h3>🔗 Conexiones Remotas</h3><span class="record-count" id="conexiones-count">0 registros</span></div>
-                    <div class="table-toolbar-right">
-                        <div class="table-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" placeholder="Buscar conexiones..." id="searchConexiones" oninput="renderConexiones()"></div>
-                        <select class="filter-select" id="filterConexTipo" onchange="renderConexiones()"><option value="">Todos los tipos</option><option value="TeamViewer">TeamViewer</option><option value="AnyDesk">AnyDesk</option><option value="RDP">RDP</option><option value="VNC">VNC</option><option value="SSH">SSH</option><option value="Otro">Otro</option></select>
-                        <button class="btn btn-primary" onclick="openConexionModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Nueva Conexión</button>
+            <!-- Card View (landing) -->
+            <div id="conexiones-cards-view">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:12px">
+                    <div><h2 style="font-size:22px;font-weight:800;color:var(--gray-900)">🔗 Conexiones Remotas</h2><p style="font-size:13px;color:var(--gray-400);margin-top:4px">Gestión centralizada de accesos remotos</p></div>
+                    <button class="btn btn-primary" onclick="openConexionModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Nueva Conexión</button>
+                </div>
+                <div class="conex-stats" id="conex-stats"></div>
+                <div class="conex-cards" id="conexiones-tipo-cards"></div>
+                <div class="conex-summary">
+                    <div class="conex-summary-panel">
+                        <div class="conex-summary-title">🏢 Por Sucursal <span style="font-size:12px;color:#64748b;font-weight:500;margin-left:auto" id="conexiones-total-count">0 conexiones</span></div>
+                        <div id="conexiones-por-sucursal"></div>
+                    </div>
+                    <div class="conex-summary-panel">
+                        <div class="conex-summary-title">📁 Por Departamento</div>
+                        <div id="conexiones-por-departamento"></div>
                     </div>
                 </div>
-                <table class="data-table"><thead><tr><th>Nombre</th><th>Tipo</th><th>ID Conexión</th><th>Contraseña</th><th>Equipo</th><th>Usuario</th><th>Acciones</th></tr></thead><tbody id="conexiones-table-body"></tbody></table>
+            </div>
+            <!-- Detail View (filtered by type) -->
+            <div id="conexiones-detail-view" style="display:none">
+                <button class="conex-back" onclick="showConexionesCards()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>Volver a tipos</button>
+                <div class="conex-detail-header">
+                    <div class="conex-detail-icon" id="conex-detail-icon"></div>
+                    <div>
+                        <div class="conex-detail-title" id="conex-detail-title"></div>
+                        <div class="conex-detail-count" id="conex-detail-count"></div>
+                        <div class="conex-detail-chips" id="conex-detail-chips"></div>
+                    </div>
+                </div>
+                <div class="table-container" style="border:2px solid #e2e8f0;border-radius:14px">
+                    <div class="table-toolbar">
+                        <div class="table-toolbar-left"><span class="record-count" id="conexiones-count">0 registros</span></div>
+                        <div class="table-toolbar-right">
+                            <div class="table-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" placeholder="Buscar conexiones..." id="searchConexiones" oninput="pageState.conexiones=1;renderConexionesDetail()"></div>
+                            <select class="filter-select" id="filterConexSucursal" onchange="pageState.conexiones=1;renderConexionesDetail()"><option value="">Todas las sucursales</option></select>
+                            <select class="filter-select" id="filterConexDepartamento" onchange="pageState.conexiones=1;renderConexionesDetail()"><option value="">Todos los departamentos</option></select>
+                            <button class="btn btn-export" onclick="exportTable('conexiones')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Excel</button>
+                            <button class="btn btn-primary" onclick="openConexionModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Nueva Conexión</button>
+                        </div>
+                    </div>
+                    <table class="data-table"><thead><tr><th class="sortable" data-sort-table="conexiones" data-sort-col="nombre" onclick="sortConexiones('nombre')">Nombre <span class="sort-arrow">⇅</span></th><th class="sortable" data-sort-table="conexiones" data-sort-col="id_conexion" onclick="sortConexiones('id_conexion')">ID Conexión <span class="sort-arrow">⇅</span></th><th>Contraseña</th><th class="sortable" data-sort-table="conexiones" data-sort-col="sucursal" onclick="sortConexiones('sucursal')">Sucursal <span class="sort-arrow">⇅</span></th><th class="sortable" data-sort-table="conexiones" data-sort-col="departamento" onclick="sortConexiones('departamento')">Departamento <span class="sort-arrow">⇅</span></th><th class="sortable" data-sort-table="conexiones" data-sort-col="usuario" onclick="sortConexiones('usuario')">Usuario <span class="sort-arrow">⇅</span></th><th>Acciones</th></tr></thead><tbody id="conexiones-table-body"></tbody></table>
+                    <div class="pagination" id="pagination-conexiones"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAREAS PENDIENTES -->
+        <div class="page-section" id="page-tareas">
+            <div class="stats-grid" style="margin-bottom:20px">
+                <div class="stat-card" style="border-left:4px solid var(--danger)"><div class="stat-card-top"><div class="stat-icon" style="background:var(--danger-light);color:var(--danger)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div></div><div class="stat-value" id="stat-tareas-urgentes">0</div><div class="stat-label">Urgentes</div></div>
+                <div class="stat-card" style="border-left:4px solid var(--warning)"><div class="stat-card-top"><div class="stat-icon" style="background:var(--warning-light);color:#92400e"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div></div><div class="stat-value" id="stat-tareas-pendientes">0</div><div class="stat-label">Pendientes</div></div>
+                <div class="stat-card" style="border-left:4px solid var(--primary)"><div class="stat-card-top"><div class="stat-icon" style="background:var(--primary-bg);color:var(--primary)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg></div></div><div class="stat-value" id="stat-tareas-progreso">0</div><div class="stat-label">En Progreso</div></div>
+                <div class="stat-card" style="border-left:4px solid var(--success)"><div class="stat-card-top"><div class="stat-icon" style="background:var(--success-light);color:var(--success)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div></div><div class="stat-value" id="stat-tareas-completadas">0</div><div class="stat-label">Completadas</div></div>
+            </div>
+            <div class="table-container">
+                <div class="table-toolbar">
+                    <div class="table-toolbar-left"><h3>📋 Gestión de Tareas</h3><span class="record-count" id="tareas-count">0 registros</span></div>
+                    <div class="table-toolbar-right">
+                        <div class="table-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" placeholder="Buscar tareas..." id="searchTareas" oninput="pageState.tareas=1;renderTareas()"></div>
+                        <select class="filter-select" id="filterTareaEstado" onchange="pageState.tareas=1;renderTareas()"><option value="">Todos los estados</option><option value="Pendiente">Pendiente</option><option value="En Progreso">En Progreso</option><option value="Completada">Completada</option><option value="Cancelada">Cancelada</option></select>
+                        <select class="filter-select" id="filterTareaPrioridad" onchange="pageState.tareas=1;renderTareas()"><option value="">Todas las prioridades</option><option value="Urgente">Urgente</option><option value="Alta">Alta</option><option value="Media">Media</option><option value="Baja">Baja</option></select>
+                        <select class="filter-select" id="filterTareaCategoria" onchange="pageState.tareas=1;renderTareas()"><option value="">Todas las categorías</option><option value="Reparación">Reparación</option><option value="Instalación">Instalación</option><option value="Mantenimiento">Mantenimiento</option><option value="Configuración">Configuración</option><option value="Otro">Otro</option></select>
+                        <button class="btn btn-export" onclick="exportTable('tareas')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Excel</button>
+                        <button class="btn btn-primary" onclick="openTareaModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Nueva Tarea</button>
+                    </div>
+                </div>
+                <table class="data-table"><thead><tr><th class="sortable" data-sort-table="tareas" data-sort-col="titulo" onclick="sortTable('tareas','titulo')">Tarea <span class="sort-arrow">⇅</span></th><th class="sortable" data-sort-table="tareas" data-sort-col="prioridad" onclick="sortTable('tareas','prioridad')">Prioridad <span class="sort-arrow">⇅</span></th><th class="sortable" data-sort-table="tareas" data-sort-col="estado" onclick="sortTable('tareas','estado')">Estado <span class="sort-arrow">⇅</span></th><th class="sortable" data-sort-table="tareas" data-sort-col="categoria" onclick="sortTable('tareas','categoria')">Categoría <span class="sort-arrow">⇅</span></th><th class="sortable" data-sort-table="tareas" data-sort-col="fecha" onclick="sortTable('tareas','fecha')">Fecha Límite <span class="sort-arrow">⇅</span></th><th>Relacionado</th><th>Acciones</th></tr></thead><tbody id="tareas-table-body"></tbody></table>
+                <div class="pagination" id="pagination-tareas"></div>
+            </div>
+        </div>
+
+        <!-- IMPORTAR DATOS -->
+        <div class="page-section" id="page-importar">
+            <div class="table-container">
+                <div class="table-toolbar">
+                    <div class="table-toolbar-left"><h3>📤 Importar Datos desde Excel</h3><p style="font-size:12px;color:var(--gray-400);margin-top:2px">Carga masiva de registros (.xlsx, .xls, .csv)</p></div>
+                    <div class="table-toolbar-right">
+                        <button class="btn btn-secondary" onclick="downloadImportTemplate()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Descargar Plantilla</button>
+                    </div>
+                </div>
+                <div style="padding:24px">
+                    <div class="import-tabs">
+                        <button class="import-tab active" data-import="equipos" onclick="switchImportTab('equipos')">💻 Equipos</button>
+                        <button class="import-tab" data-import="conexiones" onclick="switchImportTab('conexiones')">🔗 Conexiones</button>
+                        <button class="import-tab" data-import="credenciales" onclick="switchImportTab('credenciales')">🔐 Credenciales</button>
+                    </div>
+                    <div class="import-card" id="import-dropzone" onclick="document.getElementById('import-file').click()" ondrop="handleImportDrop(event)" ondragover="handleImportDragOver(event)" ondragleave="handleImportDragLeave(event)">
+                        <div class="import-card-icon">📁</div>
+                        <h4>Arrastra tu archivo aquí o haz clic para seleccionar</h4>
+                        <p id="import-hint">Columnas esperadas: <strong>tipo, marca, modelo, serial, estado</strong></p>
+                        <input type="file" id="import-file" accept=".xlsx,.xls,.csv" style="display:none" onchange="handleImportFile(event)">
+                    </div>
+                    <div id="import-preview-area" style="display:none">
+                        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px">
+                            <div><strong id="import-file-name"></strong> — <span id="import-row-count"></span></div>
+                            <div style="display:flex;gap:8px">
+                                <button class="btn btn-secondary" onclick="resetImport()">Cancelar</button>
+                                <button class="btn btn-primary" id="import-submit-btn" onclick="executeImport()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>Importar <span id="import-valid-count"></span> registros</button>
+                            </div>
+                        </div>
+                        <div class="import-preview" id="import-preview-table"></div>
+                        <div id="import-result" style="display:none"></div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -631,7 +959,7 @@
                 <input type="hidden" id="credencial-id">
                 <div class="form-row">
                     <div class="form-group"><label>Plataforma / Programa <span class="required">*</span></label><input type="text" class="form-input" id="credencial-plataforma" required placeholder="Ej: Microsoft 365, SAP"></div>
-                    <div class="form-group"><label>Categoría</label><select class="form-input" id="credencial-categoria"><option value="Plataforma">Plataforma</option><option value="Programa">Programa</option><option value="Servidor">Servidor</option><option value="Red">Red</option><option value="Otro">Otro</option></select></div>
+                    <div class="form-group"><label>Categoría</label><select class="form-input" id="credencial-categoria"><option value="Plataforma">🌐 Plataforma</option><option value="Programa">💿 Programa</option><option value="Servidor">🗄️ Servidor</option><option value="Red">🔌 Red</option><option value="Cámaras">📹 Cámaras</option><option value="Correo">📧 Correo</option><option value="PC">💻 PC</option><option value="WiFi">📶 WiFi</option><option value="Intervenciones">🔧 Intervenciones</option><option value="Otro">📦 Otro</option></select></div>
                 </div>
                 <div class="form-group"><label>URL</label><input type="text" class="form-input" id="credencial-url" placeholder="https://..."></div>
                 <div class="form-row">
@@ -640,7 +968,10 @@
                         <div class="password-wrapper"><input type="password" class="form-input" id="credencial-password" required placeholder="Contraseña"><button type="button" class="password-toggle" onclick="togglePassword('credencial-password',this)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button></div>
                     </div>
                 </div>
-                <div class="form-group"><label>Asociar a usuario</label><select class="form-input" id="credencial-usuario-id"><option value="">Sin asociar</option></select></div>
+                <div class="form-row">
+                    <div class="form-group"><label>Asociar a usuario</label><select class="form-input" id="credencial-usuario-id"><option value="">Sin asociar</option></select></div>
+                    <div class="form-group"><label>Sucursal</label><select class="form-input" id="credencial-sucursal"><option value="">Sin sucursal</option></select></div>
+                </div>
                 <div class="form-group"><label>Notas</label><textarea class="form-input" id="credencial-notas" placeholder="Observaciones..."></textarea></div>
             </form>
         </div>
@@ -663,7 +994,7 @@
                 <input type="hidden" id="conexion-id">
                 <div class="form-row">
                     <div class="form-group"><label>Nombre <span class="required">*</span></label><input type="text" class="form-input" id="conexion-nombre" required placeholder="Ej: PC Oficina María"></div>
-                    <div class="form-group"><label>Tipo <span class="required">*</span></label><select class="form-input" id="conexion-tipo" required><option value="">Seleccionar tipo</option><option value="TeamViewer">TeamViewer</option><option value="AnyDesk">AnyDesk</option><option value="RDP">RDP</option><option value="VNC">VNC</option><option value="SSH">SSH</option><option value="Otro">Otro</option></select></div>
+                    <div class="form-group"><label>Tipo <span class="required">*</span></label><select class="form-input" id="conexion-tipo" required><option value="">Seleccionar tipo</option><option value="TeamViewer">TeamViewer</option><option value="AnyDesk">AnyDesk</option><option value="RustDesk">RustDesk</option><option value="RDP">RDP</option><option value="VNC">VNC</option><option value="SSH">SSH</option><option value="Otro">Otro</option></select></div>
                 </div>
                 <div class="form-row">
                     <div class="form-group"><label>ID de Conexión <span class="required">*</span></label><input type="text" class="form-input" id="conexion-id-conexion" required placeholder="Ej: 123 456 789"></div>
@@ -672,9 +1003,10 @@
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group"><label>Equipo</label><select class="form-input" id="conexion-equipo"><option value="">Sin equipo</option></select></div>
-                    <div class="form-group"><label>Usuario</label><select class="form-input" id="conexion-usuario"><option value="">Sin usuario</option></select></div>
+                    <div class="form-group"><label>Sucursal</label><select class="form-input" id="conexion-sucursal"><option value="">Sin sucursal</option></select></div>
+                    <div class="form-group"><label>Departamento</label><select class="form-input" id="conexion-departamento"><option value="">Sin departamento</option></select></div>
                 </div>
+                <div class="form-group"><label>Usuario</label><select class="form-input" id="conexion-usuario"><option value="">Sin usuario</option></select></div>
                 <div class="form-group"><label>Notas</label><textarea class="form-input" id="conexion-notas" placeholder="Observaciones..."></textarea></div>
             </form>
         </div>
@@ -685,9 +1017,45 @@
     </div>
 </div>
 
+<!-- Modal Tarea -->
+<div class="modal-overlay" id="modal-tarea">
+    <div class="modal">
+        <div class="modal-header">
+            <div><h2 id="modal-tarea-title">Nueva Tarea</h2><p id="modal-tarea-subtitle">Registre una nueva tarea de soporte IT</p></div>
+            <button class="modal-close" onclick="closeModal('modal-tarea')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+        </div>
+        <div class="modal-body">
+            <form id="form-tarea" onsubmit="saveTarea(event)">
+                <input type="hidden" id="tarea-id">
+                <div class="form-group"><label>Título <span class="required">*</span></label><input type="text" class="form-input" id="tarea-titulo" required placeholder="Ej: Reparar laptop de María"></div>
+                <div class="form-group"><label>Descripción</label><textarea class="form-input" id="tarea-descripcion" placeholder="Detalle de la tarea..."></textarea></div>
+                <div class="form-row">
+                    <div class="form-group"><label>Prioridad <span class="required">*</span></label><select class="form-input" id="tarea-prioridad" required><option value="Baja">🟢 Baja</option><option value="Media" selected>🟡 Media</option><option value="Alta">🟠 Alta</option><option value="Urgente">🔴 Urgente</option></select></div>
+                    <div class="form-group"><label>Estado</label><select class="form-input" id="tarea-estado"><option value="Pendiente">⏳ Pendiente</option><option value="En Progreso">🔄 En Progreso</option><option value="Completada">✅ Completada</option><option value="Cancelada">❌ Cancelada</option></select></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label>Categoría</label><select class="form-input" id="tarea-categoria"><option value="Reparación">🔧 Reparación</option><option value="Instalación">📥 Instalación</option><option value="Mantenimiento">🛠️ Mantenimiento</option><option value="Configuración">⚙️ Configuración</option><option value="Otro">📦 Otro</option></select></div>
+                    <div class="form-group"><label>Fecha Límite</label><input type="date" class="form-input" id="tarea-fecha-limite"></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label>Equipo relacionado</label><select class="form-input" id="tarea-equipo"><option value="">Sin equipo</option></select></div>
+                    <div class="form-group"><label>Usuario relacionado</label><select class="form-input" id="tarea-usuario"><option value="">Sin usuario</option></select></div>
+                </div>
+                <div class="form-group"><label>Sucursal</label><select class="form-input" id="tarea-sucursal"><option value="">Sin sucursal</option></select></div>
+                <div class="form-group"><label>Notas</label><textarea class="form-input" id="tarea-notas" placeholder="Observaciones adicionales..."></textarea></div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" onclick="closeModal('modal-tarea')">Cancelar</button>
+            <button class="btn btn-primary" onclick="document.getElementById('form-tarea').requestSubmit()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>Guardar</button>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
 <script>
 // ==================== DATA CACHE ====================
-let cache = { usuarios: [], equipos: [], sucursales: [], credenciales: [], conexiones: [], departamentos: [] };
+let cache = { usuarios: [], equipos: [], sucursales: [], credenciales: [], conexiones: [], departamentos: [], tareas: [] };
 let currentUser = null;
 
 const API = {
@@ -722,6 +1090,7 @@ async function loadAllData() {
         cache.credenciales = data.credenciales || [];
         cache.conexiones = data.conexiones || [];
         cache.departamentos = data.departamentos || [];
+        cache.tareas = data.tareas || [];
     } catch (err) {
         showToast('Error cargando datos: ' + err.message, 'error');
     }
@@ -735,15 +1104,79 @@ function navigateTo(page) {
     if (section) section.classList.add('active');
     const navItem = document.querySelector(`.nav-item[data-page="${page}"]`);
     if (navItem) navItem.classList.add('active');
-    const titles = { dashboard: 'Dashboard', usuarios: 'Usuarios', equipos: 'Equipos', sucursales: 'Sucursales', departamentos: 'Departamentos', 'empleados-sucursal': 'Empleados por Sucursal', asignaciones: 'Asignaciones', credenciales: 'Credenciales', conexiones: 'Conexiones Remotas' };
+    const titles = { dashboard: 'Dashboard', usuarios: 'Usuarios', equipos: 'Equipos', sucursales: 'Sucursales', departamentos: 'Departamentos', 'empleados-sucursal': 'Empleados por Sucursal', asignaciones: 'Asignaciones', credenciales: 'Credenciales', conexiones: 'Conexiones Remotas', tareas: 'Tareas Pendientes', importar: 'Importar Datos' };
     document.getElementById('page-title').textContent = titles[page] || page;
     document.getElementById('breadcrumb').innerHTML = `Inicio <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg> <span>${titles[page] || page}</span>`;
     if (page === 'empleados-sucursal') showSucursalList();
+    if (page === 'conexiones') showConexionesCards();
     renderAll();
     document.getElementById('sidebar').classList.remove('open');
+    if (location.hash !== '#' + page) history.pushState(null, '', '#' + page);
 }
+window.addEventListener('popstate', () => {
+    const page = location.hash.replace('#', '') || 'dashboard';
+    navigateTo(page);
+});
 
 function toggleSidebar() { document.getElementById('sidebar').classList.toggle('open'); }
+
+// ==================== DARK MODE ====================
+function toggleDarkMode() {
+    const isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    document.getElementById('icon-sun').style.display = isDark ? '' : 'none';
+    document.getElementById('icon-moon').style.display = isDark ? 'none' : '';
+}
+(function initTheme() {
+    const saved = localStorage.getItem('theme');
+    if (saved === 'dark') {
+        document.documentElement.classList.add('dark');
+        setTimeout(() => {
+            const s = document.getElementById('icon-sun'), m = document.getElementById('icon-moon');
+            if (s) s.style.display = '';
+            if (m) m.style.display = 'none';
+        }, 0);
+    }
+})();
+
+// ==================== FAVORITES ====================
+function getFavorites() { try { return JSON.parse(localStorage.getItem('nav_favorites') || '[]'); } catch { return []; } }
+function saveFavorites(favs) { localStorage.setItem('nav_favorites', JSON.stringify(favs)); }
+function toggleFav(page) {
+    let favs = getFavorites();
+    if (favs.includes(page)) favs = favs.filter(f => f !== page);
+    else favs.push(page);
+    saveFavorites(favs);
+    renderFavorites();
+}
+function renderFavorites() {
+    const favs = getFavorites();
+    const container = document.getElementById('nav-favorites');
+    const list = document.getElementById('nav-favorites-list');
+    // Update star buttons
+    document.querySelectorAll('.nav-fav').forEach(btn => {
+        const p = btn.dataset.fav;
+        btn.textContent = favs.includes(p) ? '★' : '☆';
+        btn.classList.toggle('active', favs.includes(p));
+    });
+    if (favs.length === 0) { container.style.display = 'none'; return; }
+    container.style.display = '';
+    const navItems = {};
+    document.querySelectorAll('.nav-item[data-page]').forEach(item => { navItems[item.dataset.page] = item; });
+    list.innerHTML = favs.map(p => {
+        const orig = navItems[p];
+        if (!orig) return '';
+        const svg = orig.querySelector('svg') ? orig.querySelector('svg').outerHTML : '';
+        const titles = { dashboard:'Dashboard', usuarios:'Usuarios', equipos:'Equipos', sucursales:'Sucursales', departamentos:'Departamentos', 'empleados-sucursal':'Empleados x Sucursal', asignaciones:'Asignaciones', credenciales:'Credenciales', conexiones:'Conexiones', tareas:'Tareas', importar:'Importar' };
+        return `<a class="nav-item" data-page="${p}" onclick="navigateTo('${p}')">${svg} ${titles[p] || p}</a>`;
+    }).join('');
+}
+setTimeout(renderFavorites, 0);
+
+// ==================== CONFIRM LOGOUT ====================
+function confirmLogout() {
+    showConfirm('¿Cerrar sesión?', 'Se cerrará tu sesión actual y volverás a la pantalla de inicio.', handleLogout, 'Cerrar Sesión');
+}
 
 // ==================== TOAST ====================
 function showToast(msg, type = 'success') {
@@ -775,10 +1208,12 @@ function togglePassword(inputId, btn) {
 }
 
 // ==================== CONFIRM DIALOG ====================
-function showConfirm(title, msg, onConfirm) {
+function showConfirm(title, msg, onConfirm, btnText) {
     document.getElementById('confirm-title').textContent = title;
     document.getElementById('confirm-message').textContent = msg;
     const btn = document.getElementById('confirm-btn');
+    btn.textContent = btnText || 'Eliminar';
+    btn.className = btnText ? 'btn btn-primary' : 'btn btn-danger';
     btn.onclick = () => { closeModal('modal-confirm'); onConfirm(); };
     openModal('modal-confirm');
 }
@@ -862,6 +1297,42 @@ function deleteUser(id) {
     });
 }
 
+// ==================== TABLE SORTING ====================
+const sortState = { usuarios: { col: '', asc: true }, equipos: { col: '', asc: true }, sucursales: { col: '', asc: true }, credenciales: { col: '', asc: true }, tareas: { col: '', asc: true } };
+
+function sortTable(table, col) {
+    const st = sortState[table];
+    if (st.col === col) { st.asc = !st.asc; } else { st.col = col; st.asc = true; }
+    pageState[table] = 1;
+    const renderMap = { usuarios: renderUsers, equipos: renderEquipos, sucursales: renderSucursales, credenciales: renderCredenciales, tareas: renderTareas };
+    if (renderMap[table]) renderMap[table]();
+}
+
+function updateSortIcons(table, cols) {
+    const st = sortState[table];
+    cols.forEach(col => {
+        const el = document.querySelector(`[data-sort-table="${table}"][data-sort-col="${col}"]`);
+        if (el) {
+            el.classList.remove('asc', 'desc');
+            if (st.col === col) el.classList.add(st.asc ? 'asc' : 'desc');
+            const arrow = el.querySelector('.sort-arrow');
+            if (arrow) arrow.textContent = st.col === col ? (st.asc ? '▲' : '▼') : '⇅';
+        }
+    });
+}
+
+function applySortGeneric(filtered, table, resolvers) {
+    const st = sortState[table];
+    if (!st.col || !resolvers[st.col]) return filtered;
+    const resolver = resolvers[st.col];
+    return filtered.sort((a, b) => {
+        let va = resolver(a), vb = resolver(b);
+        if (typeof va === 'number' && typeof vb === 'number') return st.asc ? va - vb : vb - va;
+        va = (va || '').toString().toLowerCase(); vb = (vb || '').toString().toLowerCase();
+        return st.asc ? va.localeCompare(vb) : vb.localeCompare(va);
+    });
+}
+
 function renderUsers() {
     const search = (document.getElementById('searchUsers')?.value || '').toLowerCase();
     const filterSuc = document.getElementById('filterUserSucursal')?.value || '';
@@ -870,30 +1341,42 @@ function renderUsers() {
         const matchSuc = !filterSuc || u.sucursal_id === filterSuc;
         return matchSearch && matchSuc;
     });
+    applySortGeneric(filtered, 'usuarios', {
+        nombre: u => u.nombre,
+        posicion: u => u.posicion,
+        sucursal: u => { const s = cache.sucursales.find(x => x.id === u.sucursal_id); return s ? s.nombre : ''; },
+        departamento: u => { const d = cache.departamentos.find(x => x.id === u.departamento_id); return d ? d.nombre : ''; },
+        equipos: u => cache.equipos.filter(e => e.asignado_tipo === 'usuario' && e.asignado_id === u.id).length
+    });
+    updateSortIcons('usuarios', ['nombre','posicion','sucursal','departamento','equipos']);
     const tbody = document.getElementById('users-table-body');
     document.getElementById('users-count').textContent = `${filtered.length} registros`;
     if (filtered.length === 0) {
         tbody.innerHTML = `<tr><td colspan="6"><div class="table-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><p>No se encontraron usuarios</p><small>Agrega tu primer usuario con el botón "Nuevo Usuario"</small></div></td></tr>`;
+        renderPagination('pagination-usuarios', 'usuarios', 0, 1, 1);
         return;
     }
-    tbody.innerHTML = filtered.map(u => {
+    const pg = paginate(filtered, pageState.usuarios);
+    pageState.usuarios = pg.page;
+    tbody.innerHTML = pg.items.map(u => {
         const initials = u.nombre.split(' ').map(w => w[0]).join('').substring(0, 2).toUpperCase();
         const color = colors[u.nombre.charCodeAt(0) % colors.length];
         const suc = cache.sucursales.find(s => s.id === u.sucursal_id);
         const dept = cache.departamentos.find(d => d.id === u.departamento_id);
         const eqCount = cache.equipos.filter(e => e.asignado_tipo === 'usuario' && e.asignado_id === u.id).length;
         return `<tr>
-            <td><div class="table-cell"><div class="avatar-sm" style="background:${color}">${esc(initials)}</div><div><div style="font-weight:600">${esc(u.nombre)}</div><div style="font-size:11px;color:var(--gray-400)">${esc(u.email || 'Sin email')}</div></div></div></td>
-            <td><span class="badge badge-primary">${esc(u.posicion)}</span></td>
-            <td>${suc ? `<span class="badge badge-gray">🏢 ${esc(suc.nombre)}</span>` : '<span class="badge badge-gray">Sin sucursal</span>'}</td>
-            <td>${dept ? `<span class="badge badge-info">📁 ${esc(dept.nombre)}</span>` : '<span style="color:var(--gray-300)">—</span>'}</td>
-            <td><span class="badge badge-info">${eqCount} equipo${eqCount !== 1 ? 's' : ''}</span></td>
-            <td><div style="display:flex;gap:6px">
+            <td data-label="Usuario"><div class="table-cell"><div class="avatar-sm">${esc(initials)}</div><div><div style="font-weight:600">${esc(u.nombre)}</div><div style="font-size:11px;color:var(--gray-400)">${esc(u.email || 'Sin email')}</div></div></div></td>
+            <td data-label="Posición"><span class="badge badge-primary">${esc(u.posicion)}</span></td>
+            <td data-label="Sucursal">${suc ? `<span class="badge badge-gray">🏢 ${esc(suc.nombre)}</span>` : '<span class="badge badge-gray">Sin sucursal</span>'}</td>
+            <td data-label="Departamento">${dept ? `<span class="badge badge-info">📁 ${esc(dept.nombre)}</span>` : '<span style="color:var(--gray-300)">—</span>'}</td>
+            <td data-label="Equipos"><span class="badge badge-info">${eqCount} equipo${eqCount !== 1 ? 's' : ''}</span></td>
+            <td data-label="Acciones"><div style="display:flex;gap:6px">
                 <button class="btn-icon edit" title="Editar" onclick="openUserModal('${u.id}')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
                 <button class="btn-icon danger" title="Eliminar" onclick="deleteUser('${u.id}')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>
             </div></td>
         </tr>`;
     }).join('');
+    renderPagination('pagination-usuarios', 'usuarios', pg.total, pg.page, pg.totalPages);
 }
 
 // ==================== EQUIPOS ====================
@@ -995,13 +1478,28 @@ function renderEquipos() {
         const matchEstado = !filterEstado || eq.estado === filterEstado;
         return matchSearch && matchTipo && matchEstado;
     });
+    applySortGeneric(filtered, 'equipos', {
+        tipo: eq => eq.tipo,
+        marca: eq => eq.marca + ' ' + (eq.modelo || ''),
+        serial: eq => eq.serial || '',
+        estado: eq => eq.estado,
+        asignado: eq => {
+            if (eq.asignado_tipo === 'usuario') { const u = cache.usuarios.find(x => x.id === eq.asignado_id); return u ? u.nombre : ''; }
+            if (eq.asignado_tipo === 'sucursal') { const s = cache.sucursales.find(x => x.id === eq.asignado_id); return s ? s.nombre : ''; }
+            return '';
+        }
+    });
+    updateSortIcons('equipos', ['tipo','marca','serial','estado','asignado']);
     const tbody = document.getElementById('equipos-table-body');
     document.getElementById('equipos-count').textContent = `${filtered.length} registros`;
     if (filtered.length === 0) {
         tbody.innerHTML = `<tr><td colspan="6"><div class="table-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg><p>No se encontraron equipos</p><small>Agrega tu primer equipo con el botón "Nuevo Equipo"</small></div></td></tr>`;
+        renderPagination('pagination-equipos', 'equipos', 0, 1, 1);
         return;
     }
-    tbody.innerHTML = filtered.map(eq => {
+    const pg = paginate(filtered, pageState.equipos);
+    pageState.equipos = pg.page;
+    tbody.innerHTML = pg.items.map(eq => {
         let asignadoA = '—';
         if (eq.asignado_tipo === 'usuario') {
             const u = cache.usuarios.find(x => x.id === eq.asignado_id);
@@ -1011,17 +1509,18 @@ function renderEquipos() {
             asignadoA = s ? `<span class="badge badge-secondary">🏢 ${esc(s.nombre)}</span>` : '<span class="badge badge-gray">Sucursal no encontrada</span>';
         }
         return `<tr>
-            <td><div class="table-cell"><span style="font-size:20px">${tipoIcons[eq.tipo] || '📦'}</span><div><div style="font-weight:600">${esc(eq.tipo)}</div></div></div></td>
-            <td><div><div style="font-weight:600">${esc(eq.marca)}</div>${eq.modelo ? `<div style="font-size:11px;color:var(--gray-400)">${esc(eq.modelo)}</div>` : ''}</div></td>
-            <td>${eq.serial ? `<span style="font-family:monospace;font-size:12px;background:var(--gray-100);padding:3px 8px;border-radius:4px">${esc(eq.serial)}</span>` : '<span style="color:var(--gray-300)">—</span>'}</td>
-            <td><span class="badge ${estadoBadges[eq.estado] || 'badge-gray'}"><span class="badge-dot ${estadoDots[eq.estado] || 'green'}"></span> ${esc(eq.estado)}</span></td>
-            <td>${asignadoA}</td>
-            <td><div style="display:flex;gap:6px">
+            <td data-label="Tipo"><div class="table-cell"><span style="font-size:20px">${tipoIcons[eq.tipo] || '📦'}</span><div><div style="font-weight:600">${esc(eq.tipo)}</div></div></div></td>
+            <td data-label="Marca / Modelo"><div><div style="font-weight:600">${esc(eq.marca)}</div>${eq.modelo ? `<div style="font-size:11px;color:var(--gray-400)">${esc(eq.modelo)}</div>` : ''}</div></td>
+            <td data-label="Nº Serie">${eq.serial ? `<span style="font-family:monospace;font-size:12px;background:var(--gray-100);padding:3px 8px;border-radius:4px">${esc(eq.serial)}</span>` : '<span style="color:var(--gray-300)">—</span>'}</td>
+            <td data-label="Estado"><span class="badge ${estadoBadges[eq.estado] || 'badge-gray'}"><span class="badge-dot ${estadoDots[eq.estado] || 'green'}"></span> ${esc(eq.estado)}</span></td>
+            <td data-label="Asignado A">${asignadoA}</td>
+            <td data-label="Acciones"><div style="display:flex;gap:6px">
                 <button class="btn-icon edit" title="Editar" onclick="openEquipoModal('${eq.id}')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
                 <button class="btn-icon danger" title="Eliminar" onclick="deleteEquipo('${eq.id}')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>
             </div></td>
         </tr>`;
     }).join('');
+    renderPagination('pagination-equipos', 'equipos', pg.total, pg.page, pg.totalPages);
 }
 
 // ==================== SUCURSALES ====================
@@ -1096,27 +1595,38 @@ function deleteSucursal(id) {
 function renderSucursales() {
     const search = (document.getElementById('searchSucursales')?.value || '').toLowerCase();
     let filtered = cache.sucursales.filter(s => s.nombre.toLowerCase().includes(search) || (s.ciudad || '').toLowerCase().includes(search));
+    applySortGeneric(filtered, 'sucursales', {
+        nombre: s => s.nombre,
+        direccion: s => s.direccion || '',
+        empleados: s => cache.usuarios.filter(u => u.sucursal_id === s.id).length,
+        equipos: s => cache.equipos.filter(e => e.asignado_tipo === 'sucursal' && e.asignado_id === s.id).length
+    });
+    updateSortIcons('sucursales', ['nombre','direccion','empleados','equipos']);
     const tbody = document.getElementById('sucursales-table-body');
     document.getElementById('sucursales-count').textContent = `${filtered.length} registros`;
     if (filtered.length === 0) {
         tbody.innerHTML = `<tr><td colspan="5"><div class="table-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><p>No se encontraron sucursales</p><small>Agrega tu primera sucursal con el botón "Nueva Sucursal"</small></div></td></tr>`;
+        renderPagination('pagination-sucursales', 'sucursales', 0, 1, 1);
         return;
     }
-    tbody.innerHTML = filtered.map(s => {
+    const pg = paginate(filtered, pageState.sucursales);
+    pageState.sucursales = pg.page;
+    tbody.innerHTML = pg.items.map(s => {
         const empCount = cache.usuarios.filter(u => u.sucursal_id === s.id).length;
         const eqCount = cache.equipos.filter(e => e.asignado_tipo === 'sucursal' && e.asignado_id === s.id).length;
         return `<tr>
-            <td><div class="table-cell"><div class="avatar-sm" style="background:linear-gradient(135deg,var(--primary),var(--secondary))">🏢</div><div><div style="font-weight:600">${esc(s.nombre)}</div>${s.ciudad ? `<div style="font-size:11px;color:var(--gray-400)">${esc(s.ciudad)}</div>` : ''}</div></div></td>
-            <td>${s.direccion ? esc(s.direccion) : '<span style="color:var(--gray-300)">Sin dirección</span>'}</td>
-            <td><span class="badge badge-primary">${empCount} empleado${empCount !== 1 ? 's' : ''}</span></td>
-            <td><span class="badge badge-info">${eqCount} equipo${eqCount !== 1 ? 's' : ''}</span></td>
-            <td><div style="display:flex;gap:6px">
+            <td data-label="Sucursal"><div class="table-cell"><div class="avatar-sm">🏢</div><div><div style="font-weight:600">${esc(s.nombre)}</div>${s.ciudad ? `<div style="font-size:11px;color:var(--gray-400)">${esc(s.ciudad)}</div>` : ''}</div></div></td>
+            <td data-label="Dirección">${s.direccion ? esc(s.direccion) : '<span style="color:var(--gray-300)">Sin dirección</span>'}</td>
+            <td data-label="Empleados"><span class="badge badge-primary">${empCount} empleado${empCount !== 1 ? 's' : ''}</span></td>
+            <td data-label="Equipos"><span class="badge badge-info">${eqCount} equipo${eqCount !== 1 ? 's' : ''}</span></td>
+            <td data-label="Acciones"><div style="display:flex;gap:6px">
                 <button class="btn btn-sm btn-secondary" onclick="viewSucursalDetail('${s.id}')">Ver</button>
                 <button class="btn-icon edit" title="Editar" onclick="openSucursalModal('${s.id}')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
                 <button class="btn-icon danger" title="Eliminar" onclick="deleteSucursal('${s.id}')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>
             </div></td>
         </tr>`;
     }).join('');
+    renderPagination('pagination-sucursales', 'sucursales', pg.total, pg.page, pg.totalPages);
 }
 
 // ==================== ASIGNACIONES ====================
@@ -1286,7 +1796,7 @@ function viewSucursalDetail(id) {
             const color = colors[u.nombre.charCodeAt(0) % colors.length];
             const uEquipos = equiposUsuarios.filter(e => e.asignado_id === u.id);
             return `<tr>
-                            <td><div class="table-cell"><div class="avatar-sm" style="background:${color}">${esc(initials)}</div><div><div style="font-weight:600">${esc(u.nombre)}</div>${u.telefono ? `<div style="font-size:11px;color:var(--gray-400)">${esc(u.telefono)}</div>` : ''}</div></div></td>
+                            <td><div class="table-cell"><div class="avatar-sm">${esc(initials)}</div><div><div style="font-weight:600">${esc(u.nombre)}</div>${u.telefono ? `<div style="font-size:11px;color:var(--gray-400)">${esc(u.telefono)}</div>` : ''}</div></div></td>
                             <td><span class="badge badge-primary">${esc(u.posicion)}</span></td>
                             <td style="color:var(--gray-500);font-size:13px">${esc(u.email || '—')}</td>
                             <td>${uEquipos.length > 0 ? uEquipos.map(eq => `<span class="badge badge-info" style="margin:2px">${tipoIcons[eq.tipo] || '📦'} ${esc(eq.marca)}</span>`).join('') : '<span style="color:var(--gray-300)">Sin equipos</span>'}</td>
@@ -1335,6 +1845,25 @@ function renderDashboard() {
     document.getElementById('stat-sucursales').textContent = cache.sucursales.length;
     document.getElementById('stat-asignados').textContent = cache.equipos.filter(e => e.asignado_tipo).length;
 
+    // Task notifications
+    const alertsDiv = document.getElementById('dashboard-alerts');
+    const hoyD = new Date(); hoyD.setHours(0,0,0,0);
+    const en3dias = new Date(hoyD); en3dias.setDate(en3dias.getDate() + 3);
+    const vencidas = cache.tareas.filter(t => t.fecha_limite && new Date(t.fecha_limite + 'T00:00:00') < hoyD && t.estado !== 'Completada' && t.estado !== 'Cancelada');
+    const proximas = cache.tareas.filter(t => {
+        if (!t.fecha_limite || t.estado === 'Completada' || t.estado === 'Cancelada') return false;
+        const f = new Date(t.fecha_limite + 'T00:00:00');
+        return f >= hoyD && f <= en3dias;
+    });
+    let alertsHtml = '';
+    if (vencidas.length > 0) {
+        alertsHtml += `<div class="alert-banner alert-banner-danger"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg><div><strong>${vencidas.length} tarea${vencidas.length > 1 ? 's' : ''} vencida${vencidas.length > 1 ? 's' : ''}</strong> — ${vencidas.slice(0, 3).map(t => esc(t.titulo)).join(', ')}${vencidas.length > 3 ? ` y ${vencidas.length - 3} más` : ''}</div><button class="alert-banner-close" onclick="this.parentElement.remove()">×</button></div>`;
+    }
+    if (proximas.length > 0) {
+        alertsHtml += `<div class="alert-banner alert-banner-warning"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><div><strong>${proximas.length} tarea${proximas.length > 1 ? 's' : ''} próxima${proximas.length > 1 ? 's' : ''} a vencer</strong> (en los próximos 3 días) — ${proximas.slice(0, 3).map(t => esc(t.titulo)).join(', ')}${proximas.length > 3 ? ` y ${proximas.length - 3} más` : ''}</div><button class="alert-banner-close" onclick="this.parentElement.remove()">×</button></div>`;
+    }
+    alertsDiv.innerHTML = alertsHtml;
+
     // Equipos por tipo
     const tipoCount = {};
     cache.equipos.forEach(eq => { tipoCount[eq.tipo] = (tipoCount[eq.tipo] || 0) + 1; });
@@ -1345,7 +1874,7 @@ function renderDashboard() {
         const maxVal = Math.max(...Object.values(tipoCount));
         tipoDiv.innerHTML = Object.entries(tipoCount).sort((a, b) => b[1] - a[1]).map(([tipo, count]) => {
             const pct = (count / maxVal * 100).toFixed(0);
-            return `<div style="margin-bottom:14px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><span style="font-size:13px;font-weight:600">${tipoIcons[tipo] || '📦'} ${esc(tipo)}</span><span style="font-size:12px;font-weight:700;color:var(--gray-600)">${count}</span></div><div style="background:var(--gray-100);border-radius:4px;height:8px;overflow:hidden"><div style="background:linear-gradient(90deg,var(--primary),var(--secondary));height:100%;border-radius:4px;width:${pct}%;transition:width .5s ease"></div></div></div>`;
+            return `<div style="margin-bottom:14px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><span style="font-size:13px;font-weight:600">${tipoIcons[tipo] || '📦'} ${esc(tipo)}</span><span style="font-size:12px;font-weight:700;color:var(--secondary)">${count}</span></div><div style="background:var(--primary-bg);border-radius:4px;height:8px;overflow:hidden"><div style="background:var(--primary);height:100%;border-radius:4px;width:${pct}%;transition:width .5s ease"></div></div></div>`;
         }).join('');
     }
 
@@ -1367,7 +1896,7 @@ function renderDashboard() {
         const maxS = Math.max(...Object.values(sucCount));
         sucDiv.innerHTML = Object.entries(sucCount).sort((a, b) => b[1] - a[1]).map(([name, count]) => {
             const pct = (count / maxS * 100).toFixed(0);
-            return `<div style="margin-bottom:14px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><span style="font-size:13px;font-weight:600">${esc(name)}</span><span style="font-size:12px;font-weight:700;color:var(--gray-600)">${count}</span></div><div style="background:var(--gray-100);border-radius:4px;height:8px;overflow:hidden"><div style="background:linear-gradient(90deg,var(--success),var(--info));height:100%;border-radius:4px;width:${pct}%;transition:width .5s ease"></div></div></div>`;
+            return `<div style="margin-bottom:14px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><span style="font-size:13px;font-weight:600">${esc(name)}</span><span style="font-size:12px;font-weight:700;color:var(--secondary)">${count}</span></div><div style="background:var(--warning-light);border-radius:4px;height:8px;overflow:hidden"><div style="background:var(--secondary);height:100%;border-radius:4px;width:${pct}%;transition:width .5s ease"></div></div></div>`;
         }).join('');
     }
 
@@ -1388,6 +1917,27 @@ function renderDashboard() {
             return `<tr><td><span class="badge ${typeBadges[a.type] || 'badge-gray'}">${icons[a.type] || ''} ${a.type}</span></td><td style="font-weight:500">${esc(a.desc)}</td><td style="color:var(--gray-400);font-size:12px">${fecha}</td></tr>`;
         }).join('');
     }
+
+    // Tareas pendientes widget
+    const tareasDiv = document.getElementById('dashboard-tareas');
+    const tareasActivas = cache.tareas.filter(t => t.estado === 'Pendiente' || t.estado === 'En Progreso');
+    const hoy = new Date(); hoy.setHours(0,0,0,0);
+    const prioOrder = { 'Urgente': 0, 'Alta': 1, 'Media': 2, 'Baja': 3 };
+    tareasActivas.sort((a, b) => prioOrder[a.prioridad] - prioOrder[b.prioridad]);
+    if (tareasActivas.length === 0) {
+        tareasDiv.innerHTML = '<p style="color:var(--gray-400);text-align:center;font-size:13px;padding:12px 0">No hay tareas pendientes 🎉</p>';
+    } else {
+        tareasDiv.innerHTML = tareasActivas.slice(0, 5).map(t => {
+            const vencida = t.fecha_limite && new Date(t.fecha_limite + 'T00:00:00') < hoy;
+            const fechaStr = t.fecha_limite ? new Date(t.fecha_limite + 'T00:00:00').toLocaleDateString('es-MX', { day: '2-digit', month: 'short' }) : '';
+            return `<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--gray-50)">
+                <span style="font-size:14px">${prioridadIcons[t.prioridad]}</span>
+                <div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;${vencida ? 'color:var(--danger)' : ''}">${esc(t.titulo)}</div>
+                <div style="font-size:11px;color:var(--gray-400)">${estadoTareaIcons[t.estado]} ${t.estado}${fechaStr ? ' • ' + (vencida ? '⚠️ ' : '') + fechaStr : ''}</div></div>
+                <span class="badge ${prioridadBadges[t.prioridad]}" style="font-size:10px">${esc(t.prioridad)}</span>
+            </div>`;
+        }).join('') + (tareasActivas.length > 5 ? `<p style="text-align:center;font-size:11px;color:var(--gray-400);margin-top:8px">+${tareasActivas.length - 5} tareas más</p>` : '');
+    }
 }
 
 // ==================== BADGES ====================
@@ -1398,31 +1948,159 @@ function updateBadges() {
     document.getElementById('badge-departamentos').textContent = cache.departamentos.length;
     document.getElementById('badge-credenciales').textContent = cache.credenciales.length;
     document.getElementById('badge-conexiones').textContent = cache.conexiones.length;
+    const activeCount = cache.tareas.filter(t => t.estado === 'Pendiente' || t.estado === 'En Progreso').length;
+    const hoyB = new Date(); hoyB.setHours(0,0,0,0);
+    const overdueCount = cache.tareas.filter(t => t.fecha_limite && new Date(t.fecha_limite + 'T00:00:00') < hoyB && t.estado !== 'Completada' && t.estado !== 'Cancelada').length;
+    const tareasBadge = document.getElementById('badge-tareas');
+    tareasBadge.textContent = activeCount;
+    if (overdueCount > 0) {
+        tareasBadge.classList.add('badge-danger');
+        tareasBadge.title = `${overdueCount} tarea${overdueCount > 1 ? 's' : ''} vencida${overdueCount > 1 ? 's' : ''}`;
+    } else {
+        tareasBadge.classList.remove('badge-danger');
+        tareasBadge.title = '';
+    }
 }
 
-// ==================== GLOBAL SEARCH ====================
-function handleGlobalSearch(e) {
-    if (e.key === 'Enter') {
-        const q = e.target.value.trim().toLowerCase();
-        if (!q) return;
-        if (cache.usuarios.some(u => u.nombre.toLowerCase().includes(q) || u.posicion.toLowerCase().includes(q))) {
-            navigateTo('usuarios');
-            document.getElementById('searchUsers').value = q;
-            renderUsers();
-        } else if (cache.equipos.some(eq => eq.marca.toLowerCase().includes(q) || (eq.serial || '').toLowerCase().includes(q) || eq.tipo.toLowerCase().includes(q))) {
-            navigateTo('equipos');
-            document.getElementById('searchEquipos').value = q;
-            renderEquipos();
-        } else if (cache.sucursales.some(s => s.nombre.toLowerCase().includes(q))) {
-            navigateTo('sucursales');
-            document.getElementById('searchSucursales').value = q;
-            renderSucursales();
-        } else if (cache.departamentos.some(d => d.nombre.toLowerCase().includes(q) || (d.responsable || '').toLowerCase().includes(q))) {
-            navigateTo('departamentos');
-            document.getElementById('searchDepartamentos').value = q;
-            renderDepartamentos();
-        }
+// ==================== GLOBAL SEARCH (LIVE) ====================
+let searchDebounce = null;
+function handleGlobalSearchLive(e) {
+    clearTimeout(searchDebounce);
+    searchDebounce = setTimeout(() => renderGlobalSearch(), 200);
+}
+function handleGlobalSearchKey(e) {
+    if (e.key === 'Escape') { closeGlobalSearch(); e.target.blur(); }
+}
+function closeGlobalSearch() { document.getElementById('globalSearchResults').classList.remove('show'); }
+document.addEventListener('click', (e) => { if (!e.target.closest('.global-search-wrapper')) closeGlobalSearch(); });
+
+function renderGlobalSearch() {
+    const q = (document.getElementById('globalSearch').value || '').trim().toLowerCase();
+    const res = document.getElementById('globalSearchResults');
+    if (q.length < 2) { res.classList.remove('show'); return; }
+
+    const sections = [];
+    const matchUsers = cache.usuarios.filter(u => u.nombre.toLowerCase().includes(q) || (u.email || '').toLowerCase().includes(q) || u.posicion.toLowerCase().includes(q)).slice(0, 5);
+    if (matchUsers.length) sections.push({ title: 'Usuarios', icon: '👤', page: 'usuarios', items: matchUsers.map(u => ({ id: u.id, name: u.nombre, sub: u.posicion })) });
+
+    const matchEquipos = cache.equipos.filter(eq => eq.marca.toLowerCase().includes(q) || (eq.serial || '').toLowerCase().includes(q) || eq.tipo.toLowerCase().includes(q) || (eq.modelo || '').toLowerCase().includes(q)).slice(0, 5);
+    if (matchEquipos.length) sections.push({ title: 'Equipos', icon: '💻', page: 'equipos', items: matchEquipos.map(eq => ({ id: eq.id, name: `${eq.marca} ${eq.modelo || ''}`, sub: `${eq.tipo} • ${eq.estado}` })) });
+
+    const matchSuc = cache.sucursales.filter(s => s.nombre.toLowerCase().includes(q) || (s.ciudad || '').toLowerCase().includes(q) || (s.direccion || '').toLowerCase().includes(q)).slice(0, 5);
+    if (matchSuc.length) sections.push({ title: 'Sucursales', icon: '🏢', page: 'sucursales', items: matchSuc.map(s => ({ id: s.id, name: s.nombre, sub: s.ciudad || s.direccion || '' })) });
+
+    const matchDept = cache.departamentos.filter(d => d.nombre.toLowerCase().includes(q) || (d.responsable || '').toLowerCase().includes(q)).slice(0, 5);
+    if (matchDept.length) sections.push({ title: 'Departamentos', icon: '📁', page: 'departamentos', items: matchDept.map(d => ({ id: d.id, name: d.nombre, sub: d.responsable || '' })) });
+
+    const matchConex = cache.conexiones.filter(c => c.nombre.toLowerCase().includes(q) || (c.id_conexion || '').toLowerCase().includes(q)).slice(0, 5);
+    if (matchConex.length) sections.push({ title: 'Conexiones', icon: '🔗', page: 'conexiones', items: matchConex.map(c => ({ id: c.id, name: c.nombre, sub: `${c.tipo} • ${c.id_conexion}` })) });
+
+    const matchCred = cache.credenciales.filter(c => c.plataforma.toLowerCase().includes(q) || (c.usuario_plataforma || '').toLowerCase().includes(q)).slice(0, 5);
+    if (matchCred.length) sections.push({ title: 'Credenciales', icon: '🔐', page: 'credenciales', items: matchCred.map(c => ({ id: c.id, name: c.plataforma, sub: c.usuario_plataforma || c.categoria })) });
+
+    const matchTareas = cache.tareas.filter(t => t.titulo.toLowerCase().includes(q) || (t.descripcion || '').toLowerCase().includes(q)).slice(0, 5);
+    if (matchTareas.length) sections.push({ title: 'Tareas', icon: '✅', page: 'tareas', items: matchTareas.map(t => ({ id: t.id, name: t.titulo, sub: `${t.prioridad} • ${t.estado}` })) });
+
+    if (sections.length === 0) {
+        res.innerHTML = '<div class="gsr-empty">No se encontraron resultados para "' + esc(q) + '"</div>';
+    } else {
+        res.innerHTML = sections.map(s => `<div class="gsr-section"><div class="gsr-section-title">${esc(s.title)}</div>${s.items.map(i => `<div class="gsr-item" onclick="navigateTo('${s.page}');closeGlobalSearch();document.getElementById('globalSearch').value='';"><div class="gsr-icon">${s.icon}</div><div class="gsr-text"><strong>${esc(i.name)}</strong><small>${esc(i.sub)}</small></div></div>`).join('')}</div>`).join('');
     }
+    res.classList.add('show');
+}
+
+// ==================== EXPORT TO EXCEL ====================
+function exportTable(type) {
+    let data = [], fileName = '';
+    if (type === 'usuarios') {
+        fileName = 'Usuarios';
+        data = cache.usuarios.map(u => {
+            const suc = cache.sucursales.find(s => s.id === u.sucursal_id);
+            const dept = cache.departamentos.find(d => d.id === u.departamento_id);
+            return { Nombre: u.nombre, Email: u.email || '', Posición: u.posicion, Sucursal: suc ? suc.nombre : '', Departamento: dept ? dept.nombre : '', Teléfono: u.telefono || '', Notas: u.notas || '' };
+        });
+    } else if (type === 'equipos') {
+        fileName = 'Equipos';
+        data = cache.equipos.map(eq => {
+            let asignado = '';
+            if (eq.asignado_tipo === 'usuario') { const u = cache.usuarios.find(x => x.id === eq.asignado_id); asignado = u ? u.nombre : ''; }
+            else if (eq.asignado_tipo === 'sucursal') { const s = cache.sucursales.find(x => x.id === eq.asignado_id); asignado = s ? s.nombre : ''; }
+            return { Tipo: eq.tipo, Marca: eq.marca, Modelo: eq.modelo || '', Serial: eq.serial || '', Estado: eq.estado, 'Asignado A': asignado, 'Tipo Asignación': eq.asignado_tipo || '', 'Fecha Compra': eq.fecha_compra || '', Notas: eq.notas || '' };
+        });
+    } else if (type === 'sucursales') {
+        fileName = 'Sucursales';
+        data = cache.sucursales.map(s => {
+            const empCount = cache.usuarios.filter(u => u.sucursal_id === s.id).length;
+            const eqCount = cache.equipos.filter(e => e.asignado_tipo === 'sucursal' && e.asignado_id === s.id).length;
+            return { Nombre: s.nombre, Dirección: s.direccion || '', Ciudad: s.ciudad || '', Teléfono: s.telefono || '', Responsable: s.responsable || '', Empleados: empCount, Equipos: eqCount, Notas: s.notas || '' };
+        });
+    } else if (type === 'credenciales') {
+        fileName = 'Credenciales';
+        data = cache.credenciales.map(c => {
+            const u = c.usuario_id ? cache.usuarios.find(x => x.id === c.usuario_id) : null;
+            return { Plataforma: c.plataforma, URL: c.url || '', Categoría: c.categoria, Usuario: c.usuario_plataforma || '', Contraseña: c.password_plataforma || '', 'Asociado a': u ? u.nombre : '', Notas: c.notas || '' };
+        });
+    } else if (type === 'conexiones') {
+        fileName = 'Conexiones_Remotas';
+        data = cache.conexiones.map(c => {
+            const suc = c.sucursal_id ? cache.sucursales.find(s => s.id === c.sucursal_id) : null;
+            const dept = c.departamento_id ? cache.departamentos.find(d => d.id === c.departamento_id) : null;
+            const usr = c.usuario_id ? cache.usuarios.find(u => u.id === c.usuario_id) : null;
+            return { Nombre: c.nombre, Tipo: c.tipo, 'ID Conexión': c.id_conexion, Contraseña: c.password_conexion || '', Sucursal: suc ? suc.nombre : '', Departamento: dept ? dept.nombre : '', Usuario: usr ? usr.nombre : '', Notas: c.notas || '' };
+        });
+    } else if (type === 'tareas') {
+        fileName = 'Tareas';
+        data = cache.tareas.map(t => {
+            const eq = t.equipo_id ? cache.equipos.find(e => e.id === t.equipo_id) : null;
+            const usr = t.usuario_id ? cache.usuarios.find(u => u.id === t.usuario_id) : null;
+            return { Título: t.titulo, Descripción: t.descripcion || '', Prioridad: t.prioridad, Estado: t.estado, Categoría: t.categoria, 'Fecha Límite': t.fecha_limite || '', Equipo: eq ? `${eq.marca} ${eq.modelo || ''}` : '', Usuario: usr ? usr.nombre : '' };
+        });
+    }
+    if (data.length === 0) { showToast('No hay datos para exportar', 'info'); return; }
+    const ws = XLSX.utils.json_to_sheet(data);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, fileName);
+    XLSX.writeFile(wb, `${fileName}_${new Date().toISOString().slice(0,10)}.xlsx`);
+    showToast(`${data.length} registros exportados a Excel`, 'success');
+}
+
+// ==================== PAGINATION ====================
+const pageState = { usuarios: 1, equipos: 1, sucursales: 1, credenciales: 1, conexiones: 1, tareas: 1 };
+const PAGE_SIZE = 25;
+
+function paginate(items, page) {
+    const total = items.length;
+    const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
+    const safePage = Math.min(Math.max(1, page), totalPages);
+    const start = (safePage - 1) * PAGE_SIZE;
+    return { items: items.slice(start, start + PAGE_SIZE), page: safePage, totalPages, total, start: start + 1, end: Math.min(start + PAGE_SIZE, total) };
+}
+
+function renderPagination(containerId, key, total, currentPage, totalPages) {
+    const el = document.getElementById(containerId);
+    if (!el || total <= PAGE_SIZE) { if (el) el.innerHTML = ''; return; }
+    let pages = '';
+    const maxBtns = 5;
+    let startPage = Math.max(1, currentPage - Math.floor(maxBtns / 2));
+    let endPage = Math.min(totalPages, startPage + maxBtns - 1);
+    if (endPage - startPage < maxBtns - 1) startPage = Math.max(1, endPage - maxBtns + 1);
+
+    pages += `<button class="pagination-btn" ${currentPage === 1 ? 'disabled' : ''} onclick="goToPage('${key}',${currentPage - 1})">‹</button>`;
+    if (startPage > 1) { pages += `<button class="pagination-btn" onclick="goToPage('${key}',1)">1</button>`; if (startPage > 2) pages += `<span style="padding:0 4px;color:var(--gray-400)">…</span>`; }
+    for (let i = startPage; i <= endPage; i++) {
+        pages += `<button class="pagination-btn ${i === currentPage ? 'active' : ''}" onclick="goToPage('${key}',${i})">${i}</button>`;
+    }
+    if (endPage < totalPages) { if (endPage < totalPages - 1) pages += `<span style="padding:0 4px;color:var(--gray-400)">…</span>`; pages += `<button class="pagination-btn" onclick="goToPage('${key}',${totalPages})">${totalPages}</button>`; }
+    pages += `<button class="pagination-btn" ${currentPage === totalPages ? 'disabled' : ''} onclick="goToPage('${key}',${currentPage + 1})">›</button>`;
+
+    const pInfo = `Mostrando ${(currentPage-1)*PAGE_SIZE+1}-${Math.min(currentPage*PAGE_SIZE, total)} de ${total}`;
+    el.innerHTML = `<div class="pagination-info">${pInfo}</div><div class="pagination-controls">${pages}</div>`;
+}
+
+function goToPage(key, page) {
+    pageState[key] = page;
+    const renderMap = { usuarios: renderUsers, equipos: renderEquipos, sucursales: renderSucursales, credenciales: renderCredenciales, conexiones: renderConexionesDetail, tareas: renderTareas };
+    if (renderMap[key]) renderMap[key]();
 }
 
 // ==================== RENDER ALL ====================
@@ -1435,6 +2113,7 @@ function renderAll() {
     renderAsignaciones();
     renderCredenciales();
     renderConexiones();
+    renderTareas();
     renderDashboard();
     updateBadges();
 }
@@ -1484,6 +2163,8 @@ function showApp() {
         document.getElementById('sidebar-user-name').textContent = currentUser.nombre;
         document.getElementById('sidebar-user-role').textContent = currentUser.rol === 'admin' ? 'Administrador' : 'Usuario';
     }
+    const savedPage = location.hash.replace('#', '') || 'dashboard';
+    navigateTo(savedPage);
     loadAllData().then(() => renderAll());
 }
 
@@ -1555,11 +2236,11 @@ function renderDepartamentos() {
         const empCount = cache.usuarios.filter(u => u.departamento_id === d.id).length;
         const color = colors[d.nombre.charCodeAt(0) % colors.length];
         return `<tr>
-            <td><div class="table-cell"><div class="avatar-sm" style="background:${color}">📁</div><div><div style="font-weight:600">${esc(d.nombre)}</div>${d.descripcion ? `<div style="font-size:11px;color:var(--gray-400)">${esc(d.descripcion)}</div>` : ''}</div></div></td>
-            <td>${d.responsable ? esc(d.responsable) : '<span style="color:var(--gray-300)">—</span>'}</td>
-            <td>${suc ? `<span class="badge badge-gray">🏢 ${esc(suc.nombre)}</span>` : '<span class="badge badge-gray">Sin sucursal</span>'}</td>
-            <td><span class="badge badge-info">${empCount} empleado${empCount !== 1 ? 's' : ''}</span></td>
-            <td><div style="display:flex;gap:6px">
+            <td data-label="Departamento"><div class="table-cell"><div class="avatar-sm">📁</div><div><div style="font-weight:600">${esc(d.nombre)}</div>${d.descripcion ? `<div style="font-size:11px;color:var(--gray-400)">${esc(d.descripcion)}</div>` : ''}</div></div></td>
+            <td data-label="Responsable">${d.responsable ? esc(d.responsable) : '<span style="color:var(--gray-300)">—</span>'}</td>
+            <td data-label="Sucursal">${suc ? `<span class="badge badge-gray">🏢 ${esc(suc.nombre)}</span>` : '<span class="badge badge-gray">Sin sucursal</span>'}</td>
+            <td data-label="Empleados"><span class="badge badge-info">${empCount} empleado${empCount !== 1 ? 's' : ''}</span></td>
+            <td data-label="Acciones"><div style="display:flex;gap:6px">
                 <button class="btn-icon edit" title="Editar" onclick="openDepartamentoModal('${d.id}')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
                 <button class="btn-icon danger" title="Eliminar" onclick="deleteDepartamento('${d.id}')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>
             </div></td>
@@ -1574,6 +2255,9 @@ function openCredencialModal(id) {
     const sel = document.getElementById('credencial-usuario-id');
     sel.innerHTML = '<option value="">Sin asociar</option>';
     cache.usuarios.forEach(u => { sel.innerHTML += `<option value="${u.id}">${esc(u.nombre)}</option>`; });
+    const sSel = document.getElementById('credencial-sucursal');
+    sSel.innerHTML = '<option value="">Sin sucursal</option>';
+    cache.sucursales.forEach(s => { sSel.innerHTML += `<option value="${s.id}">🏢 ${esc(s.nombre)}</option>`; });
     if (id) {
         const c = cache.credenciales.find(x => x.id === id);
         if (c) {
@@ -1586,11 +2270,13 @@ function openCredencialModal(id) {
             document.getElementById('credencial-usuario').value = c.usuario_plataforma || '';
             document.getElementById('credencial-password').value = c.password_plataforma || '';
             document.getElementById('credencial-usuario-id').value = c.usuario_id || '';
+            document.getElementById('credencial-sucursal').value = c.sucursal_id || '';
             document.getElementById('credencial-notas').value = c.notas || '';
         }
     } else {
         document.getElementById('modal-credencial-title').textContent = 'Nueva Credencial';
         document.getElementById('modal-credencial-subtitle').textContent = 'Registre las credenciales de una plataforma o programa';
+        if (credCatActiva) document.getElementById('credencial-categoria').value = credCatActiva;
     }
     openModal('modal-credencial');
 }
@@ -1605,6 +2291,7 @@ async function saveCredencial(e) {
         usuario_plataforma: document.getElementById('credencial-usuario').value.trim(),
         password_plataforma: document.getElementById('credencial-password').value,
         usuario_id: document.getElementById('credencial-usuario-id').value || null,
+        sucursal_id: document.getElementById('credencial-sucursal').value || null,
         notas: document.getElementById('credencial-notas').value.trim()
     };
     try {
@@ -1622,51 +2309,153 @@ function deleteCredencial(id) {
     });
 }
 
-const catIcons = { 'Programa': '💿', 'Plataforma': '🌐', 'Servidor': '🗄️', 'Red': '🔌', 'Otro': '📦' };
-const catBadges = { 'Programa': 'badge-primary', 'Plataforma': 'badge-info', 'Servidor': 'badge-warning', 'Red': 'badge-secondary', 'Otro': 'badge-gray' };
+const catIcons = { 'Programa': '💿', 'Plataforma': '🌐', 'Servidor': '🗄️', 'Red': '🔌', 'Cámaras': '📹', 'Correo': '📧', 'PC': '💻', 'WiFi': '📶', 'Intervenciones': '🔧', 'Otro': '📦' };
+const catBadges = { 'Programa': 'badge-primary', 'Plataforma': 'badge-info', 'Servidor': 'badge-warning', 'Red': 'badge-secondary', 'Cámaras': 'badge-danger', 'Correo': 'badge-info', 'PC': 'badge-primary', 'WiFi': 'badge-success', 'Intervenciones': 'badge-warning', 'Otro': 'badge-gray' };
+const catColors = {
+    'Programa':       { bg: '#eff6ff', border: '#93c5fd', text: '#2563eb', accent: '#3b82f6' },
+    'Plataforma':     { bg: '#f0fdf4', border: '#86efac', text: '#16a34a', accent: '#22c55e' },
+    'Servidor':       { bg: '#fefce8', border: '#fde047', text: '#a16207', accent: '#eab308' },
+    'Red':            { bg: '#fff7ed', border: '#fdba74', text: '#ea580c', accent: '#f97316' },
+    'Cámaras':        { bg: '#fef2f2', border: '#fca5a5', text: '#dc2626', accent: '#ef4444' },
+    'Correo':         { bg: '#f0f9ff', border: '#7dd3fc', text: '#0284c7', accent: '#0ea5e9' },
+    'PC':             { bg: '#faf5ff', border: '#d8b4fe', text: '#9333ea', accent: '#a855f7' },
+    'WiFi':           { bg: '#ecfdf5', border: '#6ee7b7', text: '#059669', accent: '#10b981' },
+    'Intervenciones': { bg: '#fff1f2', border: '#fda4af', text: '#e11d48', accent: '#f43f5e' },
+    'Otro':           { bg: '#f1f5f9', border: '#94a3b8', text: '#475569', accent: '#64748b' }
+};
+function getCatColors(cat) { return catColors[cat] || catColors['Otro']; }
+
+let credCatActiva = '';
 
 function renderCredenciales() {
+    if (credCatActiva) {
+        renderCredencialesDetail();
+    } else {
+        renderCredencialesCards();
+    }
+}
+
+function renderCredencialesCards() {
+    const total = cache.credenciales.length;
+    const cats = {};
+    cache.credenciales.forEach(c => { cats[c.categoria] = (cats[c.categoria] || 0) + 1; });
+    const catOrder = ['Correo', 'Cámaras', 'PC', 'Programa', 'Plataforma', 'WiFi', 'Red', 'Intervenciones', 'Servidor', 'Otro'];
+    const sorted = catOrder.filter(c => cats[c]).map(c => [c, cats[c]]);
+    Object.keys(cats).filter(c => !catOrder.includes(c)).forEach(c => sorted.push([c, cats[c]]));
+
+    // Stats
+    const statsEl = document.getElementById('cred-stats');
+    const uniquePlat = new Set(cache.credenciales.map(c => c.plataforma)).size;
+    statsEl.innerHTML = `
+        <div class="conex-stat"><div class="conex-stat-icon" style="background:#eff6ff;color:#2563eb">🔐</div><div><div class="conex-stat-val">${total}</div><div class="conex-stat-lbl">Total Credenciales</div></div></div>
+        <div class="conex-stat"><div class="conex-stat-icon" style="background:#f0fdf4;color:#16a34a">📦</div><div><div class="conex-stat-val">${sorted.length}</div><div class="conex-stat-lbl">Categorías</div></div></div>
+        <div class="conex-stat"><div class="conex-stat-icon" style="background:#fefce8;color:#a16207">🏷️</div><div><div class="conex-stat-val">${uniquePlat}</div><div class="conex-stat-lbl">Plataformas</div></div></div>
+        <div class="conex-stat"><div class="conex-stat-icon" style="background:#faf5ff;color:#9333ea">👤</div><div><div class="conex-stat-val">${new Set(cache.credenciales.filter(c => c.usuario_id).map(c => c.usuario_id)).size}</div><div class="conex-stat-lbl">Usuarios Asociados</div></div></div>
+    `;
+
+    // Cards
+    const grid = document.getElementById('credenciales-cat-cards');
+    if (sorted.length === 0) {
+        grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;color:#94a3b8"><p style="font-size:15px;font-weight:600">No hay credenciales registradas</p><p style="font-size:13px;margin-top:4px">Agrega tu primera credencial con el botón "Nueva Credencial"</p></div>';
+    } else {
+        const maxCount = Math.max(...sorted.map(s => s[1]));
+        grid.innerHTML = sorted.map(([cat, count]) => {
+            const col = getCatColors(cat);
+            const isTop = count === maxCount && count > 0;
+            const plats = [...new Set(cache.credenciales.filter(c => c.categoria === cat).map(c => c.plataforma))];
+            const platPreview = plats.slice(0, 3).map(p => esc(p)).join(', ') + (plats.length > 3 ? ` +${plats.length - 3}` : '');
+            return `<div class="conex-card" style="border-color:${col.border}" onclick="showCredencialesForCat('${esc(cat)}')" onmouseenter="this.style.borderColor='${col.accent}'" onmouseleave="this.style.borderColor='${col.border}'">
+                ${isTop ? `<span class="conex-accent" style="background:${col.accent};color:#fff">TOP</span>` : ''}
+                <div class="conex-card-top">
+                    <div class="conex-card-icon" style="background:${col.bg};color:${col.text}">${catIcons[cat] || '📦'}</div>
+                    <div class="conex-card-name">${esc(cat)}</div>
+                </div>
+                <div class="conex-card-count" style="color:${col.text}">${count}</div>
+                <div class="conex-card-label">credencial${count !== 1 ? 'es' : ''}</div>
+                <div class="conex-card-meta">
+                    <span class="conex-card-chip" style="background:${col.bg};color:${col.text};font-size:10px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${platPreview}</span>
+                </div>
+            </div>`;
+        }).join('');
+    }
+}
+
+function showCredencialesForCat(cat) {
+    credCatActiva = cat;
+    const col = getCatColors(cat);
+    document.getElementById('credenciales-cards-view').style.display = 'none';
+    document.getElementById('credenciales-detail-view').style.display = 'block';
+    document.getElementById('cred-detail-icon').innerHTML = catIcons[cat] || '📦';
+    document.getElementById('cred-detail-icon').style.cssText = `width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;background:${col.bg};color:${col.text}`;
+    document.getElementById('cred-detail-title').textContent = cat;
+    document.getElementById('searchCredenciales').value = '';
+    renderCredencialesDetail();
+}
+
+function showCredencialesCards() {
+    credCatActiva = '';
+    document.getElementById('credenciales-cards-view').style.display = 'block';
+    document.getElementById('credenciales-detail-view').style.display = 'none';
+    renderCredencialesCards();
+}
+
+function renderCredencialesDetail() {
     const search = (document.getElementById('searchCredenciales')?.value || '').toLowerCase();
-    const filterCat = document.getElementById('filterCredCategoria')?.value || '';
     let filtered = cache.credenciales.filter(c => {
+        const matchCat = c.categoria === credCatActiva;
         const matchSearch = c.plataforma.toLowerCase().includes(search) || (c.usuario_plataforma || '').toLowerCase().includes(search);
-        const matchCat = !filterCat || c.categoria === filterCat;
-        return matchSearch && matchCat;
+        return matchCat && matchSearch;
     });
+    applySortGeneric(filtered, 'credenciales', {
+        plataforma: c => c.plataforma,
+        usuario: c => c.usuario_plataforma || '',
+        sucursal: c => { const s = c.sucursal_id ? cache.sucursales.find(x => x.id === c.sucursal_id) : null; return s ? s.nombre : ''; },
+        asociado: c => { const u = c.usuario_id ? cache.usuarios.find(x => x.id === c.usuario_id) : null; return u ? u.nombre : ''; }
+    });
+    updateSortIcons('credenciales', ['plataforma','usuario','sucursal','asociado']);
     const tbody = document.getElementById('credenciales-table-body');
     document.getElementById('credenciales-count').textContent = `${filtered.length} registros`;
+    document.getElementById('cred-detail-count').textContent = `${filtered.length} credenciales registradas`;
     if (filtered.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="6"><div class="table-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><p>No se encontraron credenciales</p><small>Agrega tu primera credencial con el botón "Nueva Credencial"</small></div></td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="6"><div class="table-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><p>No se encontraron credenciales</p><small>Agrega una nueva credencial de ${esc(credCatActiva)}</small></div></td></tr>`;
+        renderPagination('pagination-credenciales', 'credenciales', 0, 1, 1);
         return;
     }
-    tbody.innerHTML = filtered.map(c => {
+    const pg = paginate(filtered, pageState.credenciales);
+    pageState.credenciales = pg.page;
+    const col = getCatColors(credCatActiva);
+    tbody.innerHTML = pg.items.map(c => {
         const usuario = c.usuario_id ? cache.usuarios.find(u => u.id === c.usuario_id) : null;
         const pwId = 'pw_cred_' + c.id;
         return `<tr>
-            <td><div class="table-cell"><span style="font-size:18px">${catIcons[c.categoria] || '📦'}</span><div><div style="font-weight:600">${esc(c.plataforma)}</div>${c.url ? `<div style="font-size:11px;color:var(--gray-400)">${esc(c.url)}</div>` : ''}</div></div></td>
-            <td><span class="badge ${catBadges[c.categoria] || 'badge-gray'}">${esc(c.categoria)}</span></td>
-            <td><span class="pw-text">${esc(c.usuario_plataforma || '—')}</span> <button class="pw-copy" title="Copiar" onclick="copyText('${esc(c.usuario_plataforma || '')}')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button></td>
-            <td><div class="pw-cell"><span class="pw-text" id="${pwId}">••••••••</span><button class="pw-toggle" onclick="togglePwCell('${pwId}','${btoa(c.password_plataforma || '')}')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button><button class="pw-copy" title="Copiar" onclick="copyText(atob('${btoa(c.password_plataforma || '')}'))"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button></div></td>
-            <td>${usuario ? `<span class="badge badge-primary">👤 ${esc(usuario.nombre)}</span>` : '<span style="color:var(--gray-300)">—</span>'}</td>
-            <td><div style="display:flex;gap:6px">
+            <td data-label="Plataforma"><div class="table-cell"><span style="font-size:18px">${catIcons[c.categoria] || '📦'}</span><div><div style="font-weight:600">${esc(c.plataforma)}</div>${c.url ? `<div style="font-size:11px;color:var(--gray-400)">${esc(c.url)}</div>` : ''}</div></div></td>
+            <td data-label="Usuario"><div class="pw-cell"><span class="pw-text" style="user-select:all;background:${col.bg};color:${col.text};font-weight:600">${esc(c.usuario_plataforma || '—')}</span><button class="pw-copy" title="Copiar" onclick="copyText('${esc(c.usuario_plataforma || '')}')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button></div></td>
+            <td data-label="Contraseña"><div class="pw-cell"><span class="pw-text" id="${pwId}">••••••••</span><button class="pw-toggle" onclick="togglePwCell('${pwId}','${btoa(c.password_plataforma || '')}')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button><button class="pw-copy" title="Copiar" onclick="copyText(atob('${btoa(c.password_plataforma || '')}'))"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button></div></td>
+            <td data-label="Sucursal">${(() => { const s = c.sucursal_id ? cache.sucursales.find(x => x.id === c.sucursal_id) : null; return s ? `<span class="badge" style="background:${col.bg};color:${col.text}">🏢 ${esc(s.nombre)}</span>` : '<span style="color:var(--gray-300)">—</span>'; })()}</td>
+            <td data-label="Asociado a">${usuario ? `<span class="badge badge-primary">👤 ${esc(usuario.nombre)}</span>` : '<span style="color:var(--gray-300)">—</span>'}</td>
+            <td data-label="Acciones"><div style="display:flex;gap:6px">
                 <button class="btn-icon edit" onclick="openCredencialModal('${c.id}')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
                 <button class="btn-icon danger" onclick="deleteCredencial('${c.id}')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>
             </div></td>
         </tr>`;
     }).join('');
+    renderPagination('pagination-credenciales', 'credenciales', pg.total, pg.page, pg.totalPages);
 }
 
 // ==================== CONEXIONES REMOTAS ====================
-const tipoConIcons = { 'TeamViewer': '🖥️', 'AnyDesk': '🔵', 'RDP': '🪟', 'VNC': '📺', 'SSH': '⌨️', 'Otro': '🔗' };
+const tipoConIcons = { 'TeamViewer': '🖥️', 'AnyDesk': '🔵', 'RDP': '🪟', 'VNC': '📺', 'SSH': '⌨️', 'RustDesk': '🟠', 'Otro': '🔗' };
 
 function openConexionModal(id) {
     document.getElementById('form-conexion').reset();
     document.getElementById('conexion-id').value = '';
-    const eqSel = document.getElementById('conexion-equipo');
+    const sSel = document.getElementById('conexion-sucursal');
+    const dSel = document.getElementById('conexion-departamento');
     const uSel = document.getElementById('conexion-usuario');
-    eqSel.innerHTML = '<option value="">Sin equipo</option>';
+    sSel.innerHTML = '<option value="">Sin sucursal</option>';
+    dSel.innerHTML = '<option value="">Sin departamento</option>';
     uSel.innerHTML = '<option value="">Sin usuario</option>';
-    cache.equipos.forEach(eq => { eqSel.innerHTML += `<option value="${eq.id}">${tipoIcons[eq.tipo] || '📦'} ${esc(eq.marca)} ${esc(eq.modelo || '')}</option>`; });
+    cache.sucursales.forEach(s => { sSel.innerHTML += `<option value="${s.id}">🏢 ${esc(s.nombre)}</option>`; });
+    cache.departamentos.forEach(d => { dSel.innerHTML += `<option value="${d.id}">📁 ${esc(d.nombre)}</option>`; });
     cache.usuarios.forEach(u => { uSel.innerHTML += `<option value="${u.id}">${esc(u.nombre)}</option>`; });
     if (id) {
         const c = cache.conexiones.find(x => x.id === id);
@@ -1678,13 +2467,15 @@ function openConexionModal(id) {
             document.getElementById('conexion-tipo').value = c.tipo;
             document.getElementById('conexion-id-conexion').value = c.id_conexion;
             document.getElementById('conexion-password').value = c.password_conexion || '';
-            document.getElementById('conexion-equipo').value = c.equipo_id || '';
+            document.getElementById('conexion-sucursal').value = c.sucursal_id || '';
+            document.getElementById('conexion-departamento').value = c.departamento_id || '';
             document.getElementById('conexion-usuario').value = c.usuario_id || '';
             document.getElementById('conexion-notas').value = c.notas || '';
         }
     } else {
         document.getElementById('modal-conexion-title').textContent = 'Nueva Conexión Remota';
         document.getElementById('modal-conexion-subtitle').textContent = 'Registre los datos de conexión remota';
+        if (conexionTipoActivo) document.getElementById('conexion-tipo').value = conexionTipoActivo;
     }
     openModal('modal-conexion');
 }
@@ -1697,7 +2488,8 @@ async function saveConexion(e) {
         tipo: document.getElementById('conexion-tipo').value,
         id_conexion: document.getElementById('conexion-id-conexion').value.trim(),
         password_conexion: document.getElementById('conexion-password').value,
-        equipo_id: document.getElementById('conexion-equipo').value || null,
+        sucursal_id: document.getElementById('conexion-sucursal').value || null,
+        departamento_id: document.getElementById('conexion-departamento').value || null,
         usuario_id: document.getElementById('conexion-usuario').value || null,
         notas: document.getElementById('conexion-notas').value.trim()
     };
@@ -1716,37 +2508,395 @@ function deleteConexion(id) {
     });
 }
 
+let conexionTipoActivo = '';
+
 function renderConexiones() {
-    const search = (document.getElementById('searchConexiones')?.value || '').toLowerCase();
-    const filterTipo = document.getElementById('filterConexTipo')?.value || '';
-    let filtered = cache.conexiones.filter(c => {
-        const matchSearch = c.nombre.toLowerCase().includes(search) || c.id_conexion.toLowerCase().includes(search) || c.tipo.toLowerCase().includes(search);
-        const matchTipo = !filterTipo || c.tipo === filterTipo;
-        return matchSearch && matchTipo;
+    renderConexionesCards();
+}
+
+const tipoConColors = {
+    'AnyDesk': { bg: '#fef2f2', border: '#fca5a5', text: '#dc2626', accent: '#ef4444', fill: '#ef4444' },
+    'RustDesk': { bg: '#fff7ed', border: '#fdba74', text: '#ea580c', accent: '#f97316', fill: '#f97316' },
+    'TeamViewer': { bg: '#eff6ff', border: '#93c5fd', text: '#2563eb', accent: '#3b82f6', fill: '#3b82f6' },
+    'RDP':       { bg: '#f0fdf4', border: '#86efac', text: '#16a34a', accent: '#22c55e', fill: '#22c55e' },
+    'VNC':       { bg: '#faf5ff', border: '#d8b4fe', text: '#9333ea', accent: '#a855f7', fill: '#a855f7' },
+    'SSH':       { bg: '#f1f5f9', border: '#94a3b8', text: '#475569', accent: '#64748b', fill: '#64748b' },
+    'Otro':      { bg: '#fefce8', border: '#fde047', text: '#a16207', accent: '#eab308', fill: '#eab308' }
+};
+function getConColors(tipo) { return tipoConColors[tipo] || tipoConColors['Otro']; }
+
+function renderConexionesCards() {
+    const total = cache.conexiones.length;
+    const tipos = {};
+    const tiposSucursales = {};
+    const tiposUsuarios = {};
+    cache.conexiones.forEach(c => {
+        tipos[c.tipo] = (tipos[c.tipo] || 0) + 1;
+        if (!tiposSucursales[c.tipo]) tiposSucursales[c.tipo] = new Set();
+        if (!tiposUsuarios[c.tipo]) tiposUsuarios[c.tipo] = new Set();
+        if (c.sucursal_id) tiposSucursales[c.tipo].add(c.sucursal_id);
+        if (c.usuario_id) tiposUsuarios[c.tipo].add(c.usuario_id);
     });
+    const tipoOrder = ['AnyDesk', 'RustDesk', 'TeamViewer', 'RDP', 'VNC', 'SSH', 'Otro'];
+    const sorted = tipoOrder.filter(t => tipos[t]).map(t => [t, tipos[t]]);
+    Object.keys(tipos).filter(t => !tipoOrder.includes(t)).forEach(t => sorted.push([t, tipos[t]]));
+
+    const uniqueSucs = new Set(cache.conexiones.filter(c => c.sucursal_id).map(c => c.sucursal_id));
+    const uniqueUsrs = new Set(cache.conexiones.filter(c => c.usuario_id).map(c => c.usuario_id));
+
+    // Stats bar
+    const statsEl = document.getElementById('conex-stats');
+    statsEl.innerHTML = `
+        <div class="conex-stat"><div class="conex-stat-icon" style="background:#eff6ff;color:#2563eb">🔗</div><div><div class="conex-stat-val">${total}</div><div class="conex-stat-lbl">Total Conexiones</div></div></div>
+        <div class="conex-stat"><div class="conex-stat-icon" style="background:#f0fdf4;color:#16a34a">📦</div><div><div class="conex-stat-val">${sorted.length}</div><div class="conex-stat-lbl">Tipos de Acceso</div></div></div>
+        <div class="conex-stat"><div class="conex-stat-icon" style="background:#fefce8;color:#a16207">🏢</div><div><div class="conex-stat-val">${uniqueSucs.size}</div><div class="conex-stat-lbl">Sucursales</div></div></div>
+        <div class="conex-stat"><div class="conex-stat-icon" style="background:#faf5ff;color:#9333ea">👤</div><div><div class="conex-stat-val">${uniqueUsrs.size}</div><div class="conex-stat-lbl">Usuarios</div></div></div>
+    `;
+
+    // Type cards
+    const grid = document.getElementById('conexiones-tipo-cards');
+    if (sorted.length === 0) {
+        grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;color:#94a3b8"><p style="font-size:15px;font-weight:600">No hay conexiones registradas</p><p style="font-size:13px;margin-top:4px">Agrega tu primera conexión con el botón "Nueva Conexión"</p></div>';
+    } else {
+        const maxCount = Math.max(...sorted.map(s => s[1]));
+        grid.innerHTML = sorted.map(([tipo, count]) => {
+            const col = getConColors(tipo);
+            const sucCount = tiposSucursales[tipo] ? tiposSucursales[tipo].size : 0;
+            const usrCount = tiposUsuarios[tipo] ? tiposUsuarios[tipo].size : 0;
+            const isTop = count === maxCount && count > 0;
+            return `<div class="conex-card" style="border-color:${col.border}" onclick="showConexionesForType('${tipo}')" onmouseenter="this.style.borderColor='${col.accent}'" onmouseleave="this.style.borderColor='${col.border}'">
+                ${isTop ? `<span class="conex-accent" style="background:${col.accent};color:#fff">TOP</span>` : ''}
+                <div class="conex-card-top">
+                    <div class="conex-card-icon" style="background:${col.bg};color:${col.text}">${tipoConIcons[tipo] || '🔗'}</div>
+                    <div class="conex-card-name">${esc(tipo)}</div>
+                </div>
+                <div class="conex-card-count" style="color:${col.text}">${count}</div>
+                <div class="conex-card-label">conexion${count !== 1 ? 'es' : ''}</div>
+                <div class="conex-card-meta">
+                    <span class="conex-card-chip" style="background:${col.bg};color:${col.text}">🏢 ${sucCount} suc.</span>
+                    <span class="conex-card-chip" style="background:${col.bg};color:${col.text}">👤 ${usrCount} usr.</span>
+                </div>
+            </div>`;
+        }).join('');
+    }
+
+    // Summary by sucursal (using actual sucursal_id)
+    const sucDiv = document.getElementById('conexiones-por-sucursal');
+    const sucCount = {};
+    cache.conexiones.forEach(c => {
+        const suc = c.sucursal_id ? cache.sucursales.find(s => s.id === c.sucursal_id) : null;
+        const sucNombre = suc ? suc.nombre : 'Sin sucursal';
+        sucCount[sucNombre] = (sucCount[sucNombre] || 0) + 1;
+    });
+    document.getElementById('conexiones-total-count').textContent = `${total} conexiones`;
+    if (Object.keys(sucCount).length === 0) {
+        sucDiv.innerHTML = '<p style="color:#94a3b8;text-align:center;font-size:13px">Sin datos</p>';
+    } else {
+        const maxS = Math.max(...Object.values(sucCount));
+        sucDiv.innerHTML = Object.entries(sucCount).sort((a, b) => b[1] - a[1]).map(([name, count]) => {
+            const pct = (count / maxS * 100).toFixed(0);
+            return `<div class="conex-bar"><div class="conex-bar-head"><span class="conex-bar-name">${esc(name)}</span><span class="conex-bar-val">${count}</span></div><div class="conex-bar-track"><div class="conex-bar-fill" style="background:#2563eb;width:${pct}%"></div></div></div>`;
+        }).join('');
+    }
+
+    // Summary by departamento
+    const deptDiv = document.getElementById('conexiones-por-departamento');
+    const deptCount = {};
+    cache.conexiones.forEach(c => {
+        const dept = c.departamento_id ? cache.departamentos.find(d => d.id === c.departamento_id) : null;
+        const deptNombre = dept ? dept.nombre : 'Sin departamento';
+        deptCount[deptNombre] = (deptCount[deptNombre] || 0) + 1;
+    });
+    if (Object.keys(deptCount).length === 0) {
+        deptDiv.innerHTML = '<p style="color:#94a3b8;text-align:center;font-size:13px">Sin datos</p>';
+    } else {
+        const maxD = Math.max(...Object.values(deptCount));
+        deptDiv.innerHTML = Object.entries(deptCount).sort((a, b) => b[1] - a[1]).map(([name, count]) => {
+            const pct = (count / maxD * 100).toFixed(0);
+            return `<div class="conex-bar"><div class="conex-bar-head"><span class="conex-bar-name">${esc(name)}</span><span class="conex-bar-val">${count}</span></div><div class="conex-bar-track"><div class="conex-bar-fill" style="background:#f97316;width:${pct}%"></div></div></div>`;
+        }).join('');
+    }
+}
+
+function showConexionesForType(tipo) {
+    conexionTipoActivo = tipo;
+    const col = getConColors(tipo);
+    document.getElementById('conexiones-cards-view').style.display = 'none';
+    document.getElementById('conexiones-detail-view').style.display = 'block';
+    document.getElementById('conex-detail-icon').innerHTML = tipoConIcons[tipo] || '🔗';
+    document.getElementById('conex-detail-icon').style.cssText = `width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;background:${col.bg};color:${col.text}`;
+    document.getElementById('conex-detail-title').textContent = tipo;
+    document.getElementById('searchConexiones').value = '';
+
+    // Populate filter dropdowns
+    const conOfType = cache.conexiones.filter(c => c.tipo === tipo);
+    const sucIds = [...new Set(conOfType.filter(c => c.sucursal_id).map(c => c.sucursal_id))];
+    const deptIds = [...new Set(conOfType.filter(c => c.departamento_id).map(c => c.departamento_id))];
+    const fSuc = document.getElementById('filterConexSucursal');
+    const fDept = document.getElementById('filterConexDepartamento');
+    fSuc.innerHTML = '<option value="">Todas las sucursales</option>';
+    fDept.innerHTML = '<option value="">Todos los departamentos</option>';
+    sucIds.forEach(id => { const s = cache.sucursales.find(x => x.id === id); if (s) fSuc.innerHTML += `<option value="${id}">🏢 ${esc(s.nombre)}</option>`; });
+    deptIds.forEach(id => { const d = cache.departamentos.find(x => x.id === id); if (d) fDept.innerHTML += `<option value="${id}">📁 ${esc(d.nombre)}</option>`; });
+
+    // Detail chips
+    const usrCount = new Set(conOfType.filter(c => c.usuario_id).map(c => c.usuario_id)).size;
+    document.getElementById('conex-detail-chips').innerHTML = `
+        <span class="conex-detail-chip" style="background:${col.bg};color:${col.text}">🏢 ${sucIds.length} sucursales</span>
+        <span class="conex-detail-chip" style="background:${col.bg};color:${col.text}">👤 ${usrCount} usuarios</span>
+    `;
+
+    renderConexionesDetail();
+}
+
+function showConexionesCards() {
+    conexionTipoActivo = '';
+    document.getElementById('conexiones-cards-view').style.display = 'block';
+    document.getElementById('conexiones-detail-view').style.display = 'none';
+    renderConexionesCards();
+}
+
+let conexSortCol = '';
+let conexSortAsc = true;
+
+function sortConexiones(col) {
+    if (conexSortCol === col) { conexSortAsc = !conexSortAsc; } else { conexSortCol = col; conexSortAsc = true; }
+    pageState.conexiones = 1;
+    renderConexionesDetail();
+}
+
+function renderConexionesDetail() {
+    const search = (document.getElementById('searchConexiones')?.value || '').toLowerCase();
+    const filterSuc = document.getElementById('filterConexSucursal')?.value || '';
+    const filterDept = document.getElementById('filterConexDepartamento')?.value || '';
+    let filtered = cache.conexiones.filter(c => {
+        const matchTipo = c.tipo === conexionTipoActivo;
+        const matchSearch = c.nombre.toLowerCase().includes(search) || c.id_conexion.toLowerCase().includes(search) || (c.notas || '').toLowerCase().includes(search);
+        const matchSuc = !filterSuc || c.sucursal_id === filterSuc;
+        const matchDept = !filterDept || c.departamento_id === filterDept;
+        return matchTipo && matchSearch && matchSuc && matchDept;
+    });
+
+    // Sorting
+    if (conexSortCol) {
+        const resolvers = {
+            nombre: c => c.nombre,
+            id_conexion: c => c.id_conexion,
+            sucursal: c => { const s = c.sucursal_id ? cache.sucursales.find(x => x.id === c.sucursal_id) : null; return s ? s.nombre : ''; },
+            departamento: c => { const d = c.departamento_id ? cache.departamentos.find(x => x.id === c.departamento_id) : null; return d ? d.nombre : ''; },
+            usuario: c => { const u = c.usuario_id ? cache.usuarios.find(x => x.id === c.usuario_id) : null; return u ? u.nombre : ''; }
+        };
+        const resolver = resolvers[conexSortCol];
+        if (resolver) {
+            filtered.sort((a, b) => {
+                const va = (resolver(a) || '').toLowerCase(), vb = (resolver(b) || '').toLowerCase();
+                return conexSortAsc ? va.localeCompare(vb) : vb.localeCompare(va);
+            });
+        }
+    }
+
+    // Update sort icons
+    ['nombre','id_conexion','sucursal','departamento','usuario'].forEach(col => {
+        const el = document.querySelector('[data-sort-table="conexiones"][data-sort-col="' + col + '"]');
+        if (el) {
+            el.classList.remove('asc', 'desc');
+            if (conexSortCol === col) el.classList.add(conexSortAsc ? 'asc' : 'desc');
+            const arrow = el.querySelector('.sort-arrow');
+            if (arrow) arrow.textContent = conexSortCol === col ? (conexSortAsc ? '▲' : '▼') : '⇅';
+        }
+    });
+
     const tbody = document.getElementById('conexiones-table-body');
     document.getElementById('conexiones-count').textContent = `${filtered.length} registros`;
+    document.getElementById('conex-detail-count').textContent = `${filtered.length} conexiones registradas`;
     if (filtered.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="7"><div class="table-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg><p>No se encontraron conexiones</p><small>Agrega tu primera conexión con el botón "Nueva Conexión"</small></div></td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="7"><div class="table-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg><p>No se encontraron conexiones</p><small>Agrega una nueva conexión de ${esc(conexionTipoActivo)}</small></div></td></tr>`;
+        renderPagination('pagination-conexiones', 'conexiones', 0, 1, 1);
         return;
     }
-    tbody.innerHTML = filtered.map(c => {
-        const equipo = c.equipo_id ? cache.equipos.find(e => e.id === c.equipo_id) : null;
+    const pg = paginate(filtered, pageState.conexiones);
+    pageState.conexiones = pg.page;
+    tbody.innerHTML = pg.items.map(c => {
+        const sucursal = c.sucursal_id ? cache.sucursales.find(s => s.id === c.sucursal_id) : null;
+        const depto = c.departamento_id ? cache.departamentos.find(d => d.id === c.departamento_id) : null;
         const usuario = c.usuario_id ? cache.usuarios.find(u => u.id === c.usuario_id) : null;
         const pwId = 'pw_con_' + c.id;
+        const col = getConColors(conexionTipoActivo);
         return `<tr>
-            <td><div style="font-weight:600">${esc(c.nombre)}</div></td>
-            <td><span class="badge badge-info">${tipoConIcons[c.tipo] || '🔗'} ${esc(c.tipo)}</span></td>
-            <td><div class="pw-cell"><span class="pw-text" style="user-select:all">${esc(c.id_conexion)}</span><button class="pw-copy" title="Copiar ID" onclick="copyText('${esc(c.id_conexion)}')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button></div></td>
-            <td><div class="pw-cell"><span class="pw-text" id="${pwId}">••••••••</span><button class="pw-toggle" onclick="togglePwCell('${pwId}','${btoa(c.password_conexion || '')}')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button><button class="pw-copy" title="Copiar" onclick="copyText(atob('${btoa(c.password_conexion || '')}'))"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button></div></td>
-            <td>${equipo ? `<span class="badge badge-secondary">${tipoIcons[equipo.tipo] || '📦'} ${esc(equipo.marca)}</span>` : '<span style="color:var(--gray-300)">—</span>'}</td>
-            <td>${usuario ? `<span class="badge badge-primary">👤 ${esc(usuario.nombre)}</span>` : '<span style="color:var(--gray-300)">—</span>'}</td>
-            <td><div style="display:flex;gap:6px">
+            <td data-label="Nombre"><div style="font-weight:600">${esc(c.nombre)}${c.notas ? `<div style="font-size:11px;color:var(--gray-400);max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${esc(c.notas)}">${esc(c.notas)}</div>` : ''}</div></td>
+            <td data-label="ID Conexión"><div class="pw-cell"><span class="pw-text" style="user-select:all;background:${col.bg};color:${col.text};font-weight:600;font-family:monospace;font-size:13px">${esc(c.id_conexion)}</span><button class="pw-copy" title="Copiar ID" onclick="copyText('${esc(c.id_conexion)}')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button></div></td>
+            <td data-label="Contraseña"><div class="pw-cell"><span class="pw-text" id="${pwId}">••••••••</span><button class="pw-toggle" onclick="togglePwCell('${pwId}','${btoa(c.password_conexion || '')}')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button><button class="pw-copy" title="Copiar" onclick="copyText(atob('${btoa(c.password_conexion || '')}'))"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button></div></td>
+            <td data-label="Sucursal">${sucursal ? `<span class="badge" style="background:#eff6ff;color:#2563eb">🏢 ${esc(sucursal.nombre)}</span>` : '<span style="color:var(--gray-300)">—</span>'}</td>
+            <td data-label="Departamento">${depto ? `<span class="badge badge-info">📁 ${esc(depto.nombre)}</span>` : '<span style="color:var(--gray-300)">—</span>'}</td>
+            <td data-label="Usuario">${usuario ? `<span class="badge" style="background:#fff7ed;color:#ea580c">👤 ${esc(usuario.nombre)}</span>` : '<span style="color:var(--gray-300)">—</span>'}</td>
+            <td data-label="Acciones"><div style="display:flex;gap:6px">
                 <button class="btn-icon edit" onclick="openConexionModal('${c.id}')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
                 <button class="btn-icon danger" onclick="deleteConexion('${c.id}')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>
             </div></td>
         </tr>`;
     }).join('');
+    renderPagination('pagination-conexiones', 'conexiones', pg.total, pg.page, pg.totalPages);
+}
+
+// ==================== TAREAS PENDIENTES ====================
+const prioridadBadges = { 'Baja': 'badge-success', 'Media': 'badge-warning', 'Alta': 'badge-danger', 'Urgente': 'badge-danger' };
+const prioridadIcons = { 'Baja': '🟢', 'Media': '🟡', 'Alta': '🟠', 'Urgente': '🔴' };
+const estadoTareaBadges = { 'Pendiente': 'badge-warning', 'En Progreso': 'badge-primary', 'Completada': 'badge-success', 'Cancelada': 'badge-gray' };
+const estadoTareaIcons = { 'Pendiente': '⏳', 'En Progreso': '🔄', 'Completada': '✅', 'Cancelada': '❌' };
+const categoriaTareaIcons = { 'Reparación': '🔧', 'Instalación': '📥', 'Mantenimiento': '🛠️', 'Configuración': '⚙️', 'Otro': '📦' };
+
+function openTareaModal(id) {
+    document.getElementById('form-tarea').reset();
+    document.getElementById('tarea-id').value = '';
+    // Populate selects
+    const eqSel = document.getElementById('tarea-equipo');
+    const uSel = document.getElementById('tarea-usuario');
+    const sSel = document.getElementById('tarea-sucursal');
+    eqSel.innerHTML = '<option value="">Sin equipo</option>';
+    uSel.innerHTML = '<option value="">Sin usuario</option>';
+    sSel.innerHTML = '<option value="">Sin sucursal</option>';
+    cache.equipos.forEach(eq => { eqSel.innerHTML += `<option value="${eq.id}">${tipoIcons[eq.tipo] || '📦'} ${esc(eq.marca)} ${esc(eq.modelo || '')}</option>`; });
+    cache.usuarios.forEach(u => { uSel.innerHTML += `<option value="${u.id}">${esc(u.nombre)}</option>`; });
+    cache.sucursales.forEach(s => { sSel.innerHTML += `<option value="${s.id}">🏢 ${esc(s.nombre)}</option>`; });
+    if (id) {
+        const t = cache.tareas.find(x => x.id === id);
+        if (t) {
+            document.getElementById('modal-tarea-title').textContent = 'Editar Tarea';
+            document.getElementById('modal-tarea-subtitle').textContent = 'Modifique la información de la tarea';
+            document.getElementById('tarea-id').value = t.id;
+            document.getElementById('tarea-titulo').value = t.titulo;
+            document.getElementById('tarea-descripcion').value = t.descripcion || '';
+            document.getElementById('tarea-prioridad').value = t.prioridad;
+            document.getElementById('tarea-estado').value = t.estado;
+            document.getElementById('tarea-categoria').value = t.categoria;
+            document.getElementById('tarea-fecha-limite').value = t.fecha_limite || '';
+            document.getElementById('tarea-equipo').value = t.equipo_id || '';
+            document.getElementById('tarea-usuario').value = t.usuario_id || '';
+            document.getElementById('tarea-sucursal').value = t.sucursal_id || '';
+            document.getElementById('tarea-notas').value = t.notas || '';
+        }
+    } else {
+        document.getElementById('modal-tarea-title').textContent = 'Nueva Tarea';
+        document.getElementById('modal-tarea-subtitle').textContent = 'Registre una nueva tarea de soporte IT';
+    }
+    openModal('modal-tarea');
+}
+
+async function saveTarea(e) {
+    e.preventDefault();
+    const id = document.getElementById('tarea-id').value;
+    const body = {
+        titulo: document.getElementById('tarea-titulo').value.trim(),
+        descripcion: document.getElementById('tarea-descripcion').value.trim(),
+        prioridad: document.getElementById('tarea-prioridad').value,
+        estado: document.getElementById('tarea-estado').value,
+        categoria: document.getElementById('tarea-categoria').value,
+        fecha_limite: document.getElementById('tarea-fecha-limite').value || null,
+        equipo_id: document.getElementById('tarea-equipo').value || null,
+        usuario_id: document.getElementById('tarea-usuario').value || null,
+        sucursal_id: document.getElementById('tarea-sucursal').value || null,
+        notas: document.getElementById('tarea-notas').value.trim()
+    };
+    try {
+        if (id) { await API.put('/api/tareas/' + id, body); showToast('Tarea actualizada'); }
+        else { await API.post('/api/tareas', body); showToast('Tarea creada'); }
+        closeModal('modal-tarea');
+        await loadAllData(); renderAll();
+    } catch (err) { showToast('Error: ' + err.message, 'error'); }
+}
+
+function deleteTarea(id) {
+    showConfirm('¿Eliminar tarea?', 'Esta acción no se puede deshacer.', async () => {
+        try { await API.del('/api/tareas/' + id); showToast('Tarea eliminada'); await loadAllData(); renderAll(); }
+        catch (err) { showToast('Error: ' + err.message, 'error'); }
+    });
+}
+
+async function cambiarEstadoTarea(id, nuevoEstado) {
+    try {
+        const t = cache.tareas.find(x => x.id === id);
+        if (!t) return;
+        await API.put('/api/tareas/' + id, { ...t, estado: nuevoEstado });
+        showToast(`Tarea marcada como "${nuevoEstado}"`);
+        await loadAllData(); renderAll();
+    } catch (err) { showToast('Error: ' + err.message, 'error'); }
+}
+
+function renderTareas() {
+    const search = (document.getElementById('searchTareas')?.value || '').toLowerCase();
+    const filterEstado = document.getElementById('filterTareaEstado')?.value || '';
+    const filterPrioridad = document.getElementById('filterTareaPrioridad')?.value || '';
+    const filterCategoria = document.getElementById('filterTareaCategoria')?.value || '';
+    let filtered = cache.tareas.filter(t => {
+        const matchSearch = t.titulo.toLowerCase().includes(search) || (t.descripcion || '').toLowerCase().includes(search);
+        const matchEstado = !filterEstado || t.estado === filterEstado;
+        const matchPrioridad = !filterPrioridad || t.prioridad === filterPrioridad;
+        const matchCategoria = !filterCategoria || t.categoria === filterCategoria;
+        return matchSearch && matchEstado && matchPrioridad && matchCategoria;
+    });
+    // Default sort: estado then prioridad, unless user picked a column
+    const prioOrder = { 'Urgente': 0, 'Alta': 1, 'Media': 2, 'Baja': 3 };
+    const estOrder = { 'Pendiente': 0, 'En Progreso': 1, 'Completada': 2, 'Cancelada': 3 };
+    if (!sortState.tareas.col) {
+        filtered.sort((a, b) => estOrder[a.estado] - estOrder[b.estado] || prioOrder[a.prioridad] - prioOrder[b.prioridad]);
+    } else {
+        applySortGeneric(filtered, 'tareas', {
+            titulo: t => t.titulo,
+            prioridad: t => prioOrder[t.prioridad] ?? 9,
+            estado: t => estOrder[t.estado] ?? 9,
+            categoria: t => t.categoria,
+            fecha: t => t.fecha_limite || 'z'
+        });
+    }
+    updateSortIcons('tareas', ['titulo','prioridad','estado','categoria','fecha']);
+
+    const tbody = document.getElementById('tareas-table-body');
+    document.getElementById('tareas-count').textContent = `${filtered.length} registros`;
+
+    // Update stat cards
+    document.getElementById('stat-tareas-urgentes').textContent = cache.tareas.filter(t => t.prioridad === 'Urgente' && t.estado !== 'Completada' && t.estado !== 'Cancelada').length;
+    document.getElementById('stat-tareas-pendientes').textContent = cache.tareas.filter(t => t.estado === 'Pendiente').length;
+    document.getElementById('stat-tareas-progreso').textContent = cache.tareas.filter(t => t.estado === 'En Progreso').length;
+    document.getElementById('stat-tareas-completadas').textContent = cache.tareas.filter(t => t.estado === 'Completada').length;
+
+    if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7"><div class="table-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg><p>No se encontraron tareas</p><small>Agrega tu primera tarea con el botón "Nueva Tarea"</small></div></td></tr>`;
+        renderPagination('pagination-tareas', 'tareas', 0, 1, 1);
+        return;
+    }
+    const pg = paginate(filtered, pageState.tareas);
+    pageState.tareas = pg.page;
+    tbody.innerHTML = pg.items.map(t => {
+        const equipo = t.equipo_id ? cache.equipos.find(e => e.id === t.equipo_id) : null;
+        const usuario = t.usuario_id ? cache.usuarios.find(u => u.id === t.usuario_id) : null;
+        const sucursal = t.sucursal_id ? cache.sucursales.find(s => s.id === t.sucursal_id) : null;
+        const fechaLimite = t.fecha_limite ? new Date(t.fecha_limite + 'T00:00:00').toLocaleDateString('es-MX', { day: '2-digit', month: 'short', year: 'numeric' }) : '—';
+        const hoy = new Date(); hoy.setHours(0,0,0,0);
+        const vencida = t.fecha_limite && new Date(t.fecha_limite + 'T00:00:00') < hoy && t.estado !== 'Completada' && t.estado !== 'Cancelada';
+        const relacionados = [];
+        if (equipo) relacionados.push(`<span class="badge badge-secondary" style="margin:1px">${tipoIcons[equipo.tipo] || '📦'} ${esc(equipo.marca)}</span>`);
+        if (usuario) relacionados.push(`<span class="badge badge-primary" style="margin:1px">👤 ${esc(usuario.nombre)}</span>`);
+        if (sucursal) relacionados.push(`<span class="badge badge-gray" style="margin:1px">🏢 ${esc(sucursal.nombre)}</span>`);
+
+        let accionesRapidas = '';
+        if (t.estado === 'Pendiente') accionesRapidas = `<button class="btn-icon" title="Iniciar" onclick="cambiarEstadoTarea('${t.id}','En Progreso')" style="color:var(--primary)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg></button>`;
+        else if (t.estado === 'En Progreso') accionesRapidas = `<button class="btn-icon" title="Completar" onclick="cambiarEstadoTarea('${t.id}','Completada')" style="color:var(--success)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></button>`;
+
+        return `<tr style="${t.estado === 'Completada' ? 'opacity:.55' : ''} ${t.estado === 'Cancelada' ? 'opacity:.4' : ''}">
+            <td data-label="Tarea"><div><div style="font-weight:600;${vencida ? 'color:var(--danger)' : ''}">${esc(t.titulo)}</div>${t.descripcion ? `<div style="font-size:11px;color:var(--gray-400);max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(t.descripcion)}</div>` : ''}</div></td>
+            <td data-label="Prioridad"><span class="badge ${prioridadBadges[t.prioridad]}" style="${t.prioridad === 'Urgente' ? 'animation:pulse 2s infinite;font-weight:700' : ''}">${prioridadIcons[t.prioridad]} ${esc(t.prioridad)}</span></td>
+            <td data-label="Estado"><span class="badge ${estadoTareaBadges[t.estado]}">${estadoTareaIcons[t.estado]} ${esc(t.estado)}</span></td>
+            <td data-label="Categoría"><span class="badge badge-info">${categoriaTareaIcons[t.categoria] || '📦'} ${esc(t.categoria)}</span></td>
+            <td data-label="Fecha Límite" style="${vencida ? 'color:var(--danger);font-weight:600' : ''}">${vencida ? '⚠️ ' : ''}${fechaLimite}</td>
+            <td data-label="Relacionado">${relacionados.length > 0 ? relacionados.join('') : '<span style="color:var(--gray-300)">—</span>'}</td>
+            <td data-label="Acciones"><div style="display:flex;gap:6px">
+                ${accionesRapidas}
+                <button class="btn-icon edit" title="Editar" onclick="openTareaModal('${t.id}')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+                <button class="btn-icon danger" title="Eliminar" onclick="deleteTarea('${t.id}')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>
+            </div></td>
+        </tr>`;
+    }).join('');
+    renderPagination('pagination-tareas', 'tareas', pg.total, pg.page, pg.totalPages);
 }
 
 // ==================== HELPERS: PASSWORD CELLS & COPY ====================
@@ -1758,6 +2908,164 @@ function togglePwCell(elId, b64) {
 
 function copyText(text) {
     navigator.clipboard.writeText(text).then(() => showToast('Copiado al portapapeles', 'info')).catch(() => showToast('Error al copiar', 'error'));
+}
+
+// ==================== IMPORT DATA ====================
+let importState = { tab: 'equipos', data: [], fileName: '' };
+
+const importFieldMap = {
+    equipos: { required: ['tipo', 'marca'], optional: ['modelo', 'serial', 'estado', 'fecha_compra', 'notas'], hint: 'tipo, marca, modelo, serial, estado' },
+    conexiones: { required: ['nombre', 'tipo', 'id_conexion'], optional: ['password_conexion', 'notas'], hint: 'nombre, tipo, id_conexion, password_conexion' },
+    credenciales: { required: ['plataforma'], optional: ['url', 'usuario_plataforma', 'password_plataforma', 'categoria', 'notas'], hint: 'plataforma, url, usuario_plataforma, password_plataforma, categoria' }
+};
+
+function switchImportTab(tab) {
+    importState.tab = tab;
+    document.querySelectorAll('.import-tab').forEach(t => t.classList.toggle('active', t.dataset.import === tab));
+    document.getElementById('import-hint').innerHTML = `Columnas esperadas: <strong>${importFieldMap[tab].hint}</strong>`;
+    resetImport();
+}
+
+function handleImportDragOver(e) { e.preventDefault(); e.currentTarget.classList.add('dragover'); }
+function handleImportDragLeave(e) { e.currentTarget.classList.remove('dragover'); }
+function handleImportDrop(e) {
+    e.preventDefault(); e.currentTarget.classList.remove('dragover');
+    if (e.dataTransfer.files.length > 0) processImportFile(e.dataTransfer.files[0]);
+}
+function handleImportFile(e) { if (e.target.files.length > 0) processImportFile(e.target.files[0]); }
+
+function processImportFile(file) {
+    const tab = importState.tab;
+    const fields = importFieldMap[tab];
+    importState.fileName = file.name;
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        try {
+            const wb = XLSX.read(e.target.result, { type: 'array' });
+            const ws = wb.Sheets[wb.SheetNames[0]];
+            const raw = XLSX.utils.sheet_to_json(ws, { defval: '' });
+            if (raw.length === 0) { showToast('El archivo está vacío', 'error'); return; }
+
+            // Normalize headers (lowercase, trim)
+            const headerMap = {};
+            Object.keys(raw[0]).forEach(k => { headerMap[k.toLowerCase().trim()] = k; });
+            const allFields = [...fields.required, ...fields.optional];
+            importState.data = raw.map((row, idx) => {
+                const obj = { _row: idx + 2, _valid: true, _errors: [] };
+                allFields.forEach(f => {
+                    const key = headerMap[f.toLowerCase()] || headerMap[f.replace(/_/g, ' ').toLowerCase()] || Object.keys(raw[0]).find(k => k.toLowerCase().trim().replace(/\s+/g, '_') === f);
+                    obj[f] = key ? String(row[key]).trim() : '';
+                });
+                fields.required.forEach(f => { if (!obj[f]) { obj._valid = false; obj._errors.push(`Falta ${f}`); } });
+                return obj;
+            });
+
+            renderImportPreview();
+        } catch (err) {
+            showToast('Error leyendo archivo: ' + err.message, 'error');
+        }
+    };
+    reader.readAsArrayBuffer(file);
+}
+
+function renderImportPreview() {
+    const tab = importState.tab;
+    const fields = [...importFieldMap[tab].required, ...importFieldMap[tab].optional];
+    const data = importState.data;
+    const validCount = data.filter(r => r._valid).length;
+
+    document.getElementById('import-dropzone').style.display = 'none';
+    document.getElementById('import-preview-area').style.display = 'block';
+    document.getElementById('import-file-name').textContent = importState.fileName;
+    document.getElementById('import-row-count').textContent = `${data.length} filas encontradas`;
+    document.getElementById('import-valid-count').textContent = `(${validCount} válidos)`;
+    document.getElementById('import-result').style.display = 'none';
+
+    const headers = fields.map(f => `<th>${f}</th>`).join('') + '<th>Estado</th>';
+    const rows = data.slice(0, 100).map(r => {
+        const cls = r._valid ? '' : ' class="error"';
+        const cells = fields.map(f => `<td>${esc(r[f] || '')}</td>`).join('');
+        const status = r._valid ? '<span class="badge badge-success">OK</span>' : `<span class="badge badge-danger">${esc(r._errors.join(', '))}</span>`;
+        return `<tr${cls}>${cells}<td>${status}</td></tr>`;
+    }).join('');
+
+    document.getElementById('import-preview-table').innerHTML = `<table><thead><tr>${headers}</tr></thead><tbody>${rows}</tbody></table>`;
+    if (data.length > 100) document.getElementById('import-preview-table').innerHTML += `<p style="text-align:center;padding:8px;color:var(--gray-400);font-size:12px">Mostrando 100 de ${data.length} filas</p>`;
+    document.getElementById('import-submit-btn').disabled = validCount === 0;
+}
+
+function resetImport() {
+    importState.data = [];
+    importState.fileName = '';
+    document.getElementById('import-dropzone').style.display = '';
+    document.getElementById('import-preview-area').style.display = 'none';
+    document.getElementById('import-file').value = '';
+}
+
+async function executeImport() {
+    const tab = importState.tab;
+    const validRows = importState.data.filter(r => r._valid);
+    if (validRows.length === 0) return;
+
+    const btn = document.getElementById('import-submit-btn');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="loading-spinner"></span> Importando...';
+    const resultDiv = document.getElementById('import-result');
+
+    let successCount = 0, errorCount = 0, errors = [];
+    const endpoints = { equipos: '/api/equipos', conexiones: '/api/conexiones', credenciales: '/api/credenciales' };
+
+    for (let i = 0; i < validRows.length; i++) {
+        const r = validRows[i];
+        const body = {};
+        const allFields = [...importFieldMap[tab].required, ...importFieldMap[tab].optional];
+        allFields.forEach(f => { if (r[f]) body[f] = r[f]; });
+
+        // Defaults
+        if (tab === 'equipos' && !body.estado) body.estado = 'Disponible';
+        if (tab === 'credenciales' && !body.categoria) body.categoria = 'Plataforma';
+
+        try {
+            await API.post(endpoints[tab], body);
+            successCount++;
+        } catch (err) {
+            errorCount++;
+            errors.push(`Fila ${r._row}: ${err.message}`);
+        }
+    }
+
+    resultDiv.style.display = 'block';
+    if (errorCount === 0) {
+        resultDiv.className = 'import-status success';
+        resultDiv.innerHTML = `✅ Se importaron <strong>${successCount}</strong> registros exitosamente.`;
+    } else {
+        resultDiv.className = 'import-status error';
+        resultDiv.innerHTML = `⚠️ ${successCount} importados, ${errorCount} errores.<br><small>${errors.slice(0, 5).map(e => esc(e)).join('<br>')}${errors.length > 5 ? `<br>... y ${errors.length - 5} más` : ''}</small>`;
+    }
+
+    btn.disabled = false;
+    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>Importar completado';
+
+    // Refresh data
+    await loadAllData();
+    renderAll();
+    showToast(`Importación completada: ${successCount} registro${successCount !== 1 ? 's' : ''} importado${successCount !== 1 ? 's' : ''}`, 'success');
+}
+
+function downloadImportTemplate() {
+    const tab = importState.tab;
+    const fields = [...importFieldMap[tab].required, ...importFieldMap[tab].optional];
+    const ws = XLSX.utils.aoa_to_sheet([fields]);
+    // Add example row
+    const examples = {
+        equipos: ['Laptop', 'Dell', 'Latitude 5520', 'SN123456', 'Disponible', '2024-01-15', ''],
+        conexiones: ['PC Recepción', 'AnyDesk', '123456789', 'pass123', ''],
+        credenciales: ['Office 365', 'https://office.com', 'admin@company.com', 'password123', 'Plataforma', '']
+    };
+    XLSX.utils.sheet_add_aoa(ws, [examples[tab] || []], { origin: 'A2' });
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, tab.charAt(0).toUpperCase() + tab.slice(1));
+    XLSX.writeFile(wb, `plantilla_${tab}.xlsx`);
 }
 
 // ==================== INIT ====================

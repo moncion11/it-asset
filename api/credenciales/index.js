@@ -19,9 +19,9 @@ module.exports = async function handler(req, res) {
         return res.status(200).json(data);
       }
       if (req.method === 'PUT') {
-        const { plataforma, url, usuario_plataforma, password_plataforma, categoria, usuario_id, notas } = req.body;
+        const { plataforma, url, usuario_plataforma, password_plataforma, categoria, usuario_id, sucursal_id, notas } = req.body;
         const { data, error } = await supabase.from('credenciales')
-          .update({ plataforma, url, usuario_plataforma, password_plataforma, categoria, usuario_id: usuario_id || null, notas })
+          .update({ plataforma, url, usuario_plataforma, password_plataforma, categoria, usuario_id: usuario_id || null, sucursal_id: sucursal_id || null, notas })
           .eq('id', id).select().single();
         if (error) throw error;
         return res.status(200).json(data);
@@ -38,10 +38,10 @@ module.exports = async function handler(req, res) {
         return res.status(200).json(data);
       }
       if (req.method === 'POST') {
-        const { plataforma, url, usuario_plataforma, password_plataforma, categoria, usuario_id, notas } = req.body;
+        const { plataforma, url, usuario_plataforma, password_plataforma, categoria, usuario_id, sucursal_id, notas } = req.body;
         if (!plataforma) return res.status(400).json({ error: 'plataforma es requerido' });
         const { data, error } = await supabase.from('credenciales')
-          .insert([{ plataforma, url, usuario_plataforma, password_plataforma, categoria: categoria || 'Plataforma', usuario_id: usuario_id || null, notas }])
+          .insert([{ plataforma, url, usuario_plataforma, password_plataforma, categoria: categoria || 'Plataforma', usuario_id: usuario_id || null, sucursal_id: sucursal_id || null, notas }])
           .select().single();
         if (error) throw error;
         return res.status(201).json(data);
