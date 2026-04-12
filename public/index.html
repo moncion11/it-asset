@@ -870,6 +870,10 @@
                     <div class="form-group"><label>Ciudad</label><input type="text" class="form-input" id="sucursal-ciudad" placeholder="Ej: Ciudad de México"></div>
                     <div class="form-group"><label>Teléfono</label><input type="text" class="form-input" id="sucursal-telefono" placeholder="Ej: +52 55 1234 5678"></div>
                 </div>
+                <div class="form-row">
+                    <div class="form-group"><label>Extensión Telefónica</label><input type="text" class="form-input" id="sucursal-extension" placeholder="Ej: 101"></div>
+                    <div class="form-group"></div>
+                </div>
                 <div class="form-group"><label>Responsable</label><input type="text" class="form-input" id="sucursal-responsable" placeholder="Nombre del responsable de la sucursal"></div>
                 <div class="form-group"><label>Notas</label><textarea class="form-input" id="sucursal-notas" placeholder="Observaciones adicionales..."></textarea></div>
             </form>
@@ -880,9 +884,6 @@
         </div>
     </div>
 </div>
-
-<!-- Modal Asignar -->
-<div class="modal-overlay" id="modal-asignar">
 
 <!-- Modal Departamento -->
 <div class="modal-overlay" id="modal-departamento">
@@ -909,6 +910,9 @@
         </div>
     </div>
 </div>
+
+<!-- Modal Asignar -->
+<div class="modal-overlay" id="modal-asignar">
     <div class="modal">
         <div class="modal-header">
             <div><h2>Nueva Asignación</h2><p>Asigne un equipo a un usuario o sucursal</p></div>
@@ -1537,6 +1541,7 @@ function openSucursalModal(id) {
             document.getElementById('sucursal-direccion').value = s.direccion || '';
             document.getElementById('sucursal-ciudad').value = s.ciudad || '';
             document.getElementById('sucursal-telefono').value = s.telefono || '';
+            document.getElementById('sucursal-extension').value = s.extension || '';
             document.getElementById('sucursal-responsable').value = s.responsable || '';
             document.getElementById('sucursal-notas').value = s.notas || '';
         }
@@ -1555,6 +1560,7 @@ async function saveSucursal(e) {
         direccion: document.getElementById('sucursal-direccion').value.trim(),
         ciudad: document.getElementById('sucursal-ciudad').value.trim(),
         telefono: document.getElementById('sucursal-telefono').value.trim(),
+        extension: document.getElementById('sucursal-extension').value.trim(),
         responsable: document.getElementById('sucursal-responsable').value.trim(),
         notas: document.getElementById('sucursal-notas').value.trim()
     };

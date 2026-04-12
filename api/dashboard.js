@@ -10,13 +10,13 @@ module.exports = async function handler(req, res) {
 
   try {
     const [usuariosRes, equiposRes, sucursalesRes, credencialesRes, conexionesRes, departamentosRes, tareasRes] = await Promise.all([
-      supabase.from('usuarios').select('*'),
-      supabase.from('equipos').select('*'),
-      supabase.from('sucursales').select('*'),
-      supabase.from('credenciales').select('*'),
-      supabase.from('conexiones_remotas').select('*'),
-      supabase.from('departamentos').select('*'),
-      supabase.from('tareas').select('*')
+      supabase.from('usuarios').select('*').order('created_at', { ascending: false }),
+      supabase.from('equipos').select('*').order('created_at', { ascending: false }),
+      supabase.from('sucursales').select('*').order('created_at', { ascending: false }),
+      supabase.from('credenciales').select('*').order('created_at', { ascending: false }),
+      supabase.from('conexiones_remotas').select('*').order('created_at', { ascending: false }),
+      supabase.from('departamentos').select('*').order('created_at', { ascending: false }),
+      supabase.from('tareas').select('*').order('created_at', { ascending: false })
     ]);
 
     if (usuariosRes.error) throw usuariosRes.error;

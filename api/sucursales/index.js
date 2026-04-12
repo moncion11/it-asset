@@ -20,9 +20,9 @@ module.exports = async function handler(req, res) {
         return res.status(200).json(data);
       }
       if (req.method === 'PUT') {
-        const { nombre, direccion, ciudad, telefono, responsable, notas } = req.body;
+        const { nombre, direccion, ciudad, telefono, extension, responsable, notas } = req.body;
         const { data, error } = await supabase.from('sucursales')
-          .update({ nombre, direccion, ciudad, telefono, responsable, notas })
+          .update({ nombre, direccion, ciudad, telefono, extension, responsable, notas })
           .eq('id', id).select().single();
         if (error) throw error;
         return res.status(200).json(data);
@@ -43,10 +43,10 @@ module.exports = async function handler(req, res) {
         return res.status(200).json(data);
       }
       if (req.method === 'POST') {
-        const { nombre, direccion, ciudad, telefono, responsable, notas } = req.body;
+        const { nombre, direccion, ciudad, telefono, extension, responsable, notas } = req.body;
         if (!nombre) return res.status(400).json({ error: 'nombre es requerido' });
         const { data, error } = await supabase.from('sucursales')
-          .insert([{ nombre, direccion, ciudad, telefono, responsable, notas }])
+          .insert([{ nombre, direccion, ciudad, telefono, extension, responsable, notas }])
           .select().single();
         if (error) throw error;
         return res.status(201).json(data);
