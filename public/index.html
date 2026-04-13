@@ -250,6 +250,43 @@
         .theme-toggle{width:36px;height:36px;border-radius:8px;border:1px solid var(--gray-200);background:var(--white);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--gray-500);transition:var(--transition)}
         .theme-toggle:hover{background:var(--gray-50);border-color:var(--gray-300);color:var(--gray-700)}
         .theme-toggle svg{width:18px;height:18px}
+        /* Theme Customizer */
+        .theme-panel-overlay{position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:999;opacity:0;visibility:hidden;transition:all .3s ease}
+        .theme-panel-overlay.open{opacity:1;visibility:visible}
+        .theme-panel{position:fixed;top:0;right:-360px;width:340px;height:100vh;background:var(--white);box-shadow:-4px 0 24px rgba(0,0,0,.12);z-index:1000;transition:right .3s ease;display:flex;flex-direction:column}
+        .theme-panel.open{right:0}
+        .theme-panel-header{padding:20px 24px;border-bottom:1px solid var(--gray-200);display:flex;align-items:center;justify-content:space-between}
+        .theme-panel-header h3{font-size:16px;font-weight:700;color:var(--gray-900)}
+        .theme-panel-close{width:32px;height:32px;border:none;background:var(--gray-100);border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--gray-500)}
+        .theme-panel-close:hover{background:var(--gray-200)}
+        .theme-panel-body{flex:1;overflow-y:auto;padding:24px}
+        .theme-presets{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px}
+        .theme-preset{border:2px solid var(--gray-200);border-radius:10px;padding:12px;cursor:pointer;transition:all .2s ease;text-align:center}
+        .theme-preset:hover{border-color:var(--primary);background:var(--primary-bg)}
+        .theme-preset.active{border-color:var(--primary);background:var(--primary-bg)}
+        .theme-preset-colors{display:flex;gap:4px;justify-content:center;margin-bottom:8px}
+        .theme-preset-colors span{width:20px;height:20px;border-radius:50%;border:1px solid rgba(0,0,0,.1)}
+        .theme-preset-name{font-size:12px;font-weight:600;color:var(--gray-700)}
+        .theme-section-title{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--gray-400);font-weight:600;margin-bottom:12px}
+        .theme-color-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+        .theme-color-row label{font-size:13px;font-weight:500;color:var(--gray-600)}
+        .theme-color-input{display:flex;align-items:center;gap:8px}
+        .theme-color-input input[type=color]{width:32px;height:32px;border:2px solid var(--gray-200);border-radius:8px;cursor:pointer;padding:2px;background:var(--white)}
+        .theme-color-input input[type=color]::-webkit-color-swatch-wrapper{padding:0}
+        .theme-color-input input[type=color]::-webkit-color-swatch{border:none;border-radius:5px}
+        .theme-color-hex{font-size:11px;font-family:monospace;color:var(--gray-400);min-width:60px}
+        .theme-panel-footer{padding:16px 24px;border-top:1px solid var(--gray-200);display:flex;gap:8px}
+        .theme-panel-footer .btn{flex:1;font-size:13px}
+        html.dark .theme-panel{background:#1e293b;border-left:1px solid #334155}
+        html.dark .theme-panel-header{border-color:#334155}
+        html.dark .theme-panel-header h3{color:#f1f5f9}
+        html.dark .theme-panel-close{background:#334155;color:#94a3b8}
+        html.dark .theme-preset{border-color:#334155}
+        html.dark .theme-preset:hover,.dark .theme-preset.active{border-color:var(--primary);background:rgba(37,99,235,.1)}
+        html.dark .theme-preset-name{color:#cbd5e1}
+        html.dark .theme-color-row label{color:#94a3b8}
+        html.dark .theme-color-input input[type=color]{border-color:#334155;background:#0f172a}
+        html.dark .theme-panel-footer{border-color:#334155}
         /* Dark Mode */
         html.dark{--gray-50:#1e293b;--gray-100:#1e293b;--gray-200:#334155;--gray-300:#475569;--gray-400:#64748b;--gray-500:#94a3b8;--gray-600:#cbd5e1;--gray-700:#e2e8f0;--gray-800:#f1f5f9;--gray-900:#f8fafc;--white:#0f172a;--primary-bg:#1e3a5f;--info-light:#1e3a5f;--success-light:#064e3b;--warning-light:#451a03;--danger-light:#450a0a;--dark:#0f172a;--dark-2:#0f172a;--dark-3:#0f172a}
         html.dark body{background:var(--gray-100)}
@@ -539,6 +576,9 @@
             <button class="theme-toggle" id="theme-toggle" onclick="toggleDarkMode()" title="Cambiar tema">
                 <svg id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
                 <svg id="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            </button>
+            <button class="theme-toggle" onclick="toggleThemePanel()" title="Personalizar colores">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="13.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="10.5" r="2.5"/><circle cx="8.5" cy="7.5" r="2.5"/><circle cx="6.5" cy="12" r="2.5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.93 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.04-.23-.29-.38-.63-.38-1.02 0-.83.67-1.5 1.5-1.5H16c3.31 0 6-2.69 6-6 0-5.17-4.49-8.94-10-8.94z"/></svg>
             </button>
         </div>
     </header>
@@ -3093,5 +3133,220 @@ function downloadImportTemplate() {
     }
 })();
 </script>
+
+<!-- Theme Customizer Panel -->
+<div class="theme-panel-overlay" id="theme-panel-overlay" onclick="toggleThemePanel()"></div>
+<div class="theme-panel" id="theme-panel">
+    <div class="theme-panel-header">
+        <h3>🎨 Personalizar Colores</h3>
+        <button class="theme-panel-close" onclick="toggleThemePanel()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="theme-panel-body">
+        <div class="theme-section-title">Paletas predefinidas</div>
+        <div class="theme-presets" id="theme-presets"></div>
+        <div class="theme-section-title" style="margin-top:20px">Personalizar</div>
+        <div id="theme-custom-colors"></div>
+    </div>
+    <div class="theme-panel-footer">
+        <button class="btn btn-secondary" onclick="resetThemeColors()">Restablecer</button>
+        <button class="btn btn-primary" onclick="toggleThemePanel()">Cerrar</button>
+    </div>
+</div>
+
+<script>
+(function initThemeCustomizer() {
+    const themePresets = {
+        'corporate-blue': {
+            name: 'Azul Corporativo',
+            colors: { primary:'#2563eb', secondary:'#0ea5e9', dark:'#0f172a', success:'#0284c7', danger:'#dc2626' }
+        },
+        'slate-teal': {
+            name: 'Slate & Teal',
+            colors: { primary:'#0d9488', secondary:'#06b6d4', dark:'#0f172a', success:'#0d9488', danger:'#dc2626' }
+        },
+        'navy-steel': {
+            name: 'Navy & Acero',
+            colors: { primary:'#1e40af', secondary:'#6366f1', dark:'#1e1b4b', success:'#4f46e5', danger:'#dc2626' }
+        },
+        'midnight': {
+            name: 'Midnight',
+            colors: { primary:'#3b82f6', secondary:'#8b5cf6', dark:'#18181b', success:'#6366f1', danger:'#dc2626' }
+        },
+        'ocean': {
+            name: 'Océano',
+            colors: { primary:'#0284c7', secondary:'#0ea5e9', dark:'#0c4a6e', success:'#0891b2', danger:'#dc2626' }
+        },
+        'graphite': {
+            name: 'Grafito',
+            colors: { primary:'#475569', secondary:'#64748b', dark:'#1e293b', success:'#475569', danger:'#dc2626' }
+        },
+        'emerald': {
+            name: 'Esmeralda',
+            colors: { primary:'#059669', secondary:'#10b981', dark:'#064e3b', success:'#059669', danger:'#dc2626' }
+        },
+        'royal': {
+            name: 'Royal',
+            colors: { primary:'#7c3aed', secondary:'#8b5cf6', dark:'#2e1065', success:'#6d28d9', danger:'#dc2626' }
+        }
+    };
+
+    const colorLabels = {
+        primary: 'Color Principal',
+        secondary: 'Color Secundario',
+        dark: 'Sidebar / Oscuro',
+        success: 'Confirmación',
+        danger: 'Alerta / Error'
+    };
+
+    function deriveFullPalette(base) {
+        const p = base.primary, s = base.secondary, d = base.dark;
+        return {
+            '--primary': p,
+            '--primary-dark': darken(p, 15),
+            '--primary-light': lighten(p, 10),
+            '--primary-lighter': lighten(p, 70),
+            '--primary-bg': lighten(p, 90),
+            '--secondary': s,
+            '--secondary-dark': darken(s, 15),
+            '--secondary-light': lighten(s, 15),
+            '--success': base.success,
+            '--success-light': lighten(base.success, 85),
+            '--success-dark': darken(base.success, 15),
+            '--danger': base.danger,
+            '--danger-light': lighten(base.danger, 85),
+            '--danger-dark': darken(base.danger, 15),
+            '--warning': '#94a3b8',
+            '--warning-light': '#f1f5f9',
+            '--info': p,
+            '--info-light': lighten(p, 90),
+            '--dark': d,
+            '--dark-2': d,
+            '--dark-3': d
+        };
+    }
+
+    function hexToHSL(hex) {
+        hex = hex.replace('#','');
+        const r = parseInt(hex.substring(0,2),16)/255;
+        const g = parseInt(hex.substring(2,4),16)/255;
+        const b = parseInt(hex.substring(4,6),16)/255;
+        const max = Math.max(r,g,b), min = Math.min(r,g,b);
+        let h, s, l = (max+min)/2;
+        if (max===min) { h=s=0; } else {
+            const d=max-min;
+            s=l>0.5?d/(2-max-min):d/(max+min);
+            switch(max){ case r:h=((g-b)/d+(g<b?6:0))/6;break;case g:h=((b-r)/d+2)/6;break;case b:h=((r-g)/d+4)/6;break;}
+        }
+        return [h*360,s*100,l*100];
+    }
+    function hslToHex(h,s,l) {
+        s/=100;l/=100;
+        const a=s*Math.min(l,1-l);
+        const f=n=>{const k=(n+h/30)%12;const c=l-a*Math.max(Math.min(k-3,9-k,1),-1);return Math.round(255*c).toString(16).padStart(2,'0');};
+        return '#'+f(0)+f(8)+f(4);
+    }
+    function lighten(hex,pct){ const [h,s,l]=hexToHSL(hex); return hslToHex(h,s,Math.min(100,l+pct)); }
+    function darken(hex,pct){ const [h,s,l]=hexToHSL(hex); return hslToHex(h,s,Math.max(0,l-pct)); }
+
+    function applyColors(palette) {
+        const root = document.documentElement;
+        Object.entries(palette).forEach(([k,v]) => root.style.setProperty(k,v));
+    }
+
+    function saveTheme(presetKey, baseColors) {
+        localStorage.setItem('it_theme', JSON.stringify({ preset: presetKey, colors: baseColors }));
+    }
+
+    function loadTheme() {
+        try {
+            const saved = JSON.parse(localStorage.getItem('it_theme'));
+            if (saved && saved.colors) {
+                applyColors(deriveFullPalette(saved.colors));
+                return saved.preset || 'custom';
+            }
+        } catch {}
+        return 'corporate-blue';
+    }
+
+    function renderPresets(activeKey) {
+        const container = document.getElementById('theme-presets');
+        container.innerHTML = Object.entries(themePresets).map(([key, preset]) => {
+            const c = preset.colors;
+            return `<div class="theme-preset ${key===activeKey?'active':''}" data-preset="${key}" onclick="selectThemePreset('${key}')">
+                <div class="theme-preset-colors">
+                    <span style="background:${c.dark}"></span>
+                    <span style="background:${c.primary}"></span>
+                    <span style="background:${c.secondary}"></span>
+                </div>
+                <div class="theme-preset-name">${preset.name}</div>
+            </div>`;
+        }).join('');
+    }
+
+    function renderCustomColors(baseColors) {
+        const container = document.getElementById('theme-custom-colors');
+        container.innerHTML = Object.entries(colorLabels).map(([key, label]) => {
+            const val = baseColors[key] || '#2563eb';
+            return `<div class="theme-color-row">
+                <label>${label}</label>
+                <div class="theme-color-input">
+                    <span class="theme-color-hex" id="hex-${key}">${val}</span>
+                    <input type="color" value="${val}" data-color-key="${key}" onchange="updateThemeColor('${key}', this.value)">
+                </div>
+            </div>`;
+        }).join('');
+    }
+
+    const activePreset = loadTheme();
+    const savedTheme = JSON.parse(localStorage.getItem('it_theme') || 'null');
+    const currentColors = savedTheme?.colors || themePresets['corporate-blue'].colors;
+
+    renderPresets(activePreset);
+    renderCustomColors(currentColors);
+
+    window._themePresets = themePresets;
+    window._currentThemeColors = { ...currentColors };
+    window._currentPreset = activePreset;
+
+    window.toggleThemePanel = function() {
+        document.getElementById('theme-panel').classList.toggle('open');
+        document.getElementById('theme-panel-overlay').classList.toggle('open');
+    };
+
+    window.selectThemePreset = function(key) {
+        const preset = themePresets[key];
+        if (!preset) return;
+        const base = { ...preset.colors };
+        applyColors(deriveFullPalette(base));
+        saveTheme(key, base);
+        window._currentThemeColors = base;
+        window._currentPreset = key;
+        renderPresets(key);
+        renderCustomColors(base);
+    };
+
+    window.updateThemeColor = function(key, value) {
+        window._currentThemeColors[key] = value;
+        window._currentPreset = 'custom';
+        const base = window._currentThemeColors;
+        applyColors(deriveFullPalette(base));
+        saveTheme('custom', base);
+        renderPresets('custom');
+        const hexEl = document.getElementById('hex-' + key);
+        if (hexEl) hexEl.textContent = value;
+    };
+
+    window.resetThemeColors = function() {
+        localStorage.removeItem('it_theme');
+        const base = { ...themePresets['corporate-blue'].colors };
+        applyColors(deriveFullPalette(base));
+        window._currentThemeColors = base;
+        window._currentPreset = 'corporate-blue';
+        renderPresets('corporate-blue');
+        renderCustomColors(base);
+    };
+})();
+</script>
+
 </body>
 </html>
