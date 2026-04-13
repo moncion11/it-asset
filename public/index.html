@@ -7,7 +7,7 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="manifest" href="/manifest.json">
     <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
-    <meta name="theme-color" content="#5a75a1">
+    <meta name="theme-color" content="#0f172a">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="IT Assets">
@@ -16,13 +16,13 @@
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
         :root{
-            --primary:#5a75a1;--primary-dark:#5a75a1;--primary-light:#3b82f6;--primary-lighter:#bfdbfe;--primary-bg:#eff6ff;
-            --secondary:#f97316;--secondary-dark:#ea580c;--secondary-light:#fb923c;
-            --success:#10b981;--success-light:#d1fae5;--success-dark:#059669;
-            --warning:#f97316;--warning-light:#fff7ed;
-            --danger:#ef4444;--danger-light:#fee2e2;--danger-dark:#dc2626;
+            --primary:#2563eb;--primary-dark:#1d4ed8;--primary-light:#3b82f6;--primary-lighter:#bfdbfe;--primary-bg:#eff6ff;
+            --secondary:#0ea5e9;--secondary-dark:#0284c7;--secondary-light:#38bdf8;
+            --success:#0284c7;--success-light:#e0f2fe;--success-dark:#0369a1;
+            --warning:#94a3b8;--warning-light:#f1f5f9;
+            --danger:#dc2626;--danger-light:#fee2e2;--danger-dark:#b91c1c;
             --info:#2563eb;--info-light:#eff6ff;
-            --dark:#5a75a1;--dark-2:#5a75a1;--dark-3:#5a75a1;
+            --dark:#0f172a;--dark-2:#0f172a;--dark-3:#0f172a;
             --gray-50:#f8fafc;--gray-100:#f1f5f9;--gray-200:#e2e8f0;--gray-300:#cbd5e1;--gray-400:#94a3b8;--gray-500:#64748b;--gray-600:#475569;--gray-700:#334155;--gray-800:#1e293b;--gray-900:#0f172a;
             --white:#ffffff;--sidebar-w:260px;--radius:12px;--shadow:0 1px 3px rgba(0,0,0,.1),0 1px 2px rgba(0,0,0,.06);--shadow-lg:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -2px rgba(0,0,0,.05);--shadow-xl:0 20px 25px -5px rgba(0,0,0,.1),0 10px 10px -5px rgba(0,0,0,.04);
             --transition:all .25s cubic-bezier(.4,0,.2,1)
@@ -1239,7 +1239,7 @@ function esc(str) {
 const tipoIcons = { 'Laptop': '💻', 'Desktop': '🖥️', 'Monitor': '🖥️', 'Impresora': '🖨️', 'Red': '🌐', 'Servidor': '🗄️', 'Tablet': '📱', 'Teléfono': '📞', 'Otro': '📦' };
 const estadoBadges = { 'Disponible': 'badge-success', 'Asignado': 'badge-primary', 'En Reparación': 'badge-warning', 'Retirado': 'badge-danger' };
 const estadoDots = { 'Disponible': 'green', 'Asignado': 'blue', 'En Reparación': 'yellow', 'Retirado': 'red' };
-const colors = ['#4f46e5', '#7c3aed', '#06b6d4', '#10b981', '#f59e0b', '#ef4444', '#ec4899', '#8b5cf6'];
+const colors = ['#1e40af', '#2563eb', '#3b82f6', '#0284c7', '#0ea5e9', '#475569', '#64748b', '#94a3b8'];
 
 function openUserModal(id) {
     document.getElementById('form-usuario').reset();
@@ -2324,15 +2324,15 @@ function deleteCredencial(id) {
 const catIcons = { 'Programa': '💿', 'Plataforma': '🌐', 'Servidor': '🗄️', 'Red': '🔌', 'Cámaras': '📹', 'Correo': '📧', 'PC': '💻', 'WiFi': '📶', 'Intervenciones': '🔧', 'Otro': '📦' };
 const catBadges = { 'Programa': 'badge-primary', 'Plataforma': 'badge-info', 'Servidor': 'badge-warning', 'Red': 'badge-secondary', 'Cámaras': 'badge-danger', 'Correo': 'badge-info', 'PC': 'badge-primary', 'WiFi': 'badge-success', 'Intervenciones': 'badge-warning', 'Otro': 'badge-gray' };
 const catColors = {
-    'Programa':       { bg: '#eff6ff', border: '#93c5fd', text: '#2563eb', accent: '#3b82f6' },
-    'Plataforma':     { bg: '#f0fdf4', border: '#86efac', text: '#16a34a', accent: '#22c55e' },
-    'Servidor':       { bg: '#fefce8', border: '#fde047', text: '#a16207', accent: '#eab308' },
-    'Red':            { bg: '#fff7ed', border: '#fdba74', text: '#ea580c', accent: '#f97316' },
-    'Cámaras':        { bg: '#fef2f2', border: '#fca5a5', text: '#dc2626', accent: '#ef4444' },
-    'Correo':         { bg: '#f0f9ff', border: '#7dd3fc', text: '#0284c7', accent: '#0ea5e9' },
-    'PC':             { bg: '#faf5ff', border: '#d8b4fe', text: '#9333ea', accent: '#a855f7' },
-    'WiFi':           { bg: '#ecfdf5', border: '#6ee7b7', text: '#059669', accent: '#10b981' },
-    'Intervenciones': { bg: '#fff1f2', border: '#fda4af', text: '#e11d48', accent: '#f43f5e' },
+    'Programa':       { bg: '#eff6ff', border: '#93c5fd', text: '#1d4ed8', accent: '#2563eb' },
+    'Plataforma':     { bg: '#f0f9ff', border: '#7dd3fc', text: '#0369a1', accent: '#0284c7' },
+    'Servidor':       { bg: '#f1f5f9', border: '#cbd5e1', text: '#334155', accent: '#475569' },
+    'Red':            { bg: '#e0f2fe', border: '#7dd3fc', text: '#0284c7', accent: '#0ea5e9' },
+    'Cámaras':        { bg: '#f8fafc', border: '#94a3b8', text: '#475569', accent: '#64748b' },
+    'Correo':         { bg: '#dbeafe', border: '#93c5fd', text: '#1e40af', accent: '#3b82f6' },
+    'PC':             { bg: '#eff6ff', border: '#bfdbfe', text: '#2563eb', accent: '#3b82f6' },
+    'WiFi':           { bg: '#e0f2fe', border: '#38bdf8', text: '#0369a1', accent: '#0ea5e9' },
+    'Intervenciones': { bg: '#f1f5f9', border: '#94a3b8', text: '#334155', accent: '#64748b' },
     'Otro':           { bg: '#f1f5f9', border: '#94a3b8', text: '#475569', accent: '#64748b' }
 };
 function getCatColors(cat) { return catColors[cat] || catColors['Otro']; }
@@ -2527,13 +2527,13 @@ function renderConexiones() {
 }
 
 const tipoConColors = {
-    'AnyDesk': { bg: '#fef2f2', border: '#fca5a5', text: '#dc2626', accent: '#ef4444', fill: '#ef4444' },
-    'RustDesk': { bg: '#fff7ed', border: '#fdba74', text: '#ea580c', accent: '#f97316', fill: '#f97316' },
-    'TeamViewer': { bg: '#eff6ff', border: '#93c5fd', text: '#2563eb', accent: '#3b82f6', fill: '#3b82f6' },
-    'RDP':       { bg: '#f0fdf4', border: '#86efac', text: '#16a34a', accent: '#22c55e', fill: '#22c55e' },
-    'VNC':       { bg: '#faf5ff', border: '#d8b4fe', text: '#9333ea', accent: '#a855f7', fill: '#a855f7' },
-    'SSH':       { bg: '#f1f5f9', border: '#94a3b8', text: '#475569', accent: '#64748b', fill: '#64748b' },
-    'Otro':      { bg: '#fefce8', border: '#fde047', text: '#a16207', accent: '#eab308', fill: '#eab308' }
+    'AnyDesk': { bg: '#fee2e2', border: '#fca5a5', text: '#dc2626', accent: '#dc2626', fill: '#dc2626' },
+    'RustDesk': { bg: '#e0f2fe', border: '#7dd3fc', text: '#0284c7', accent: '#0ea5e9', fill: '#0ea5e9' },
+    'TeamViewer': { bg: '#eff6ff', border: '#93c5fd', text: '#1d4ed8', accent: '#2563eb', fill: '#2563eb' },
+    'RDP':       { bg: '#dbeafe', border: '#93c5fd', text: '#1e40af', accent: '#3b82f6', fill: '#3b82f6' },
+    'VNC':       { bg: '#f1f5f9', border: '#cbd5e1', text: '#334155', accent: '#475569', fill: '#475569' },
+    'SSH':       { bg: '#f8fafc', border: '#94a3b8', text: '#475569', accent: '#64748b', fill: '#64748b' },
+    'Otro':      { bg: '#f1f5f9', border: '#94a3b8', text: '#475569', accent: '#64748b', fill: '#64748b' }
 };
 function getConColors(tipo) { return tipoConColors[tipo] || tipoConColors['Otro']; }
 
@@ -2625,7 +2625,7 @@ function renderConexionesCards() {
         const maxD = Math.max(...Object.values(deptCount));
         deptDiv.innerHTML = Object.entries(deptCount).sort((a, b) => b[1] - a[1]).map(([name, count]) => {
             const pct = (count / maxD * 100).toFixed(0);
-            return `<div class="conex-bar"><div class="conex-bar-head"><span class="conex-bar-name">${esc(name)}</span><span class="conex-bar-val">${count}</span></div><div class="conex-bar-track"><div class="conex-bar-fill" style="background:#f97316;width:${pct}%"></div></div></div>`;
+            return `<div class="conex-bar"><div class="conex-bar-head"><span class="conex-bar-name">${esc(name)}</span><span class="conex-bar-val">${count}</span></div><div class="conex-bar-track"><div class="conex-bar-fill" style="background:#2563eb;width:${pct}%"></div></div></div>`;
         }).join('');
     }
 }

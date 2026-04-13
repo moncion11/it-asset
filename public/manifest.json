@@ -4,8 +4,8 @@
   "description": "Sistema de Gestión de Activos IT",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#5a75a1",
-  "theme_color": "#5a75a1",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
   "orientation": "any",
   "icons": [
     {

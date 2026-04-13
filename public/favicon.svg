@@ -1,28 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#5a75a1"/>
-      <stop offset="100%" stop-color="#3b5998"/>
-    </linearGradient>
-  </defs>
   <!-- Background -->
-  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <rect width="512" height="512" rx="112" fill="#0f172a"/>
   <!-- Monitor body -->
   <rect x="88" y="96" width="336" height="224" rx="24" fill="white"/>
   <rect x="108" y="116" width="296" height="180" rx="12" fill="#1e293b"/>
-  <!-- Screen content: signal/dashboard bars -->
-  <rect x="148" y="220" width="36" height="56" rx="6" fill="#f97316"/>
-  <rect x="200" y="192" width="36" height="84" rx="6" fill="#10b981"/>
+  <!-- Screen content: dashboard bars -->
+  <rect x="148" y="220" width="36" height="56" rx="6" fill="#2563eb"/>
+  <rect x="200" y="192" width="36" height="84" rx="6" fill="#0ea5e9"/>
   <rect x="252" y="208" width="36" height="68" rx="6" fill="#3b82f6"/>
-  <rect x="304" y="172" width="36" height="104" rx="6" fill="#f97316"/>
-  <rect x="356" y="196" width="36" height="80" rx="6" fill="#10b981"/>
+  <rect x="304" y="172" width="36" height="104" rx="6" fill="#2563eb"/>
+  <rect x="356" y="196" width="36" height="80" rx="6" fill="#0ea5e9"/>
   <!-- Status dot -->
-  <circle cx="370" cy="140" r="10" fill="#10b981"/>
+  <circle cx="370" cy="140" r="10" fill="#38bdf8"/>
   <!-- Stand -->
   <rect x="224" y="320" width="64" height="16" rx="4" fill="white"/>
   <rect x="192" y="336" width="128" height="16" rx="8" fill="white" opacity="0.85"/>
   <!-- Gear badge -->
-  <circle cx="392" cy="392" r="64" fill="#f97316"/>
+  <circle cx="392" cy="392" r="64" fill="#2563eb"/>
   <path d="M392 356 l8 0 l2 12 a28 28 0 0 1 8 4 l11-6 l6 6 l-6 11 a28 28 0 0 1 4 8 l12 2 l0 8 l-12 2 a28 28 0 0 1-4 8 l6 11 l-6 6 l-11-6 a28 28 0 0 1-8 4 l-2 12 l-8 0 l-2-12 a28 28 0 0 1-8-4 l-11 6 l-6-6 l6-11 a28 28 0 0 1-4-8 l-12-2 l0-8 l12-2 a28 28 0 0 1 4-8 l-6-11 l6-6 l11 6 a28 28 0 0 1 8-4 z" fill="white"/>
-  <circle cx="392" cy="392" r="16" fill="#f97316"/>
+  <circle cx="392" cy="392" r="16" fill="#2563eb"/>
 </svg>

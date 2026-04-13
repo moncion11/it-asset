@@ -35,7 +35,7 @@ async function generate() {
         width: size,
         height: size,
         channels: 4,
-        background: { r: 90, g: 117, b: 161, alpha: 1 } // #5a75a1
+        background: { r: 15, g: 23, b: 42, alpha: 1 } // #0f172a
       }
     })
       .composite([{ input: inner, left: padding, top: padding }])
