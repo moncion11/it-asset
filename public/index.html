@@ -835,6 +835,7 @@
                 <div style="padding:24px">
                     <div class="import-tabs">
                         <button class="import-tab active" data-import="equipos" onclick="switchImportTab('equipos')">💻 Equipos</button>
+                        <button class="import-tab" data-import="usuarios" onclick="switchImportTab('usuarios')">👤 Usuarios</button>
                         <button class="import-tab" data-import="conexiones" onclick="switchImportTab('conexiones')">🔗 Conexiones</button>
                         <button class="import-tab" data-import="credenciales" onclick="switchImportTab('credenciales')">🔐 Credenciales</button>
                     </div>
@@ -3091,6 +3092,7 @@ let importState = { tab: 'equipos', data: [], fileName: '' };
 
 const importFieldMap = {
     equipos: { required: ['tipo', 'marca'], optional: ['modelo', 'serial', 'estado', 'fecha_compra', 'notas'], hint: 'tipo, marca, modelo, serial, estado' },
+    usuarios: { required: ['nombre', 'posicion'], optional: ['email', 'telefono', 'sucursal', 'departamento', 'subdepartamento', 'notas'], hint: 'nombre, posicion, email, telefono, sucursal, departamento, subdepartamento' },
     conexiones: { required: ['nombre', 'tipo', 'id_conexion'], optional: ['password_conexion', 'notas'], hint: 'nombre, tipo, id_conexion, password_conexion' },
     credenciales: { required: ['plataforma'], optional: ['url', 'usuario_plataforma', 'password_plataforma', 'categoria', 'notas'], hint: 'plataforma, url, usuario_plataforma, password_plataforma, categoria' }
 };
@@ -3189,7 +3191,7 @@ async function executeImport() {
     const resultDiv = document.getElementById('import-result');
 
     let successCount = 0, errorCount = 0, errors = [];
-    const endpoints = { equipos: '/api/equipos', conexiones: '/api/conexiones', credenciales: '/api/credenciales' };
+    const endpoints = { equipos: '/api/equipos', conexiones: '/api/conexiones', credenciales: '/api/credenciales', usuarios: '/api/usuarios' };
 
     for (let i = 0; i < validRows.length; i++) {
         const r = validRows[i];
@@ -3200,6 +3202,34 @@ async function executeImport() {
         // Defaults
         if (tab === 'equipos' && !body.estado) body.estado = 'Disponible';
         if (tab === 'credenciales' && !body.categoria) body.categoria = 'Plataforma';
+
+        // Resolve names to IDs for usuarios
+        if (tab === 'usuarios') {
+            // Resolve sucursal(es) by name
+            if (body.sucursal) {
+                const sucNames = body.sucursal.split(',').map(s => s.trim()).filter(Boolean);
+                const sucIds = sucNames.map(name => {
+                    const s = cache.sucursales.find(x => x.nombre.toLowerCase() === name.toLowerCase());
+                    return s ? s.id : null;
+                }).filter(Boolean);
+                body.sucursal_ids = sucIds;
+            } else {
+                body.sucursal_ids = [];
+            }
+            delete body.sucursal;
+            // Resolve departamento by name
+            if (body.departamento) {
+                const d = cache.departamentos.find(x => !x.parent_id && x.nombre.toLowerCase() === body.departamento.toLowerCase());
+                body.departamento_id = d ? d.id : null;
+            }
+            delete body.departamento;
+            // Resolve subdepartamento by name
+            if (body.subdepartamento && body.departamento_id) {
+                const sd = cache.departamentos.find(x => x.parent_id === body.departamento_id && x.nombre.toLowerCase() === body.subdepartamento.toLowerCase());
+                body.subdepartamento_id = sd ? sd.id : null;
+            }
+            delete body.subdepartamento;
+        }
 
         try {
             await API.post(endpoints[tab], body);
@@ -3235,6 +3265,7 @@ function downloadImportTemplate() {
     // Add example row
     const examples = {
         equipos: ['Laptop', 'Dell', 'Latitude 5520', 'SN123456', 'Disponible', '2024-01-15', ''],
+        usuarios: ['Juan Pérez', 'Desarrollador', 'juan@empresa.com', '809-555-1234', 'Licormart Kennedy', 'Tecnología', 'Soporte', ''],
         conexiones: ['PC Recepción', 'AnyDesk', '123456789', 'pass123', ''],
         credenciales: ['Office 365', 'https://office.com', 'admin@company.com', 'password123', 'Plataforma', '']
     };
