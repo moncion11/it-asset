@@ -855,8 +855,9 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group"><label>Posición / Cargo <span class="required">*</span></label><input type="text" class="form-input" id="usuario-posicion" required placeholder="Ej: Desarrollador"></div>
-                    <div class="form-group"><label>Departamento</label><select class="form-input" id="usuario-departamento"><option value="">Sin departamento</option></select></div>
+                    <div class="form-group"><label>Departamento</label><select class="form-input" id="usuario-departamento" onchange="updateSubcategoriaOptions()"><option value="">Sin departamento</option></select></div>
                 </div>
+                <div class="form-group"><label>Subcategoría</label><select class="form-input" id="usuario-subcategoria"><option value="">Sin subcategoría</option></select></div>
                 <div class="form-group"><label>Sucursales</label><div class="checkbox-group" id="usuario-sucursales-checks"></div></div>
                 <div class="form-group"><label>Teléfono</label><input type="text" class="form-input" id="usuario-telefono" placeholder="Ej: +52 55 1234 5678"></div>
                 <div class="form-group"><label>Notas</label><textarea class="form-input" id="usuario-notas" placeholder="Observaciones adicionales..."></textarea></div>
@@ -1308,6 +1309,8 @@ function openUserModal(id) {
                 cb.parentElement.classList.toggle('checked', checked);
             });
             document.getElementById('usuario-departamento').value = u.departamento_id || '';
+            updateSubcategoriaOptions();
+            document.getElementById('usuario-subcategoria').value = u.subcategoria || '';
             document.getElementById('usuario-telefono').value = u.telefono || '';
             document.getElementById('usuario-notas').value = u.notas || '';
         }
@@ -1328,6 +1331,7 @@ async function saveUsuario(e) {
         posicion: document.getElementById('usuario-posicion').value.trim(),
         sucursal_ids: sucursal_ids,
         departamento_id: document.getElementById('usuario-departamento').value || null,
+        subcategoria: document.getElementById('usuario-subcategoria').value.trim(),
         telefono: document.getElementById('usuario-telefono').value.trim(),
         notas: document.getElementById('usuario-notas').value.trim()
     };
@@ -1410,7 +1414,7 @@ function renderUsers() {
         posicion: u => u.posicion,
         sucursal: u => { const sids = u.sucursal_ids || (u.sucursal_id ? [u.sucursal_id] : []); const s = sids.length > 0 ? cache.sucursales.find(x => x.id === sids[0]) : null; return s ? s.nombre : ''; },
         departamento: u => { const d = cache.departamentos.find(x => x.id === u.departamento_id); return d ? d.nombre : ''; },
-        subcategoria: u => { const d = cache.departamentos.find(x => x.id === u.departamento_id); return d ? (d.subcategoria || '') : ''; },
+        subcategoria: u => u.subcategoria || '',
         equipos: u => cache.equipos.filter(e => e.asignado_tipo === 'usuario' && e.asignado_id === u.id).length
     });
     updateSortIcons('usuarios', ['nombre','posicion','sucursal','departamento','subcategoria','equipos']);
@@ -1431,7 +1435,7 @@ function renderUsers() {
         const dept = cache.departamentos.find(d => d.id === u.departamento_id);
         const eqCount = cache.equipos.filter(e => e.asignado_tipo === 'usuario' && e.asignado_id === u.id).length;
         const sucHtml = sucs.length > 0 ? sucs.map(s => `<span class="badge badge-gray" style="margin:1px">🏢 ${esc(s.nombre)}</span>`).join('') : '<span class="badge badge-gray">Sin sucursal</span>';
-        const subcat = dept && dept.subcategoria ? dept.subcategoria : '';
+        const subcat = u.subcategoria || '';
         return `<tr>
             <td data-label="Usuario"><div class="table-cell"><div class="avatar-sm">${esc(initials)}</div><div><div style="font-weight:600">${esc(u.nombre)}</div><div style="font-size:11px;color:var(--gray-400)">${esc(u.email || 'Sin email')}</div></div></div></td>
             <td data-label="Posición"><span class="badge badge-primary">${esc(u.posicion)}</span></td>
@@ -1911,9 +1915,41 @@ function populateSucursalSelects() {
         if (!sel) return;
         const currentVal = sel.value;
         sel.innerHTML = '<option value="">Sin departamento</option>';
-        cache.departamentos.forEach(d => { sel.innerHTML += `<option value="${d.id}">${esc(d.nombre)}${d.subcategoria ? ' — ' + esc(d.subcategoria) : ''}</option>`; });
+        cache.departamentos.forEach(d => { sel.innerHTML += `<option value="${d.id}">${esc(d.nombre)}</option>`; });
         sel.value = currentVal;
     });
+}
+
+function updateSubcategoriaOptions() {
+    const deptId = document.getElementById('usuario-departamento').value;
+    const sel = document.getElementById('usuario-subcategoria');
+    if (!sel) return;
+    const currentVal = sel.value;
+    sel.innerHTML = '<option value="">Sin subcategoría</option>';
+    if (deptId) {
+        // Collect unique subcategorias from departamentos with same nombre or from the selected one
+        const dept = cache.departamentos.find(d => d.id === deptId);
+        if (dept && dept.subcategoria) {
+            // Support comma-separated subcategorias
+            dept.subcategoria.split(',').map(s => s.trim()).filter(Boolean).forEach(sub => {
+                sel.innerHTML += `<option value="${esc(sub)}">${esc(sub)}</option>`;
+            });
+        }
+    }
+    // Also collect all unique subcategorias across all departamentos as extra options
+    const allSubs = new Set();
+    cache.departamentos.forEach(d => {
+        if (d.subcategoria) d.subcategoria.split(',').map(s => s.trim()).filter(Boolean).forEach(s => allSubs.add(s));
+    });
+    const deptSubs = new Set();
+    const dept = cache.departamentos.find(d => d.id === deptId);
+    if (dept && dept.subcategoria) dept.subcategoria.split(',').map(s => s.trim()).filter(Boolean).forEach(s => deptSubs.add(s));
+    allSubs.forEach(sub => {
+        if (!deptSubs.has(sub)) {
+            sel.innerHTML += `<option value="${esc(sub)}" style="color:var(--gray-400)">${esc(sub)}</option>`;
+        }
+    });
+    sel.value = currentVal;
 }
 
 // ==================== DASHBOARD ====================
@@ -2096,7 +2132,7 @@ function exportTable(type) {
             const sids = u.sucursal_ids || (u.sucursal_id ? [u.sucursal_id] : []);
             const sucNames = sids.map(sid => cache.sucursales.find(s => s.id === sid)).filter(Boolean).map(s => s.nombre).join(', ');
             const dept = cache.departamentos.find(d => d.id === u.departamento_id);
-            return { Nombre: u.nombre, Email: u.email || '', Posición: u.posicion, Sucursal: sucNames, Departamento: dept ? dept.nombre : '', Subcategoría: dept && dept.subcategoria ? dept.subcategoria : '', Teléfono: u.telefono || '', Notas: u.notas || '' };
+            return { Nombre: u.nombre, Email: u.email || '', Posición: u.posicion, Sucursal: sucNames, Departamento: dept ? dept.nombre : '', Subcategoría: u.subcategoria || '', Teléfono: u.telefono || '', Notas: u.notas || '' };
         });
     } else if (type === 'equipos') {
         fileName = 'Equipos';
