@@ -20,9 +20,9 @@ module.exports = async function handler(req, res) {
         return res.status(200).json(data);
       }
       if (req.method === 'PUT') {
-        const { nombre, descripcion, responsable, sucursal_id, notas } = req.body;
+        const { nombre, descripcion, responsable, sucursal_id, subcategoria, notas } = req.body;
         const { data, error } = await supabase.from('departamentos')
-          .update({ nombre, descripcion, responsable, sucursal_id: sucursal_id || null, notas })
+          .update({ nombre, descripcion, responsable, sucursal_id: sucursal_id || null, subcategoria: subcategoria || '', notas })
           .eq('id', id).select().single();
         if (error) throw error;
         return res.status(200).json(data);
@@ -40,10 +40,10 @@ module.exports = async function handler(req, res) {
         return res.status(200).json(data);
       }
       if (req.method === 'POST') {
-        const { nombre, descripcion, responsable, sucursal_id, notas } = req.body;
+        const { nombre, descripcion, responsable, sucursal_id, subcategoria, notas } = req.body;
         if (!nombre) return res.status(400).json({ error: 'nombre es requerido' });
         const { data, error } = await supabase.from('departamentos')
-          .insert([{ nombre, descripcion, responsable, sucursal_id: sucursal_id || null, notas }])
+          .insert([{ nombre, descripcion, responsable, sucursal_id: sucursal_id || null, subcategoria: subcategoria || '', notas }])
           .select().single();
         if (error) throw error;
         return res.status(201).json(data);

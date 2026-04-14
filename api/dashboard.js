@@ -9,14 +9,15 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    const [usuariosRes, equiposRes, sucursalesRes, credencialesRes, conexionesRes, departamentosRes, tareasRes] = await Promise.all([
+    const [usuariosRes, equiposRes, sucursalesRes, credencialesRes, conexionesRes, departamentosRes, tareasRes, usuarioSucursalesRes] = await Promise.all([
       supabase.from('usuarios').select('*').order('created_at', { ascending: false }),
       supabase.from('equipos').select('*').order('created_at', { ascending: false }),
       supabase.from('sucursales').select('*').order('created_at', { ascending: false }),
       supabase.from('credenciales').select('*').order('created_at', { ascending: false }),
       supabase.from('conexiones_remotas').select('*').order('created_at', { ascending: false }),
       supabase.from('departamentos').select('*').order('created_at', { ascending: false }),
-      supabase.from('tareas').select('*').order('created_at', { ascending: false })
+      supabase.from('tareas').select('*').order('created_at', { ascending: false }),
+      supabase.from('usuario_sucursales').select('usuario_id, sucursal_id')
     ]);
 
     if (usuariosRes.error) throw usuariosRes.error;
@@ -30,6 +31,14 @@ module.exports = async function handler(req, res) {
     const conexiones = conexionesRes.data || [];
     const departamentos = departamentosRes.data || [];
     const tareas = tareasRes.data || [];
+
+    // Build sucursal_ids map for each usuario
+    const relMap = {};
+    (usuarioSucursalesRes.data || []).forEach(r => {
+      if (!relMap[r.usuario_id]) relMap[r.usuario_id] = [];
+      relMap[r.usuario_id].push(r.sucursal_id);
+    });
+    usuarios.forEach(u => { u.sucursal_ids = relMap[u.id] || []; });
 
     return res.status(200).json({
       totalUsuarios: usuarios.length,
