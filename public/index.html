@@ -164,6 +164,27 @@
         .checkbox-group label:hover{background:var(--primary-bg)}
         .checkbox-group input[type="checkbox"]{width:16px;height:16px;accent-color:var(--primary);cursor:pointer}
         .checkbox-group label.checked{background:var(--primary-bg);color:var(--primary)}
+        .dept-tree{padding:16px 24px}
+        .dept-tree-item{border:1px solid var(--gray-200);border-radius:10px;margin-bottom:10px;overflow:hidden;background:var(--white)}
+        .dept-tree-parent{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;cursor:pointer;transition:var(--transition)}
+        .dept-tree-parent:hover{background:var(--gray-50)}
+        .dept-tree-parent-left{display:flex;align-items:center;gap:10px}
+        .dept-tree-parent-left .dept-icon{font-size:18px}
+        .dept-tree-parent-left .dept-name{font-weight:700;font-size:14px;color:var(--gray-900)}
+        .dept-tree-parent-left .dept-meta{font-size:11px;color:var(--gray-400);margin-left:8px}
+        .dept-tree-parent-right{display:flex;align-items:center;gap:6px}
+        .dept-tree-toggle{background:none;border:none;cursor:pointer;color:var(--gray-400);transition:transform .2s;font-size:16px;padding:4px}
+        .dept-tree-toggle.open{transform:rotate(90deg)}
+        .dept-tree-children{border-top:1px solid var(--gray-100);background:var(--gray-50);display:none}
+        .dept-tree-children.open{display:block}
+        .dept-tree-child{display:flex;align-items:center;justify-content:space-between;padding:10px 18px 10px 44px;border-bottom:1px solid var(--gray-100);transition:var(--transition)}
+        .dept-tree-child:last-child{border-bottom:none}
+        .dept-tree-child:hover{background:var(--primary-bg)}
+        .dept-tree-child-left{display:flex;align-items:center;gap:8px}
+        .dept-tree-child-left .child-icon{color:var(--gray-400);font-size:14px}
+        .dept-tree-child-left .child-name{font-size:13px;font-weight:600;color:var(--gray-700)}
+        .dept-tree-child-left .child-meta{font-size:11px;color:var(--gray-400);margin-left:6px}
+        .dept-tree-empty{padding:8px 18px 12px 44px;color:var(--gray-400);font-size:12px;font-style:italic}
         .password-wrapper{position:relative}
         .password-toggle{position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--gray-400);padding:4px;display:flex}
         .password-toggle:hover{color:var(--gray-600)}
@@ -618,7 +639,7 @@
                         <button class="btn btn-primary" onclick="openUserModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Nuevo Usuario</button>
                     </div>
                 </div>
-                <table class="data-table"><thead><tr><th class="sortable" data-sort-table="usuarios" data-sort-col="nombre" onclick="sortTable('usuarios','nombre')">Usuario <span class="sort-arrow">⇅</span></th><th class="sortable" data-sort-table="usuarios" data-sort-col="posicion" onclick="sortTable('usuarios','posicion')">Posición <span class="sort-arrow">⇅</span></th><th class="sortable" data-sort-table="usuarios" data-sort-col="sucursal" onclick="sortTable('usuarios','sucursal')">Sucursal <span class="sort-arrow">⇅</span></th><th class="sortable" data-sort-table="usuarios" data-sort-col="departamento" onclick="sortTable('usuarios','departamento')">Departamento <span class="sort-arrow">⇅</span></th><th class="sortable" data-sort-table="usuarios" data-sort-col="subcategoria" onclick="sortTable('usuarios','subcategoria')">Subcategoría <span class="sort-arrow">⇅</span></th><th class="sortable" data-sort-table="usuarios" data-sort-col="equipos" onclick="sortTable('usuarios','equipos')">Equipos Asignados <span class="sort-arrow">⇅</span></th><th>Acciones</th></tr></thead><tbody id="users-table-body"></tbody></table>
+                <table class="data-table"><thead><tr><th class="sortable" data-sort-table="usuarios" data-sort-col="nombre" onclick="sortTable('usuarios','nombre')">Usuario <span class="sort-arrow">⇅</span></th><th class="sortable" data-sort-table="usuarios" data-sort-col="posicion" onclick="sortTable('usuarios','posicion')">Posición <span class="sort-arrow">⇅</span></th><th class="sortable" data-sort-table="usuarios" data-sort-col="sucursal" onclick="sortTable('usuarios','sucursal')">Sucursal <span class="sort-arrow">⇅</span></th><th class="sortable" data-sort-table="usuarios" data-sort-col="departamento" onclick="sortTable('usuarios','departamento')">Departamento <span class="sort-arrow">⇅</span></th><th class="sortable" data-sort-table="usuarios" data-sort-col="subdepartamento" onclick="sortTable('usuarios','subdepartamento')">Subdepartamento <span class="sort-arrow">⇅</span></th><th class="sortable" data-sort-table="usuarios" data-sort-col="equipos" onclick="sortTable('usuarios','equipos')">Equipos Asignados <span class="sort-arrow">⇅</span></th><th>Acciones</th></tr></thead><tbody id="users-table-body"></tbody></table>
                 <div class="pagination" id="pagination-usuarios"></div>
             </div>
         </div>
@@ -668,7 +689,7 @@
                         <button class="btn btn-primary" onclick="openDepartamentoModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Nuevo Departamento</button>
                     </div>
                 </div>
-                <table class="data-table"><thead><tr><th>Departamento</th><th>Subcategoría</th><th>Responsable</th><th>Sucursal</th><th>Empleados</th><th>Acciones</th></tr></thead><tbody id="departamentos-table-body"></tbody></table>
+                <div id="departamentos-tree-body"></div>
             </div>
         </div>
 
@@ -855,9 +876,9 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group"><label>Posición / Cargo <span class="required">*</span></label><input type="text" class="form-input" id="usuario-posicion" required placeholder="Ej: Desarrollador"></div>
-                    <div class="form-group"><label>Departamento</label><select class="form-input" id="usuario-departamento" onchange="updateSubcategoriaOptions()"><option value="">Sin departamento</option></select></div>
+                    <div class="form-group"><label>Departamento</label><select class="form-input" id="usuario-departamento" onchange="updateSubdepartamentoOptions()"><option value="">Sin departamento</option></select></div>
                 </div>
-                <div class="form-group"><label>Subcategoría</label><select class="form-input" id="usuario-subcategoria"><option value="">Sin subcategoría</option></select></div>
+                <div class="form-group"><label>Subdepartamento / Área</label><select class="form-input" id="usuario-subdepartamento"><option value="">Sin subdepartamento</option></select></div>
                 <div class="form-group"><label>Sucursales</label><div class="checkbox-group" id="usuario-sucursales-checks"></div></div>
                 <div class="form-group"><label>Teléfono</label><input type="text" class="form-input" id="usuario-telefono" placeholder="Ej: +52 55 1234 5678"></div>
                 <div class="form-group"><label>Notas</label><textarea class="form-input" id="usuario-notas" placeholder="Observaciones adicionales..."></textarea></div>
@@ -947,8 +968,8 @@
         <div class="modal-body">
             <form id="form-departamento" onsubmit="saveDepartamento(event)">
                 <input type="hidden" id="departamento-id">
-                <div class="form-group"><label>Nombre del Departamento <span class="required">*</span></label><input type="text" class="form-input" id="departamento-nombre" required placeholder="Ej: Contabilidad"></div>
-                <div class="form-group"><label>Subcategoría</label><input type="text" class="form-input" id="departamento-subcategoria" placeholder="Ej: Nóminas, Facturación, Auditoría"></div>
+                <div class="form-group"><label>Departamento padre (dejar vacío si es departamento principal)</label><select class="form-input" id="departamento-parent"><option value="">— Departamento principal (raíz) —</option></select></div>
+                <div class="form-group"><label>Nombre <span class="required">*</span></label><input type="text" class="form-input" id="departamento-nombre" required placeholder="Ej: Contabilidad o Nóminas"></div>
                 <div class="form-group"><label>Descripción</label><input type="text" class="form-input" id="departamento-descripcion" placeholder="Descripción del departamento"></div>
                 <div class="form-row">
                     <div class="form-group"><label>Responsable</label><input type="text" class="form-input" id="departamento-responsable" placeholder="Nombre del responsable"></div>
@@ -1309,8 +1330,8 @@ function openUserModal(id) {
                 cb.parentElement.classList.toggle('checked', checked);
             });
             document.getElementById('usuario-departamento').value = u.departamento_id || '';
-            updateSubcategoriaOptions();
-            document.getElementById('usuario-subcategoria').value = u.subcategoria || '';
+            updateSubdepartamentoOptions();
+            document.getElementById('usuario-subdepartamento').value = u.subdepartamento_id || '';
             document.getElementById('usuario-telefono').value = u.telefono || '';
             document.getElementById('usuario-notas').value = u.notas || '';
         }
@@ -1331,7 +1352,7 @@ async function saveUsuario(e) {
         posicion: document.getElementById('usuario-posicion').value.trim(),
         sucursal_ids: sucursal_ids,
         departamento_id: document.getElementById('usuario-departamento').value || null,
-        subcategoria: document.getElementById('usuario-subcategoria').value.trim(),
+        subdepartamento_id: document.getElementById('usuario-subdepartamento').value || null,
         telefono: document.getElementById('usuario-telefono').value.trim(),
         notas: document.getElementById('usuario-notas').value.trim()
     };
@@ -1414,10 +1435,10 @@ function renderUsers() {
         posicion: u => u.posicion,
         sucursal: u => { const sids = u.sucursal_ids || (u.sucursal_id ? [u.sucursal_id] : []); const s = sids.length > 0 ? cache.sucursales.find(x => x.id === sids[0]) : null; return s ? s.nombre : ''; },
         departamento: u => { const d = cache.departamentos.find(x => x.id === u.departamento_id); return d ? d.nombre : ''; },
-        subcategoria: u => u.subcategoria || '',
+        subdepartamento: u => { const d = cache.departamentos.find(x => x.id === u.subdepartamento_id); return d ? d.nombre : ''; },
         equipos: u => cache.equipos.filter(e => e.asignado_tipo === 'usuario' && e.asignado_id === u.id).length
     });
-    updateSortIcons('usuarios', ['nombre','posicion','sucursal','departamento','subcategoria','equipos']);
+    updateSortIcons('usuarios', ['nombre','posicion','sucursal','departamento','subdepartamento','equipos']);
     const tbody = document.getElementById('users-table-body');
     document.getElementById('users-count').textContent = `${filtered.length} registros`;
     if (filtered.length === 0) {
@@ -1435,13 +1456,13 @@ function renderUsers() {
         const dept = cache.departamentos.find(d => d.id === u.departamento_id);
         const eqCount = cache.equipos.filter(e => e.asignado_tipo === 'usuario' && e.asignado_id === u.id).length;
         const sucHtml = sucs.length > 0 ? sucs.map(s => `<span class="badge badge-gray" style="margin:1px">🏢 ${esc(s.nombre)}</span>`).join('') : '<span class="badge badge-gray">Sin sucursal</span>';
-        const subcat = u.subcategoria || '';
+        const subdept = cache.departamentos.find(d => d.id === u.subdepartamento_id);
         return `<tr>
             <td data-label="Usuario"><div class="table-cell"><div class="avatar-sm">${esc(initials)}</div><div><div style="font-weight:600">${esc(u.nombre)}</div><div style="font-size:11px;color:var(--gray-400)">${esc(u.email || 'Sin email')}</div></div></div></td>
             <td data-label="Posición"><span class="badge badge-primary">${esc(u.posicion)}</span></td>
             <td data-label="Sucursal"><div style="display:flex;flex-wrap:wrap;gap:2px">${sucHtml}</div></td>
             <td data-label="Departamento">${dept ? `<span class="badge badge-info">📁 ${esc(dept.nombre)}</span>` : '<span style="color:var(--gray-300)">—</span>'}</td>
-            <td data-label="Subcategoría">${subcat ? `<span class="badge badge-gray">${esc(subcat)}</span>` : '<span style="color:var(--gray-300)">—</span>'}</td>
+            <td data-label="Subdepartamento">${subdept ? `<span class="badge badge-gray">${esc(subdept.nombre)}</span>` : '<span style="color:var(--gray-300)">—</span>'}</td>
             <td data-label="Equipos"><span class="badge badge-info">${eqCount} equipo${eqCount !== 1 ? 's' : ''}</span></td>
             <td data-label="Acciones"><div style="display:flex;gap:6px">
                 <button class="btn-icon edit" title="Editar" onclick="openUserModal('${u.id}')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
@@ -1908,47 +1929,42 @@ function populateSucursalSelects() {
             `<label><input type="checkbox" value="${s.id}" onchange="this.parentElement.classList.toggle('checked',this.checked)"> 🏢 ${esc(s.nombre)}</label>`
         ).join('');
     }
-    // Populate departamento selects
+    // Populate departamento selects (only root departments - no parent)
+    const rootDepts = cache.departamentos.filter(d => !d.parent_id);
     const deptSels = ['usuario-departamento'];
     deptSels.forEach(selId => {
         const sel = document.getElementById(selId);
         if (!sel) return;
         const currentVal = sel.value;
         sel.innerHTML = '<option value="">Sin departamento</option>';
-        cache.departamentos.forEach(d => { sel.innerHTML += `<option value="${d.id}">${esc(d.nombre)}</option>`; });
+        rootDepts.forEach(d => { sel.innerHTML += `<option value="${d.id}">${esc(d.nombre)}</option>`; });
         sel.value = currentVal;
     });
+    // Populate parent select in departamento modal (only root depts)
+    const parentSel = document.getElementById('departamento-parent');
+    if (parentSel) {
+        const currentVal = parentSel.value;
+        const editId = document.getElementById('departamento-id')?.value;
+        parentSel.innerHTML = '<option value="">— Departamento principal (raíz) —</option>';
+        rootDepts.forEach(d => {
+            if (d.id !== editId) parentSel.innerHTML += `<option value="${d.id}">📁 ${esc(d.nombre)}</option>`;
+        });
+        parentSel.value = currentVal;
+    }
 }
 
-function updateSubcategoriaOptions() {
+function updateSubdepartamentoOptions() {
     const deptId = document.getElementById('usuario-departamento').value;
-    const sel = document.getElementById('usuario-subcategoria');
+    const sel = document.getElementById('usuario-subdepartamento');
     if (!sel) return;
     const currentVal = sel.value;
-    sel.innerHTML = '<option value="">Sin subcategoría</option>';
+    sel.innerHTML = '<option value="">Sin subdepartamento</option>';
     if (deptId) {
-        // Collect unique subcategorias from departamentos with same nombre or from the selected one
-        const dept = cache.departamentos.find(d => d.id === deptId);
-        if (dept && dept.subcategoria) {
-            // Support comma-separated subcategorias
-            dept.subcategoria.split(',').map(s => s.trim()).filter(Boolean).forEach(sub => {
-                sel.innerHTML += `<option value="${esc(sub)}">${esc(sub)}</option>`;
-            });
-        }
+        const children = cache.departamentos.filter(d => d.parent_id === deptId);
+        children.forEach(d => {
+            sel.innerHTML += `<option value="${d.id}">${esc(d.nombre)}</option>`;
+        });
     }
-    // Also collect all unique subcategorias across all departamentos as extra options
-    const allSubs = new Set();
-    cache.departamentos.forEach(d => {
-        if (d.subcategoria) d.subcategoria.split(',').map(s => s.trim()).filter(Boolean).forEach(s => allSubs.add(s));
-    });
-    const deptSubs = new Set();
-    const dept = cache.departamentos.find(d => d.id === deptId);
-    if (dept && dept.subcategoria) dept.subcategoria.split(',').map(s => s.trim()).filter(Boolean).forEach(s => deptSubs.add(s));
-    allSubs.forEach(sub => {
-        if (!deptSubs.has(sub)) {
-            sel.innerHTML += `<option value="${esc(sub)}" style="color:var(--gray-400)">${esc(sub)}</option>`;
-        }
-    });
     sel.value = currentVal;
 }
 
@@ -2132,7 +2148,7 @@ function exportTable(type) {
             const sids = u.sucursal_ids || (u.sucursal_id ? [u.sucursal_id] : []);
             const sucNames = sids.map(sid => cache.sucursales.find(s => s.id === sid)).filter(Boolean).map(s => s.nombre).join(', ');
             const dept = cache.departamentos.find(d => d.id === u.departamento_id);
-            return { Nombre: u.nombre, Email: u.email || '', Posición: u.posicion, Sucursal: sucNames, Departamento: dept ? dept.nombre : '', Subcategoría: u.subcategoria || '', Teléfono: u.telefono || '', Notas: u.notas || '' };
+            return { Nombre: u.nombre, Email: u.email || '', Posición: u.posicion, Sucursal: sucNames, Departamento: dept ? dept.nombre : '', Subdepartamento: (() => { const sd = cache.departamentos.find(d => d.id === u.subdepartamento_id); return sd ? sd.nombre : ''; })(), Teléfono: u.telefono || '', Notas: u.notas || '' };
         });
     } else if (type === 'equipos') {
         fileName = 'Equipos';
@@ -2284,26 +2300,27 @@ function showApp() {
 }
 
 // ==================== DEPARTAMENTOS ====================
-function openDepartamentoModal(id) {
+function openDepartamentoModal(id, parentId) {
     document.getElementById('form-departamento').reset();
     document.getElementById('departamento-id').value = '';
     populateSucursalSelects();
     if (id) {
         const d = cache.departamentos.find(x => x.id === id);
         if (d) {
-            document.getElementById('modal-departamento-title').textContent = 'Editar Departamento';
-            document.getElementById('modal-departamento-subtitle').textContent = 'Modifique la información del departamento';
+            document.getElementById('modal-departamento-title').textContent = d.parent_id ? 'Editar Subdepartamento' : 'Editar Departamento';
+            document.getElementById('modal-departamento-subtitle').textContent = 'Modifique la información';
             document.getElementById('departamento-id').value = d.id;
+            document.getElementById('departamento-parent').value = d.parent_id || '';
             document.getElementById('departamento-nombre').value = d.nombre;
-            document.getElementById('departamento-subcategoria').value = d.subcategoria || '';
             document.getElementById('departamento-descripcion').value = d.descripcion || '';
             document.getElementById('departamento-responsable').value = d.responsable || '';
             document.getElementById('departamento-sucursal').value = d.sucursal_id || '';
             document.getElementById('departamento-notas').value = d.notas || '';
         }
     } else {
-        document.getElementById('modal-departamento-title').textContent = 'Nuevo Departamento';
-        document.getElementById('modal-departamento-subtitle').textContent = 'Complete la información del departamento';
+        document.getElementById('modal-departamento-title').textContent = parentId ? 'Nuevo Subdepartamento' : 'Nuevo Departamento';
+        document.getElementById('modal-departamento-subtitle').textContent = parentId ? 'Agregar un área dentro del departamento' : 'Complete la información del departamento';
+        if (parentId) document.getElementById('departamento-parent').value = parentId;
     }
     openModal('modal-departamento');
 }
@@ -2316,7 +2333,7 @@ async function saveDepartamento(e) {
         descripcion: document.getElementById('departamento-descripcion').value.trim(),
         responsable: document.getElementById('departamento-responsable').value.trim(),
         sucursal_id: document.getElementById('departamento-sucursal').value || null,
-        subcategoria: document.getElementById('departamento-subcategoria').value.trim(),
+        parent_id: document.getElementById('departamento-parent').value || null,
         notas: document.getElementById('departamento-notas').value.trim()
     };
     try {
@@ -2328,7 +2345,11 @@ async function saveDepartamento(e) {
 }
 
 function deleteDepartamento(id) {
-    showConfirm('¿Eliminar departamento?', 'Los usuarios serán desvinculados de este departamento.', async () => {
+    const d = cache.departamentos.find(x => x.id === id);
+    const children = cache.departamentos.filter(x => x.parent_id === id);
+    let msg = 'Los usuarios serán desvinculados de este departamento.';
+    if (children.length > 0) msg += ` También se eliminarán ${children.length} subdepartamento(s).`;
+    showConfirm('¿Eliminar departamento?', msg, async () => {
         try { await API.del('/api/departamentos/' + id); showToast('Departamento eliminado'); await loadAllData(); renderAll(); }
         catch (err) { showToast('Error: ' + err.message, 'error'); }
     });
@@ -2337,33 +2358,70 @@ function deleteDepartamento(id) {
 function renderDepartamentos() {
     const search = (document.getElementById('searchDepartamentos')?.value || '').toLowerCase();
     const filterSuc = document.getElementById('filterDeptSucursal')?.value || '';
-    let filtered = cache.departamentos.filter(d => {
-        const matchSearch = d.nombre.toLowerCase().includes(search) || (d.responsable || '').toLowerCase().includes(search) || (d.descripcion || '').toLowerCase().includes(search);
+    const allDepts = cache.departamentos;
+    const roots = allDepts.filter(d => !d.parent_id);
+    const container = document.getElementById('departamentos-tree-body');
+
+    // Filter
+    let filteredRoots = roots.filter(d => {
+        const children = allDepts.filter(c => c.parent_id === d.id);
+        const matchSelf = d.nombre.toLowerCase().includes(search) || (d.responsable || '').toLowerCase().includes(search);
+        const matchChild = children.some(c => c.nombre.toLowerCase().includes(search));
         const matchSuc = !filterSuc || d.sucursal_id === filterSuc;
-        return matchSearch && matchSuc;
+        return (matchSelf || matchChild) && matchSuc;
     });
-    const tbody = document.getElementById('departamentos-table-body');
-    document.getElementById('departamentos-count').textContent = `${filtered.length} registros`;
-    if (filtered.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="6"><div class="table-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg><p>No se encontraron departamentos</p><small>Agrega tu primer departamento con el botón "Nuevo Departamento"</small></div></td></tr>`;
+
+    const totalCount = filteredRoots.length + filteredRoots.reduce((sum, d) => sum + allDepts.filter(c => c.parent_id === d.id).length, 0);
+    document.getElementById('departamentos-count').textContent = `${totalCount} registros`;
+
+    if (filteredRoots.length === 0) {
+        container.innerHTML = `<div style="padding:40px;text-align:center"><svg viewBox="0 0 24 24" fill="none" stroke="var(--gray-300)" stroke-width="1.5" width="48" height="48"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg><p style="color:var(--gray-400);margin-top:12px">No se encontraron departamentos</p></div>`;
         return;
     }
-    tbody.innerHTML = filtered.map(d => {
+
+    container.innerHTML = '<div class="dept-tree">' + filteredRoots.map(d => {
+        const children = allDepts.filter(c => c.parent_id === d.id);
         const suc = cache.sucursales.find(s => s.id === d.sucursal_id);
         const empCount = cache.usuarios.filter(u => u.departamento_id === d.id).length;
-        const color = colors[d.nombre.charCodeAt(0) % colors.length];
-        return `<tr>
-            <td data-label="Departamento"><div class="table-cell"><div class="avatar-sm">📁</div><div><div style="font-weight:600">${esc(d.nombre)}</div>${d.descripcion ? `<div style="font-size:11px;color:var(--gray-400)">${esc(d.descripcion)}</div>` : ''}</div></div></td>
-            <td data-label="Subcategoría">${d.subcategoria ? `<span class="badge badge-info">${esc(d.subcategoria)}</span>` : '<span style="color:var(--gray-300)">—</span>'}</td>
-            <td data-label="Responsable">${d.responsable ? esc(d.responsable) : '<span style="color:var(--gray-300)">—</span>'}</td>
-            <td data-label="Sucursal">${suc ? `<span class="badge badge-gray">🏢 ${esc(suc.nombre)}</span>` : '<span class="badge badge-gray">Sin sucursal</span>'}</td>
-            <td data-label="Empleados"><span class="badge badge-info">${empCount} empleado${empCount !== 1 ? 's' : ''}</span></td>
-            <td data-label="Acciones"><div style="display:flex;gap:6px">
-                <button class="btn-icon edit" title="Editar" onclick="openDepartamentoModal('${d.id}')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
-                <button class="btn-icon danger" title="Eliminar" onclick="deleteDepartamento('${d.id}')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>
-            </div></td>
-        </tr>`;
-    }).join('');
+        const totalEmp = empCount + children.reduce((sum, c) => sum + cache.usuarios.filter(u => u.departamento_id === c.id || u.subdepartamento_id === c.id).length, 0);
+
+        let childrenHtml = '';
+        if (children.length > 0) {
+            childrenHtml = children.map(c => {
+                const cEmpCount = cache.usuarios.filter(u => u.subdepartamento_id === c.id).length;
+                return `<div class="dept-tree-child">
+                    <div class="dept-tree-child-left">
+                        <span class="child-icon">└</span>
+                        <span class="child-name">${esc(c.nombre)}</span>
+                        <span class="child-meta">${cEmpCount} empleado${cEmpCount !== 1 ? 's' : ''}${c.responsable ? ' • ' + esc(c.responsable) : ''}</span>
+                    </div>
+                    <div style="display:flex;gap:6px">
+                        <button class="btn-icon edit" title="Editar" onclick="openDepartamentoModal('${c.id}')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+                        <button class="btn-icon danger" title="Eliminar" onclick="deleteDepartamento('${c.id}')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>
+                    </div>
+                </div>`;
+            }).join('');
+        } else {
+            childrenHtml = '<div class="dept-tree-empty">No hay subdepartamentos — haz clic en + para agregar</div>';
+        }
+
+        return `<div class="dept-tree-item">
+            <div class="dept-tree-parent" onclick="this.querySelector('.dept-tree-toggle').classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+                <div class="dept-tree-parent-left">
+                    <span class="dept-icon">📁</span>
+                    <span class="dept-name">${esc(d.nombre)}</span>
+                    <span class="dept-meta">${children.length} sub · ${totalEmp} empleados${suc ? ' · 🏢 ' + esc(suc.nombre) : ''}${d.responsable ? ' · 👤 ' + esc(d.responsable) : ''}</span>
+                </div>
+                <div class="dept-tree-parent-right">
+                    <button class="btn-icon" title="Agregar subdepartamento" onclick="event.stopPropagation();openDepartamentoModal(null,'${d.id}')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+                    <button class="btn-icon edit" title="Editar" onclick="event.stopPropagation();openDepartamentoModal('${d.id}')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+                    <button class="btn-icon danger" title="Eliminar" onclick="event.stopPropagation();deleteDepartamento('${d.id}')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>
+                    <span class="dept-tree-toggle">▶</span>
+                </div>
+            </div>
+            <div class="dept-tree-children">${childrenHtml}</div>
+        </div>`;
+    }).join('') + '</div>';
 }
 
 // ==================== CREDENCIALES ====================

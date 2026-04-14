@@ -38,10 +38,10 @@ module.exports = async function handler(req, res) {
         return res.status(200).json(data);
       }
       if (req.method === 'PUT') {
-        const { nombre, email, posicion, sucursal_ids, departamento_id, subcategoria, telefono, notas } = req.body;
+        const { nombre, email, posicion, sucursal_ids, departamento_id, subdepartamento_id, telefono, notas } = req.body;
         const primarySucursal = (sucursal_ids && sucursal_ids.length > 0) ? sucursal_ids[0] : null;
         const { data, error } = await supabase.from('usuarios')
-          .update({ nombre, email, posicion, sucursal_id: primarySucursal, departamento_id: departamento_id || null, subcategoria: subcategoria || '', telefono, notas })
+          .update({ nombre, email, posicion, sucursal_id: primarySucursal, departamento_id: departamento_id || null, subdepartamento_id: subdepartamento_id || null, telefono, notas })
           .eq('id', id).select().single();
         if (error) throw error;
         await syncSucursales(id, sucursal_ids || []);
@@ -71,11 +71,11 @@ module.exports = async function handler(req, res) {
         return res.status(200).json(data);
       }
       if (req.method === 'POST') {
-        const { nombre, email, posicion, sucursal_ids, departamento_id, subcategoria, telefono, notas } = req.body;
+        const { nombre, email, posicion, sucursal_ids, departamento_id, subdepartamento_id, telefono, notas } = req.body;
         if (!nombre || !posicion) return res.status(400).json({ error: 'nombre y posicion son requeridos' });
         const primarySucursal = (sucursal_ids && sucursal_ids.length > 0) ? sucursal_ids[0] : null;
         const { data, error } = await supabase.from('usuarios')
-          .insert([{ nombre, email, posicion, sucursal_id: primarySucursal, departamento_id: departamento_id || null, subcategoria: subcategoria || '', telefono, notas }])
+          .insert([{ nombre, email, posicion, sucursal_id: primarySucursal, departamento_id: departamento_id || null, subdepartamento_id: subdepartamento_id || null, telefono, notas }])
           .select().single();
         if (error) throw error;
         await syncSucursales(data.id, sucursal_ids || []);
