@@ -618,7 +618,7 @@
                         <button class="btn btn-primary" onclick="openUserModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Nuevo Usuario</button>
                     </div>
                 </div>
-                <table class="data-table"><thead><tr><th class="sortable" data-sort-table="usuarios" data-sort-col="nombre" onclick="sortTable('usuarios','nombre')">Usuario <span class="sort-arrow">⇅</span></th><th class="sortable" data-sort-table="usuarios" data-sort-col="posicion" onclick="sortTable('usuarios','posicion')">Posición <span class="sort-arrow">⇅</span></th><th class="sortable" data-sort-table="usuarios" data-sort-col="sucursal" onclick="sortTable('usuarios','sucursal')">Sucursal <span class="sort-arrow">⇅</span></th><th class="sortable" data-sort-table="usuarios" data-sort-col="departamento" onclick="sortTable('usuarios','departamento')">Departamento <span class="sort-arrow">⇅</span></th><th class="sortable" data-sort-table="usuarios" data-sort-col="equipos" onclick="sortTable('usuarios','equipos')">Equipos Asignados <span class="sort-arrow">⇅</span></th><th>Acciones</th></tr></thead><tbody id="users-table-body"></tbody></table>
+                <table class="data-table"><thead><tr><th class="sortable" data-sort-table="usuarios" data-sort-col="nombre" onclick="sortTable('usuarios','nombre')">Usuario <span class="sort-arrow">⇅</span></th><th class="sortable" data-sort-table="usuarios" data-sort-col="posicion" onclick="sortTable('usuarios','posicion')">Posición <span class="sort-arrow">⇅</span></th><th class="sortable" data-sort-table="usuarios" data-sort-col="sucursal" onclick="sortTable('usuarios','sucursal')">Sucursal <span class="sort-arrow">⇅</span></th><th class="sortable" data-sort-table="usuarios" data-sort-col="departamento" onclick="sortTable('usuarios','departamento')">Departamento <span class="sort-arrow">⇅</span></th><th class="sortable" data-sort-table="usuarios" data-sort-col="subcategoria" onclick="sortTable('usuarios','subcategoria')">Subcategoría <span class="sort-arrow">⇅</span></th><th class="sortable" data-sort-table="usuarios" data-sort-col="equipos" onclick="sortTable('usuarios','equipos')">Equipos Asignados <span class="sort-arrow">⇅</span></th><th>Acciones</th></tr></thead><tbody id="users-table-body"></tbody></table>
                 <div class="pagination" id="pagination-usuarios"></div>
             </div>
         </div>
@@ -1410,13 +1410,14 @@ function renderUsers() {
         posicion: u => u.posicion,
         sucursal: u => { const sids = u.sucursal_ids || (u.sucursal_id ? [u.sucursal_id] : []); const s = sids.length > 0 ? cache.sucursales.find(x => x.id === sids[0]) : null; return s ? s.nombre : ''; },
         departamento: u => { const d = cache.departamentos.find(x => x.id === u.departamento_id); return d ? d.nombre : ''; },
+        subcategoria: u => { const d = cache.departamentos.find(x => x.id === u.departamento_id); return d ? (d.subcategoria || '') : ''; },
         equipos: u => cache.equipos.filter(e => e.asignado_tipo === 'usuario' && e.asignado_id === u.id).length
     });
-    updateSortIcons('usuarios', ['nombre','posicion','sucursal','departamento','equipos']);
+    updateSortIcons('usuarios', ['nombre','posicion','sucursal','departamento','subcategoria','equipos']);
     const tbody = document.getElementById('users-table-body');
     document.getElementById('users-count').textContent = `${filtered.length} registros`;
     if (filtered.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="6"><div class="table-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><p>No se encontraron usuarios</p><small>Agrega tu primer usuario con el botón "Nuevo Usuario"</small></div></td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="7"><div class="table-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><p>No se encontraron usuarios</p><small>Agrega tu primer usuario con el botón "Nuevo Usuario"</small></div></td></tr>`;
         renderPagination('pagination-usuarios', 'usuarios', 0, 1, 1);
         return;
     }
@@ -1430,11 +1431,13 @@ function renderUsers() {
         const dept = cache.departamentos.find(d => d.id === u.departamento_id);
         const eqCount = cache.equipos.filter(e => e.asignado_tipo === 'usuario' && e.asignado_id === u.id).length;
         const sucHtml = sucs.length > 0 ? sucs.map(s => `<span class="badge badge-gray" style="margin:1px">🏢 ${esc(s.nombre)}</span>`).join('') : '<span class="badge badge-gray">Sin sucursal</span>';
+        const subcat = dept && dept.subcategoria ? dept.subcategoria : '';
         return `<tr>
             <td data-label="Usuario"><div class="table-cell"><div class="avatar-sm">${esc(initials)}</div><div><div style="font-weight:600">${esc(u.nombre)}</div><div style="font-size:11px;color:var(--gray-400)">${esc(u.email || 'Sin email')}</div></div></div></td>
             <td data-label="Posición"><span class="badge badge-primary">${esc(u.posicion)}</span></td>
             <td data-label="Sucursal"><div style="display:flex;flex-wrap:wrap;gap:2px">${sucHtml}</div></td>
             <td data-label="Departamento">${dept ? `<span class="badge badge-info">📁 ${esc(dept.nombre)}</span>` : '<span style="color:var(--gray-300)">—</span>'}</td>
+            <td data-label="Subcategoría">${subcat ? `<span class="badge badge-gray">${esc(subcat)}</span>` : '<span style="color:var(--gray-300)">—</span>'}</td>
             <td data-label="Equipos"><span class="badge badge-info">${eqCount} equipo${eqCount !== 1 ? 's' : ''}</span></td>
             <td data-label="Acciones"><div style="display:flex;gap:6px">
                 <button class="btn-icon edit" title="Editar" onclick="openUserModal('${u.id}')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
@@ -2093,7 +2096,7 @@ function exportTable(type) {
             const sids = u.sucursal_ids || (u.sucursal_id ? [u.sucursal_id] : []);
             const sucNames = sids.map(sid => cache.sucursales.find(s => s.id === sid)).filter(Boolean).map(s => s.nombre).join(', ');
             const dept = cache.departamentos.find(d => d.id === u.departamento_id);
-            return { Nombre: u.nombre, Email: u.email || '', Posición: u.posicion, Sucursal: sucNames, Departamento: dept ? dept.nombre : '', Teléfono: u.telefono || '', Notas: u.notas || '' };
+            return { Nombre: u.nombre, Email: u.email || '', Posición: u.posicion, Sucursal: sucNames, Departamento: dept ? dept.nombre : '', Subcategoría: dept && dept.subcategoria ? dept.subcategoria : '', Teléfono: u.telefono || '', Notas: u.notas || '' };
         });
     } else if (type === 'equipos') {
         fileName = 'Equipos';
